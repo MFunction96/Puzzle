@@ -21,12 +21,9 @@
         <GridView
             android:id="@+id/gridview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:numColumns="3"
-            android:scrollbars="none"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="12dip">
+            android:layout_height="wrap_content"
+            android:numColumns="2"
+            android:stretchMode="columnWidth" >
 
         </GridView>
     </LinearLayout>
