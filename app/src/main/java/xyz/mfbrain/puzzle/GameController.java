@@ -1,5 +1,7 @@
 package xyz.mfbrain.puzzle;
 
+import android.support.v7.app.AppCompatActivity;
+
 /**
  * Created by MFunction on 2017/7/4.
  *
@@ -9,10 +11,10 @@ package xyz.mfbrain.puzzle;
 
 class GameController {
 
-    private ImageAdapter _pa;
+    private AppCompatActivity _pa;
 
-    GameController(MainActivity mainActivity) {
-        _pa = mainActivity.GetImageAdapter();
+    GameController(AppCompatActivity appCompatActivity) {
+        _pa = appCompatActivity;
     }
 
 }
