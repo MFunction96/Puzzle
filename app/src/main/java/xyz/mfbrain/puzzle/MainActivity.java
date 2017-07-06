@@ -87,4 +87,5 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
      */
     public static int getColumns(){return columns;}
 
+
 }

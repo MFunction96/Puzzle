@@ -60,5 +60,6 @@ public class GameActivity extends AppCompatActivity {
         _gu=new GameUtil(_bmp,tableLayout,this);
        _bmp= _gu.zoomBitmap( _bmp, screen_width - 50, screen_width - 50);
         _gu.fillGameZone(_bmp,MainActivity.getRows(),MainActivity.getColumns());
+
     }
 }
