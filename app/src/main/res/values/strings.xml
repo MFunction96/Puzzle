@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Puzzle</string>
     <string name="description">Code Lyoko</string>
+    <string name="pickpicture">从图库选取图片</string>
+    <string name="level1">3x3</string>
+    <string name="level2">4x4</string>
+    <string name="level3">5x5</string>
+    <string name="picktip">请选择一张图片：</string>
+    <string name="hint">帮助</string>
+    <string name="restart">重新开始</string>
+    <string name="backmenu">返回主菜单</string>
 </resources>
