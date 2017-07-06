@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 Intent it = new Intent();
                 it.setClass(MainActivity.this, GameActivity.class);
-                it.putExtra("ID", _ia.getItemId(position));
+                it.putExtra("bmpid", String.valueOf(_ia.getItemId(position)));
                 startActivity(it);
             }
         });

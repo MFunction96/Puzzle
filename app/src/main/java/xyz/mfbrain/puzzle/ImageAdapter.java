@@ -49,7 +49,7 @@ final class ImageAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return _bmpid[position];
     }
 
     @Override

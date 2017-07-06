@@ -25,10 +25,10 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Intent intent = getIntent();
-        int _bmpid = intent.getIntExtra("ID",R.drawable.lyoko1);
+        int _bmpid = Integer.valueOf(intent.getStringExtra("bmpid"));
         _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), _bmpid));
         _gc = new GameController(this);
-        ImageView imageview = (ImageView)findViewById(R.id.imageview);
+        ImageView imageview = (ImageView) findViewById(R.id.imageview);
         imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageview.setAdjustViewBounds(true);
         imageview.setMaxWidth(256);
