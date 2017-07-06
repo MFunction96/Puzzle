@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 Intent it = new Intent();
                 it.setClass(MainActivity.this, GameActivity.class);
-                it.putExtra("ID", (int)_ia.getItem(position));
+                it.putExtra("ID", _ia.getItemId(position));
                 startActivity(it);
             }
         });

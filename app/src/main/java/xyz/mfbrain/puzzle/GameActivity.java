@@ -1,6 +1,8 @@
 package xyz.mfbrain.puzzle;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +16,7 @@ import android.widget.ImageView;
 
 public class GameActivity extends AppCompatActivity {
 
-    private int _imgid;
+    private Bitmap _bmp;
 
     private GameController _gc;
 
@@ -23,8 +25,8 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        _imgid = bundle.getInt("ID");
+        int _bmpid = intent.getIntExtra("ID",R.drawable.lyoko1);
+        _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), _bmpid));
         _gc = new GameController(this);
         ImageView imageview = (ImageView)findViewById(R.id.imageview);
         imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -32,6 +34,6 @@ public class GameActivity extends AppCompatActivity {
         imageview.setMaxWidth(256);
         imageview.setMaxHeight(256);
         imageview.setPadding(8, 8, 8, 8);
-        imageview.setImageResource(_imgid);
+        imageview.setImageBitmap(_bmp);
     }
 }
