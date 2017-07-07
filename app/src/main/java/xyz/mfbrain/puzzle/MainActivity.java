@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _gridview = (GridView) findViewById(R.id.gridview);
         level_chosen = false;
         _ia = new ImageAdapter(this);
+        _level1.setSelected(true);
     }
 
     /**
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             }
         }
     }
+
     /**
      * 获得行数据
      *

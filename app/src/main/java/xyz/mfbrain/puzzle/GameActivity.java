@@ -26,9 +26,9 @@ public class GameActivity extends AppCompatActivity {
 
     private GameUtil _gu;
 
-    private TableLayout tableLayout;
+    private TableLayout _tableLayout;
 
-    private int screen_width, scree_height;
+    private int _screenwidth, _screeheight;
 
     private Button _hintbtn;
 
@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity {
         imageview.setPadding(8, 8, 8, 8);
         imageview.setImageBitmap(_bmp);
 
-        _bmp = _gu.zoomBitmap(_bmp, screen_width - 50, screen_width - 50);
+        _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
         _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
     }
 
@@ -62,14 +62,42 @@ public class GameActivity extends AppCompatActivity {
     private void Init() {
         //获取屏幕宽高
         DisplayMetrics dm = this.getResources().getDisplayMetrics();
-        screen_width = dm.widthPixels;
-        scree_height = dm.heightPixels;
-        tableLayout = (TableLayout) findViewById(R.id.tablelayout);
+        _screenwidth = dm.widthPixels;
+        _screeheight = dm.heightPixels;
+        _tableLayout = (TableLayout) findViewById(R.id.tablelayout);
         _hintbtn = (Button) findViewById(R.id.hint);
         _restartbtn = (Button) findViewById(R.id.restart);
         _backmenubtn = (Button) findViewById(R.id.backmenu);
         _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmpid"))));
-        _gu = new GameUtil(_bmp, tableLayout, this);
+        _gu = new GameUtil(_bmp, _tableLayout, this);
         _gc = new GameController(this);
+    }
+    
+    final TableLayout GetTableLayout() {
+        return _tableLayout;
+    }
+
+    final int GetWidth() {
+        return _screenwidth;
+    }
+
+    final int GetHeight() {
+        return _screeheight;
+    }
+
+    final Button GetHintBtn() {
+        return _hintbtn;
+    }
+
+    final Button GetRestartBtn() {
+        return _restartbtn;
+    }
+
+    final Button GetBackMenuBtn() {
+        return _backmenubtn;
+    }
+
+    final Bitmap GetBmp() {
+        return _bmp;
     }
 }
