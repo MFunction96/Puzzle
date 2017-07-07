@@ -34,19 +34,20 @@ public class GameUtil {
     private Context context;
 
 
-    GameUtil(Bitmap bm,TableLayout tl,Context c){
-        tableLayout=tl;
-        context=c;
+    GameUtil(Bitmap bm, TableLayout tl, Context c) {
+        tableLayout = tl;
+        context = c;
     }
 
     /**
      * 对选择的图片进行缩放
+     *
      * @param bitmap 位图
-     * @param w 目标宽
-     * @param h 目标高
+     * @param w      目标宽
+     * @param h      目标高
      * @return
      */
-    public Bitmap zoomBitmap(Bitmap bitmap, int w, int h) {
+    Bitmap zoomBitmap(Bitmap bitmap, int w, int h) {
         //得到原始位图宽 高
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -57,33 +58,33 @@ public class GameUtil {
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
         //缩放图片
-        Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-        return newBitmap;
+        return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
     }
 
     /**
      * 对位图进行裁剪
+     *
      * @param bitmap 位图
-     * @param x 起点横坐标
-     * @param y 起点纵坐标
-     * @param w 裁剪宽度
-     * @param h 裁剪高度
+     * @param x      起点横坐标
+     * @param y      起点纵坐标
+     * @param w      裁剪宽度
+     * @param h      裁剪高度
      * @return
      */
 
-    public Bitmap cutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
-        Bitmap newBitmap = Bitmap.createBitmap(bitmap, x, y, w, h);
-        return newBitmap;
+    Bitmap cutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
+        return Bitmap.createBitmap(bitmap, x, y, w, h);
     }
 
     /**
      * 填充游戏区域（表格布局）
-     * @param bitmap 缩放后的位图
-     * @param rows 行数
+     *
+     * @param bitmap  缩放后的位图
+     * @param rows    行数
      * @param colunms 列数
      */
 
-    public void fillGameZone(Bitmap bitmap,int rows, int colunms) {
+    void fillGameZone(Bitmap bitmap, int rows, int colunms) {
 
         int blockWidth = bitmap.getWidth() / colunms;
         int blockHeignt = bitmap.getHeight() / rows;

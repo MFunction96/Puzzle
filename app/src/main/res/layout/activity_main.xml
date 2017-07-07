@@ -52,42 +52,32 @@
             android:layout_height="match_parent"
             android:text="@string/pickpicture" />
     </LinearLayout>
-
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
+        <RadioButton
+            android:id="@+id/easy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:text="@string/level1"
+            android:layout_weight="1"/>
 
-            <RadioButton
-                android:id="@+id/easy"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/level1"
-                android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/middle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/level2"
+            android:layout_weight="1"/>
 
-            <RadioButton
-                android:id="@+id/gmiddle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/level2"
-                android:layout_weight="1"/>
-
-            <RadioButton
-                android:id="@+id/hard"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/level3"
-                android:layout_weight="1"/>
-        </RadioGroup>
-
-    </LinearLayout>
+        <RadioButton
+            android:id="@+id/hard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/level3"
+            android:layout_weight="1"/>
+    </RadioGroup>
 </LinearLayout>
 
