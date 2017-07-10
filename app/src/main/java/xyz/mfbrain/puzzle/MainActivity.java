@@ -1,6 +1,12 @@
 package xyz.mfbrain.puzzle;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +15,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import java.io.FileNotFoundException;
 
 
 /**
@@ -49,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _gridview.setAdapter(_ia);
         _gridview.setOnItemClickListener(new ItemClickListener());
         _levelgroup.setOnCheckedChangeListener(this);
+        _pickpicbtn.setOnClickListener(new PickPicClick());
     }
 
     /**
@@ -82,6 +92,33 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         level_chosen = true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            Uri uri = data.getData();
+            ContentResolver cr = getContentResolver();
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private class PickPicClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            intent.putExtra("crop", true);
+            intent.putExtra("return-data", true);
+            startActivityForResult(intent, 0);
+        }
+    }
+
     /**
      *
      */
@@ -101,6 +138,10 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 build.show();
             }
         }
+    }
+
+    final Button GetPickPicBtn() {
+        return _pickpicbtn;
     }
 
     /**
