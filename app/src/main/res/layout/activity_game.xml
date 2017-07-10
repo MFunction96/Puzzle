@@ -27,11 +27,11 @@
             android:id="@+id/origin">
 
             <ImageView
+                android:id="@+id/imageview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/imageview"
-                android:minWidth="100dip"
-                android:contentDescription="@string/description" />
+                android:contentDescription="@string/description"
+                android:minWidth="100dip" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
