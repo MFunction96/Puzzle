@@ -44,9 +44,13 @@ class GameController {
     //将图片随机打乱
     public void randomtable(int rows,int clos) {
         int direction[]={1,-1,10,-10};
-        for(int i=0;i<rows*clos*rows;i++){
+        int tag=-10;
+        for(int i=0;i<rows*clos*rows*clos;i++){
             Random random=new Random();
-            int tag=random.nextInt(4);
+            if(Math.abs(tag)>1)
+                tag=random.nextInt(2);
+            else
+                tag=random.nextInt(2)+2;
             int direct=direction[tag];
             if((direct+ _position)>0&&(((direct+ _position)%10)<clos)&&(((direct+ _position)/10)<rows)) {
                 ChangeBitmap(_position + direct, _position);
