@@ -3,7 +3,10 @@ package xyz.mfbrain.puzzle;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -13,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 /**
  * Created by MFunction on 2017/7/5.
@@ -27,6 +31,8 @@ public class GameActivity extends AppCompatActivity {
     private GameController _gc;
 
     private GameUtil _gu;
+
+    private HelpClass _hp;
 
     private TableLayout _tableLayout;
 
@@ -56,6 +62,8 @@ public class GameActivity extends AppCompatActivity {
 
         _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
         _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
+
+        _gc.randomtable(MainActivity.GetRows(),MainActivity.GetColumns());
     }
 
     /**
@@ -74,10 +82,12 @@ public class GameActivity extends AppCompatActivity {
         _restartbtn.setOnClickListener(new Restart());
         _backmenubtn.setOnClickListener(new BackMenu());
         _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmpid"))));
-        _gu = new GameUtil(_bmp, _tableLayout, this);
         _gc = new GameController(this);
+        _gu = new GameUtil(_bmp, _tableLayout, this,_gc);
+        _hp = new HelpClass(this,_gc);
+        _gc.initarraystep();
     }
-    
+
     final TableLayout GetTableLayout() {
         return _tableLayout;
     }
@@ -105,12 +115,16 @@ public class GameActivity extends AppCompatActivity {
     final Bitmap GetBmp() {
         return _bmp;
     }
+    final ImageView GetImageView(int id){
+        return (ImageView)findViewById(id);
+    }
 
     private class Hint implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
 
+            _hp.start();
         }
     }
 
@@ -131,4 +145,19 @@ public class GameActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+    //新建一个Handler用于接受消息，修改UI界面
+    public android.os.Handler handler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // TODO Auto-generated method stub
+            super.handleMessage(msg);
+            // 此处可以更新UI
+            switch (msg.what) {
+                case 1:
+                    GameController.Idclass idrecover = _gc.TraceStack.pop();
+                    _gc.ChangeBitmap(idrecover.id1, idrecover.id2);
+                    break;
+            }
+        }
+    };
 }

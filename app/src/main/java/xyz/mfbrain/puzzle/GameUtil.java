@@ -3,13 +3,11 @@ package xyz.mfbrain.puzzle;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-
-import java.util.ArrayList;
 
 /**
  * Created by Chris Young on 2017/7/6.
@@ -32,12 +30,17 @@ public class GameUtil {
      * 上下文对象
      */
     private Context context;
+    GameActivity _ga;//GameActivity的对象
 
+    GameController _gc;//GameController的对象
 
-    GameUtil(Bitmap bm, TableLayout tl, Context c) {
+    private int Step_Player =0;//玩家移动的步数
+    GameUtil(Bitmap bm, TableLayout tl, Context c,GameController gameController) {
         tableLayout = tl;
         context = c;
+        _gc=gameController;
     }
+
 
     /**
      * 对选择的图片进行缩放
@@ -85,9 +88,8 @@ public class GameUtil {
      */
 
     void fillGameZone(Bitmap bitmap, int rows, int colunms) {
-
         int blockWidth = bitmap.getWidth() / colunms;
-        int blockHeignt = bitmap.getHeight() / rows;
+        int blockHeight = bitmap.getHeight()/rows;
         tableLayout.removeAllViewsInLayout();
         //设置表格布局每单元格的布局参数
         TableRow.LayoutParams blockParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
@@ -101,16 +103,76 @@ public class GameUtil {
             //添加单元格
             for (int j = 0; j < colunms; j++) {
                 curimage = new ImageView(context);//新建ImageView对象
+                curimage.setId(i*10+j);//为imageview赋id
                 //设置ImageView属性
                 curimage.setScaleType(ImageView.ScaleType.FIT_XY);
                 curimage.setLayoutParams(blockParams);
-                //将剪切的位图添加到ImageView
-                curimage.setImageBitmap(cutBitmap(bitmap, j * blockWidth, i * blockHeignt, blockWidth, blockHeignt));
+                curimage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int id=v.getId();//获得需要改变的id
+                        if(id-10==_gc._position)
+                        {
+                            int id2=id-10;
+                            _gc.ChangeBitmap(id,id2);
+                            GameController.Idclass idclass1=new GameController.Idclass();
+                            idclass1.id1=id2;
+                            idclass1.id2=id;
+                            _gc.TraceStack.push(idclass1);
+                            _gc.checkfinish();
+                            Step_Player++;
+                        }
+                        else if(id+10==_gc._position)
+                        {
+                            int id2=id+10;
+                            _gc.ChangeBitmap(id,id2);
+                            GameController.Idclass idclass1=new GameController.Idclass();
+                            idclass1.id1=id2;
+                            idclass1.id2=id;
+                            _gc.TraceStack.push(idclass1);
+                            _gc.checkfinish();
+                            Step_Player++;
+                        }
+                        else if(id-1==_gc._position)
+                        {
+                            int id2=id-1;
+                            _gc.ChangeBitmap(id,id2);
+                            GameController.Idclass idclass1=new GameController.Idclass();
+                            idclass1.id1=id2;
+                            idclass1.id2=id;
+                            _gc.TraceStack.push(idclass1);
+                            _gc.checkfinish();
+                            Step_Player++;
+                        }
+                        else if(id+1==_gc._position){
+                            int id2=id+1;
+                            _gc.ChangeBitmap(id,id2);
+                            GameController.Idclass idclass1=new GameController.Idclass();
+                            idclass1.id1=id2;
+                            idclass1.id2=id;
+                            _gc.TraceStack.push(idclass1);
+                            _gc.checkfinish();
+                            Step_Player++;
+                        }
+                    }
+
+                });
+                //将最后一个imageview的图片赋空
+                if(i==rows-1&&j==colunms-1)
+                {
+                    curimage.setImageBitmap(null);
+                }
+                else {
+                    curimage.setImageBitmap(bitmap.createBitmap(bitmap, blockWidth * j, blockHeight * i, blockWidth, blockHeight));
+                }
                 currow.addView(curimage);//将imageview添加到当前行中
             }
             tableLayout.addView(currow); //添加行对象
         }
 
+    }
+    public int GetStep_Player(){
+        return Step_Player;
     }
 
 }
