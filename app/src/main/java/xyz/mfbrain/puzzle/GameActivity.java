@@ -1,11 +1,13 @@
 package xyz.mfbrain.puzzle;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -68,6 +70,9 @@ public class GameActivity extends AppCompatActivity {
         _hintbtn = (Button) findViewById(R.id.hint);
         _restartbtn = (Button) findViewById(R.id.restart);
         _backmenubtn = (Button) findViewById(R.id.backmenu);
+        _hintbtn.setOnClickListener(new Hint());
+        _restartbtn.setOnClickListener(new Restart());
+        _backmenubtn.setOnClickListener(new BackMenu());
         _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmpid"))));
         _gu = new GameUtil(_bmp, _tableLayout, this);
         _gc = new GameController(this);
@@ -99,5 +104,31 @@ public class GameActivity extends AppCompatActivity {
 
     final Bitmap GetBmp() {
         return _bmp;
+    }
+
+    private class Hint implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class Restart implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class BackMenu implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(GameActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

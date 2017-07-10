@@ -9,17 +9,16 @@ import android.widget.Button;
 
 /**
  * Created by MFunction on 2017/7/7.
+ * @author MFunction
  */
 
 public class PreloadActivity extends AppCompatActivity {
-
-    private Button _startgame;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preload);
-        _startgame = (Button) findViewById(R.id.startgame);
+        Button _startgame = (Button) findViewById(R.id.startgame);
         _startgame.setOnClickListener(new StartGame());
     }
 
