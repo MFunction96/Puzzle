@@ -62,7 +62,6 @@ public class GameActivity extends AppCompatActivity {
 
         _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
         _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
-
         _gc.randomtable(MainActivity.GetRows(),MainActivity.GetColumns());
     }
 
@@ -132,7 +131,8 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-
+            _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
+            _gc.randomtable(MainActivity.GetRows(),MainActivity.GetColumns());
         }
     }
 
