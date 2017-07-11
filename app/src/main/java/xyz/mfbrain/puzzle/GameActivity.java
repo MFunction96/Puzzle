@@ -1,9 +1,11 @@
 package xyz.mfbrain.puzzle;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -62,7 +64,7 @@ public class GameActivity extends AppCompatActivity {
 
         _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
         _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
-        _gc.randomtable(MainActivity.GetRows(),MainActivity.GetColumns());
+        _gc.randomtable(MainActivity.GetRows(), MainActivity.GetColumns());
     }
 
     /**
@@ -80,10 +82,21 @@ public class GameActivity extends AppCompatActivity {
         _hintbtn.setOnClickListener(new Hint());
         _restartbtn.setOnClickListener(new Restart());
         _backmenubtn.setOnClickListener(new BackMenu());
-        _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmpid"))));
+        Intent intent = getIntent();
+        if (intent.getBooleanExtra("id", false)) {
+            _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmp"))));
+        } else {
+            ContentResolver cr = getContentResolver();
+            try {
+                _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(intent.getStringExtra("bmp")))));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         _gc = new GameController(this);
-        _gu = new GameUtil(_bmp, _tableLayout, this,_gc);
-        _hp = new HelpClass(this,_gc);
+        _gu = new GameUtil(_bmp, _tableLayout, this, _gc);
+        _hp = new HelpClass(this, _gc);
         _gc.initarraystep();
     }
 
@@ -114,8 +127,9 @@ public class GameActivity extends AppCompatActivity {
     final Bitmap GetBmp() {
         return _bmp;
     }
-    final ImageView GetImageView(int id){
-        return (ImageView)findViewById(id);
+
+    final ImageView GetImageView(int id) {
+        return (ImageView) findViewById(id);
     }
 
     private class Hint implements View.OnClickListener {
@@ -132,7 +146,7 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
-            _gc.randomtable(MainActivity.GetRows(),MainActivity.GetColumns());
+            _gc.randomtable(MainActivity.GetRows(), MainActivity.GetColumns());
         }
     }
 
@@ -145,6 +159,7 @@ public class GameActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     //新建一个Handler用于接受消息，修改UI界面
     public android.os.Handler handler = new android.os.Handler() {
         @Override

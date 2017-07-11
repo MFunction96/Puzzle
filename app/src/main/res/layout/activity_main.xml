@@ -19,16 +19,17 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/picktip"
-            android:paddingRight="60dip"
             android:gravity="center_vertical"/>
 
         <Button
             android:id="@+id/pickpic"
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/pickpicture" />
     </LinearLayout>
     <TextView
@@ -77,5 +78,11 @@
 
         </GridView>
     </LinearLayout>
+    <Button
+        android:id="@+id/startgame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/startgame"/>
 </LinearLayout>
 

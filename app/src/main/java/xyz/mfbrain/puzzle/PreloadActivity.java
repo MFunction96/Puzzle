@@ -23,7 +23,7 @@ public class PreloadActivity extends AppCompatActivity {
         //设置全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_preload);
-        Button _startgame = (Button) findViewById(R.id.startgame);
+        Button _startgame = (Button) findViewById(R.id.start);
         _startgame.setOnClickListener(new StartGame());
     }
 

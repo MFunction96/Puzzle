@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioButton _level3;
     private GridView _gridview;
     private Button _pickpicbtn;
+    private Button _startgame;
+    private boolean _isid;
+    private String _bmp;
     /**
      * 检测是否已经选择难度
      */
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _gridview.setOnItemClickListener(new ItemClickListener());
         _levelgroup.setOnCheckedChangeListener(this);
         _pickpicbtn.setOnClickListener(new PickPicClick());
+        _startgame.setOnClickListener(new StartGame());
+        _startgame.setEnabled(false);
     }
 
     /**
@@ -76,9 +81,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _level3 = (RadioButton) findViewById(R.id.hard);
         _pickpicbtn = (Button) findViewById(R.id.pickpic);
         _gridview = (GridView) findViewById(R.id.gridview);
+        _startgame = (Button) findViewById(R.id.startgame);
         level_chosen = false;
         _ia = new ImageAdapter(this);
         _level1.setSelected(true);
+        _bmp = "";
     }
 
     /**
@@ -95,20 +102,20 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             rows = columns = 5;
         }
         level_chosen = true;
+        if (!_bmp.equals("")) {
+            _startgame.setEnabled(true);
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
-            Uri uri = data.getData();
-            ContentResolver cr = getContentResolver();
-            try {
-                Bitmap bmp = BitmapFactory.decodeStream(cr.openInputStream(uri));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            _isid = false;
+            _bmp = data.getData().toString();
+            if (level_chosen) {
+                _startgame.setEnabled(true);
             }
-
         }
     }
 
@@ -123,7 +130,17 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             startActivityForResult(intent, 0);
         }
     }
+    private class StartGame implements View.OnClickListener {
 
+        @Override
+        public void onClick(View v) {
+            Intent it = new Intent();
+            it.setClass(MainActivity.this, GameActivity.class);
+            it.putExtra("id",_isid);
+            it.putExtra("bmp", _bmp);
+            startActivity(it);
+        }
+    }
     /**
      *
      */
@@ -131,16 +148,10 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (level_chosen) { //如果用户已选择难度，则跳转到游戏界面
-                Intent it = new Intent();
-                it.setClass(MainActivity.this, GameActivity.class);
-                it.putExtra("bmpid", String.valueOf(_ia.getItemId(position)));
-                startActivity(it);
-            } else {  //如果用户未选择难度，则弹出提示对话框，提示选择难度
-                final AlertDialog.Builder build = new AlertDialog.Builder(MainActivity.this);
-                build.setTitle("提示");
-                build.setMessage("请选择游戏难度");
-                build.show();
+            _isid = true;
+            _bmp = String.valueOf(_ia.getItemId(position));
+            if (level_chosen) {
+                _startgame.setEnabled(true);
             }
         }
     }
