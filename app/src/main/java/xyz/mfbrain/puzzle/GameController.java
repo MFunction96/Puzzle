@@ -105,6 +105,10 @@ class GameController {
         if(isfinished){
             Toast.makeText(_ga,"已完成",Toast.LENGTH_SHORT).show();
             showDialog();
+
+            GameActivity._mtimer.cancel();
+            GameActivity._mtimertask.cancel();
+
         }
     }
 

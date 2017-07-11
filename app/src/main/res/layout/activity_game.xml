@@ -68,6 +68,28 @@
             android:stretchColumns="*">
 
         </TableLayout>
+
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tv_dispaly_time"
+            android:text="@string/o"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:text="@string/s"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_dispaly_time"
+            android:layout_toEndOf="@+id/tv_dispaly_time"
+            />
+    </RelativeLayout>
+
 </LinearLayout>
 

@@ -11,4 +11,8 @@
     <string name="backmenu">返回主菜单</string>
     <string name="level">选择难度</string>
     <string name="startgame">开始游戏</string>
+
+    <string name="o">0</string>
+    <string name="s">s</string>
+
 </resources>
