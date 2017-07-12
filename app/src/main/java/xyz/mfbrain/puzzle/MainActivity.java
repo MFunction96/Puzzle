@@ -84,8 +84,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _startgame = (Button) findViewById(R.id.startgame);
         level_chosen = false;
         _ia = new ImageAdapter(this);
-        _level1.setSelected(true);
         _bmp = "";
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        _bmp = "";
+        level_chosen = false;
+        _startgame.setEnabled(false);
+        _level1.setChecked(false);
+        _level2.setChecked(false);
+        _level3.setChecked(false);
     }
 
     /**

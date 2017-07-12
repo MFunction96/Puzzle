@@ -8,7 +8,7 @@
     <string name="picktip">选择一张图片以开始游戏：</string>
     <string name="hint">帮助</string>
     <string name="restart">重新开始</string>
-    <string name="backmenu">返回主菜单</string>
+    <string name="backmenu">重新选图</string>
     <string name="level">选择难度</string>
     <string name="startgame">开始游戏</string>
     <string name="pause">暂停游戏</string>
