@@ -60,6 +60,7 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
             case R.id.btn_sign_in:
                 ValidateUser();
                 if(isValidated){
+                    _user.set_isvalidate(true);
                     GameData.set_curuser(_user);
                     _editor = _pref.edit();
                     if(remember.isChecked()){

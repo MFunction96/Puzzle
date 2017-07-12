@@ -108,7 +108,7 @@ class GameController {
         if(isfinished){
             Toast.makeText(_ga,"已完成:所用步数"+_gu.GetStep_Player()+" 所用时间:"+(_ga.GetTimerIndex()-1)+"s",Toast.LENGTH_SHORT).show();
             showDialog();
-
+            GameData.get_curuser().setRecord(_ga.GetTimerIndex());
             GameActivity._mtimer.cancel();
             GameActivity._mtimertask.cancel();
             _ga.SetTimerIndex(0);

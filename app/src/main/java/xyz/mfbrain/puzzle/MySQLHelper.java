@@ -13,10 +13,21 @@ public class MySQLHelper extends SQLiteOpenHelper {
     public static  final String CREATE_USER="create table User ("
             + "id integer primary key autoincrement, "
             + "username text, "
-            + "password text, "
-            + "money integer, "
+            + "password text)  ";
+
+    public static  final String CREATE_PLAYERINFO="create table PlayerInfo("
+            + "id integer primary key autoincrement, "
+            + "playername text foreign key references User(username), "
+            + "money integer"
             + "best_record integer, "
             + "last_record integer) ";
+
+    public static final String CREATE_IMAGES="create table Images("
+            + "id integer primary key autoincrement, "
+            + "url integer)";
+
+
+
     Context context;
 
     public MySQLHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -27,6 +38,8 @@ public class MySQLHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER);
+        sqLiteDatabase.execSQL(CREATE_USERINFO);
+        sqLiteDatabase.execSQL(CREATE_IMAGES);
         Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show();
     }
 
