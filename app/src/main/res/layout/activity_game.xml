@@ -26,7 +26,8 @@
             android:layout_weight="1"
             android:id="@+id/pausegame"
             android:text="@string/pause"
-            style="?android:buttonStyle"/>
+            style="?android:buttonStyle"
+            tools:ignore="NestedWeights" />
         <Button
             android:layout_width="0dip"
             android:layout_height="match_parent"
