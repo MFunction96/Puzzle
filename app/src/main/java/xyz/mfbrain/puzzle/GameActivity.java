@@ -32,7 +32,7 @@ public class GameActivity extends AppCompatActivity {
 
     private Bitmap _bmp;
 
-    private GameController _gc,_gc_another;
+    private GameController _gc, _gc_another;
 
     private GameUtil _gu;
 
@@ -55,6 +55,8 @@ public class GameActivity extends AppCompatActivity {
     private ImageView _imageview;
 
     private Button _pausegame;
+
+    private boolean _running;
     /**
      * UI更新Handler
      */
@@ -145,6 +147,7 @@ public class GameActivity extends AppCompatActivity {
         _hp = new HelpClass(this, _gc);
         _gc.set_gu(_gu);
         _gc.initarraystep();
+        _running = true;
     }
 
 
@@ -181,7 +184,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     final ImageView GetImageView(int id) {
-        return (ImageView)findViewById(id);
+        return (ImageView) findViewById(id);
     }
 
     /**
@@ -233,15 +236,18 @@ public class GameActivity extends AppCompatActivity {
     private class PauseGame implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            for(int i=0;i<MainActivity.GetRows();i++)
-                for(int j=0;j<MainActivity.GetColumns();j++) {
-                    int id=i*10+j;
-                    if (!GetImageView(id).isClickable()) {
-                        GetImageView(id).setClickable(true);
-                    } else {
-                        GetImageView(id).setClickable(false);
-                    }
+            if (_running) {
+                _pausegame.setText("开始游戏");
+            } else {
+                _pausegame.setText("暂停游戏");
+            }
+            _running = !_running;
+            for (int i = 0; i < MainActivity.GetRows(); i++) {
+                for (int j = 0; j < MainActivity.GetColumns(); j++) {
+                    int id = i * 10 + j;
+                    GetImageView(id).setClickable(_running);
                 }
+            }
         }
     }
 
@@ -251,7 +257,6 @@ public class GameActivity extends AppCompatActivity {
     public android.os.Handler handler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
-            // TODO Auto-generated method stub
             super.handleMessage(msg);
             // 此处可以更新UI
             switch (msg.what) {
@@ -271,6 +276,7 @@ public class GameActivity extends AppCompatActivity {
         _mtimertask.cancel();
         _timerindex = 0;
     }
+
     /**
      * 开始计时
      */
