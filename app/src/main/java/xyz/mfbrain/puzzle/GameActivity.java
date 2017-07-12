@@ -257,7 +257,6 @@ public class GameActivity extends AppCompatActivity {
     public android.os.Handler handler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
-            // TODO Auto-generated method stub
             super.handleMessage(msg);
             // 此处可以更新UI
             switch (msg.what) {
