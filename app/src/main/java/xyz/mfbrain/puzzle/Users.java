@@ -6,12 +6,16 @@ package xyz.mfbrain.puzzle;
 
 public class Users {
     private int _id;
-    private String _username ="?";
+    private String _username;
     private String _password;
     private int _best_record;
     private int _last_record;
     private int _money;
 
+    Users(){
+        _username="?";
+        _password="0";
+    }
 
     public void set_id(int i){
         _id =i;
@@ -27,8 +31,7 @@ public class Users {
         if(_last_record <= _best_record)
             _best_record = _last_record;
     }
-    public void set_money(int m){
-        _money =m;}
+    public void set_money(int m){_money =m;}
 
     public int get_id(){return _id;}
     public String get_username(){return _username;}
