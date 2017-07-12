@@ -41,6 +41,9 @@ class GameController {
         _position=(MainActivity.GetRows()-1)*10+MainActivity.GetColumns()-1;
         _ga=gameActivity;
     }
+    public void set_gu(GameUtil gameUtil){
+        _gu=gameUtil;
+    }
     //将图片随机打乱
     public void randomtable(int rows,int clos) {
         int direction[]={1,-1,10,-10};
@@ -103,7 +106,7 @@ class GameController {
             }
         }
         if(isfinished){
-            Toast.makeText(_ga,"已完成",Toast.LENGTH_SHORT).show();
+            Toast.makeText(_ga,"已完成"+_gu.GetStep_Player(),Toast.LENGTH_SHORT).show();
             showDialog();
 
             GameActivity._mtimer.cancel();

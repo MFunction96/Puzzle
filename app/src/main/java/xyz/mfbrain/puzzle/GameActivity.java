@@ -32,7 +32,7 @@ public class GameActivity extends AppCompatActivity {
 
     private Bitmap _bmp;
 
-    private GameController _gc;
+    private GameController _gc,_gc_another;
 
     private GameUtil _gu;
 
@@ -143,6 +143,7 @@ public class GameActivity extends AppCompatActivity {
         _gc = new GameController(this);
         _gu = new GameUtil(_bmp, _tableLayout, this, _gc);
         _hp = new HelpClass(this, _gc);
+        _gc.set_gu(_gu);
         _gc.initarraystep();
     }
 
@@ -180,7 +181,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     final ImageView GetImageView(int id) {
-        return (ImageView) findViewById(id);
+        return (ImageView)findViewById(id);
     }
 
     /**
@@ -232,7 +233,15 @@ public class GameActivity extends AppCompatActivity {
     private class PauseGame implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-
+            for(int i=0;i<MainActivity.GetRows();i++)
+                for(int j=0;j<MainActivity.GetColumns();j++) {
+                    int id=i*10+j;
+                    if (!GetImageView(id).isClickable()) {
+                        GetImageView(id).setClickable(true);
+                    } else {
+                        GetImageView(id).setClickable(false);
+                    }
+                }
         }
     }
 
