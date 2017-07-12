@@ -60,6 +60,7 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
             case R.id.btn_sign_in:
                 ValidateUser();
                 if(isValidated){
+                    GameData.set_curuser(_user);
                     _editor = _pref.edit();
                     if(remember.isChecked()){
                         _editor.putBoolean("remember_password",true);
@@ -114,7 +115,6 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
             }while (cursor.moveToNext());
         }
         cursor.close();
-        GameData.set_curuser(_user);
         isValidated= _user.get_password().equals(password.getText().toString());
     }
 }
