@@ -9,6 +9,7 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
+    android:keepScreenOn="true"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.GameActivity">
 
@@ -19,6 +20,13 @@
         android:orientation="horizontal"
         android:id="@+id/controlpanel"
         android:baselineAligned="false">
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/pausegame"
+            android:text="@string/pause"
+            style="?android:buttonStyle"/>
         <Button
             android:layout_width="0dip"
             android:layout_height="match_parent"

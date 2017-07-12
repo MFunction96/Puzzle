@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,21 +47,25 @@ public class GameActivity extends AppCompatActivity {
     private Button _restartbtn;
 
     private Button _backmenubtn;
-
-
-    // 计时显示
+    /**
+     * 计时显示
+     */
     private int _timerindex = 0;
+
+    private ImageView _imageview;
+
+    private Button _pausegame;
     /**
      * UI更新Handler
      */
-    private Handler _mhandler = new  Handler() {
+    private Handler _mhandler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
                     // 更新计时器
-                    _mtextviewtimer.setText(String.valueOf(_timerindex) );
+                    _mtextviewtimer.setText(String.valueOf(_timerindex));
                     _timerindex++;
                     break;
                 default:
@@ -77,6 +80,11 @@ public class GameActivity extends AppCompatActivity {
     //计时器线程
     public static TimerTask _mtimertask;
 
+    /**
+     * 创建窗体方法
+     *
+     * @param savedInstanceState 状态记录
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,13 +93,12 @@ public class GameActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
         Init();
-        ImageView imageview = (ImageView) findViewById(R.id.imageview);
-        imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageview.setAdjustViewBounds(true);
-        imageview.setMaxWidth(256);
-        imageview.setMaxHeight(256);
-        imageview.setPadding(8, 8, 8, 8);
-        imageview.setImageBitmap(_bmp);
+        _imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        _imageview.setAdjustViewBounds(true);
+        _imageview.setMaxWidth(256);
+        _imageview.setMaxHeight(256);
+        _imageview.setPadding(8, 8, 8, 8);
+        _imageview.setImageBitmap(_bmp);
 
         _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
         _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
@@ -99,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * 初始化属性
      */
     private void Init() {
         //获取屏幕宽高
@@ -110,13 +117,14 @@ public class GameActivity extends AppCompatActivity {
         _hintbtn = (Button) findViewById(R.id.hint);
         _restartbtn = (Button) findViewById(R.id.restart);
         _backmenubtn = (Button) findViewById(R.id.backmenu);
-
+        _pausegame = (Button) findViewById(R.id.pausegame);
+        _imageview = (ImageView) findViewById(R.id.imageview);
         // TextView计时器
         _mtextviewtimer = (TextView) findViewById(R.id.tv_dispaly_time);
         _mtextviewtimer.setText("0");//从0s开始显示
         // 启用计时
         StartTimer();
-
+        _pausegame.setOnClickListener(new PauseGame());
         _hintbtn.setOnClickListener(new Hint());
         _restartbtn.setOnClickListener(new Restart());
         _backmenubtn.setOnClickListener(new BackMenu());
@@ -137,6 +145,7 @@ public class GameActivity extends AppCompatActivity {
         _hp = new HelpClass(this, _gc);
         _gc.initarraystep();
     }
+
 
     final TableLayout GetTableLayout() {
         return _tableLayout;
@@ -162,6 +171,10 @@ public class GameActivity extends AppCompatActivity {
         return _backmenubtn;
     }
 
+    final Button GetPauseGame() {
+        return _pausegame;
+    }
+
     final Bitmap GetBmp() {
         return _bmp;
     }
@@ -170,52 +183,62 @@ public class GameActivity extends AppCompatActivity {
         return (ImageView) findViewById(id);
     }
 
+    /**
+     * 点击帮助按钮的事件监听
+     */
     private class Hint implements View.OnClickListener {
-
-
-
         @Override
         public void onClick(View v) {
-
             // 停止计时器
             CancelTimer();
-            _mtextviewtimer.setText(String.valueOf(_timerindex) );
+            _mtextviewtimer.setText(String.valueOf(_timerindex));
             _hp.start();
         }
     }
 
+    /**
+     * 点击重新启动按钮的事件监听
+     */
     private class Restart implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
-
             // 停止计时器
             CancelTimer();
-
             // 启用计时
             StartTimer();
-
 
             _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
             _gc.randomtable(MainActivity.GetRows(), MainActivity.GetColumns());
         }
     }
 
+    /**
+     * 点击返回主菜单按钮事件监听
+     */
     private class BackMenu implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
-
             // 停止计时器
             CancelTimer();
-
             Intent intent = new Intent();
             intent.setClass(GameActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
 
-    //新建一个Handler用于接受消息，修改UI界面
+    /**
+     * 点击暂停游戏按钮的事件监听
+     */
+    private class PauseGame implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    /**
+     * 新建一个Handler用于接受消息，修改UI界面
+     */
     public android.os.Handler handler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -231,14 +254,18 @@ public class GameActivity extends AppCompatActivity {
         }
     };
 
-    //停止计时
+    /**
+     * 停止计时
+     */
     public void CancelTimer() {
         _mtimer.cancel();
         _mtimertask.cancel();
         _timerindex = 0;
     }
-    //开始计时
-    public void StartTimer(){
+    /**
+     * 开始计时
+     */
+    public void StartTimer() {
 
         // 启用计时器
         _mtimer = new Timer(true);
@@ -256,12 +283,11 @@ public class GameActivity extends AppCompatActivity {
         _mtimer.schedule(_mtimertask, 0, 1000);
     }
 
-    public void SetTimerIndex(int t)
-    {
-        _timerindex=t;
+    public void SetTimerIndex(int t) {
+        _timerindex = t;
     }
-    public int GetTimerIndex()
-    {
+
+    public int GetTimerIndex() {
         return _timerindex;
     }
 }
