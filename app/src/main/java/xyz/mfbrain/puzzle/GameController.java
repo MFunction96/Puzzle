@@ -106,11 +106,12 @@ class GameController {
             }
         }
         if(isfinished){
-            Toast.makeText(_ga,"已完成"+_gu.GetStep_Player(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(_ga,"已完成:所用步数"+_gu.GetStep_Player()+" 所用时间:"+(GameActivity._timerindex-1)+"s",Toast.LENGTH_SHORT).show();
             showDialog();
 
             GameActivity._mtimer.cancel();
             GameActivity._mtimertask.cancel();
+            GameActivity._timerindex=0;
 
         }
     }

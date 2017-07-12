@@ -50,7 +50,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * 计时显示
      */
-    private int _timerindex = 0;
+    public static int _timerindex = 0;
 
     private ImageView _imageview;
 
@@ -236,10 +236,16 @@ public class GameActivity extends AppCompatActivity {
     private class PauseGame implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+
             if (_running) {
                 _pausegame.setText("开始游戏");
+                //暂停计时
+                _mtimer.cancel();
+                _mtimertask.cancel();
             } else {
                 _pausegame.setText("暂停游戏");
+                //继续计时
+                StartTimer();
             }
             _running = !_running;
             for (int i = 0; i < MainActivity.GetRows(); i++) {
