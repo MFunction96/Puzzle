@@ -50,7 +50,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * 计时显示
      */
-    public static int _timerindex = 0;
+    private int _timerindex = 0;
 
     private ImageView _imageview;
 
