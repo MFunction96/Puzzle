@@ -17,6 +17,7 @@ public class HelpClass extends Thread {
         _gc=gameController;
     }
     public synchronized void run(){
+        _aca.GetPauseGame().setClickable(false);
         while (!_gc.TraceStack.isEmpty()) {
             Message msg = new Message();
             msg.what = 1;
@@ -28,6 +29,7 @@ public class HelpClass extends Thread {
             }
             stepnumber_help++;
         }
+        _aca.GetPauseGame().setClickable(true);
     }
     //帮助结束后，显示Dialog
    public void showDialog(){
