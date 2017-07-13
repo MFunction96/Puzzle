@@ -106,7 +106,7 @@ class GameController {
         }
         if(isfinished){
             Toast.makeText(_ga,"已完成:所用步数"+_gu.GetStep_Player()+" 所用时间:"+(_ga.GetTimerIndex()-1)+"s",Toast.LENGTH_SHORT).show();
-            showDialog();
+            _ga.ShowDialog(_gu.GetStep_Player());
             GameData.get_curuser().setRecord(_ga.GetTimerIndex());
             GameActivity._mtimer.cancel();
             GameActivity._mtimertask.cancel();
@@ -115,9 +115,4 @@ class GameController {
         }
     }
 
-    private void showDialog() {
-        //显示对话框
-        int Step_Player;//玩家步数
-        Step_Player=_gu.GetStep_Player();
-    }
 }

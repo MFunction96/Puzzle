@@ -4,6 +4,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
 
 /**
  * Created by ASUS-PC on 2017/7/7.
@@ -34,11 +35,11 @@ public class HelpClass extends Thread {
         _aca.GetPauseGame().setClickable(true);
         _aca.GetRestartBtn().setClickable(true);
         set_imageview(true);
+        Message msg = new Message();
+        msg.what = 2;
+        _aca.handler.sendMessage(msg);
     }
-    //帮助结束后，显示Dialog
-   public void showDialog(){
-     //其中的帮助走的步数为stepnumber_help
-   }
+
    private void set_imageview(Boolean isRunning) {
        for (int i = 0; i < MainActivity.GetRows(); i++) {
            for (int j = 0; j < MainActivity.GetColumns(); j++) {
