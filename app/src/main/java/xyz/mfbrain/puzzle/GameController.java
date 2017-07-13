@@ -38,7 +38,6 @@ class GameController {
         _pa = appCompatActivity;
     }
     GameController(GameActivity gameActivity){
-        _position=(MainActivity.GetRows()-1)*10+MainActivity.GetColumns()-1;
         _ga=gameActivity;
     }
     public void set_gu(GameUtil gameUtil){

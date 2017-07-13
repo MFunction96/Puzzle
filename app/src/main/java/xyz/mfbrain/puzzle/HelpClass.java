@@ -19,6 +19,7 @@ public class HelpClass extends Thread {
     public synchronized void run(){
         _aca.GetPauseGame().setClickable(false);
         _aca.GetRestartBtn().setClickable(false);
+        set_imageview(false);
         while (!_gc.TraceStack.isEmpty()) {
             Message msg = new Message();
             msg.what = 1;
@@ -32,10 +33,19 @@ public class HelpClass extends Thread {
         }
         _aca.GetPauseGame().setClickable(true);
         _aca.GetRestartBtn().setClickable(true);
+        set_imageview(true);
     }
     //帮助结束后，显示Dialog
    public void showDialog(){
      //其中的帮助走的步数为stepnumber_help
    }
+   private void set_imageview(Boolean isRunning) {
+       for (int i = 0; i < MainActivity.GetRows(); i++) {
+           for (int j = 0; j < MainActivity.GetColumns(); j++) {
+               int id = i * 10 + j;
+               _aca.GetImageView(id).setClickable(isRunning);
+           }
 
+       }
+   }
 }

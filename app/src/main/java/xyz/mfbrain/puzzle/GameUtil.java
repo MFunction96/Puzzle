@@ -103,6 +103,7 @@ public class GameUtil {
             currow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             //添加单元格
             for (int j = 0; j < colunms; j++) {
+                _gc._position=(rows-1)*10+colunms-1;
                 curimage = new ImageView(context);//新建ImageView对象
                 curimage.setId(i * 10 + j);//为imageview赋id
                 //设置ImageView属性

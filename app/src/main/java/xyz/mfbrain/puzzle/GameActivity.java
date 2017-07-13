@@ -230,7 +230,7 @@ public class GameActivity extends AppCompatActivity {
             CancelTimer();
             // 启用计时
             StartTimer();
-
+            _gc.TraceStack.clear();
             _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
             _gc.randomtable(MainActivity.GetRows(), MainActivity.GetColumns());
         }
