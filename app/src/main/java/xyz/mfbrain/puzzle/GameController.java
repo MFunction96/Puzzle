@@ -1,5 +1,8 @@
 package xyz.mfbrain.puzzle;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -106,8 +109,14 @@ class GameController {
         }
         if(isfinished){
             Toast.makeText(_ga,"已完成:所用步数"+_gu.GetStep_Player()+" 所用时间:"+(_ga.GetTimerIndex()-1)+"s",Toast.LENGTH_SHORT).show();
-            _ga.ShowDialog(_gu.GetStep_Player());
+            SQLiteDatabase _db=GameData.get_db();
             GameData.get_curuser().setRecord(_ga.GetTimerIndex());
+            ContentValues values=new ContentValues();
+            values.put("last_record",GameData.get_curuser().get_last_record());
+            values.put("best_record",GameData.get_curuser().get_best_record());
+            _db.update("PlayerInfo",values,"playername=?",new String[]{GameData.get_curuser().get_username()});
+            _ga.ShowDialog(_gu.GetStep_Player());
+            GameData.get_curuser().setRecord(_ga.GetTimerIndex()-1);
             GameActivity._mtimer.cancel();
             GameActivity._mtimertask.cancel();
             _ga.SetTimerIndex(0);

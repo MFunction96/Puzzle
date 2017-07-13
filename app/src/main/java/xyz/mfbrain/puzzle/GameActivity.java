@@ -158,6 +158,7 @@ public class GameActivity extends AppCompatActivity {
         _gc.set_gu(_gu);
         _gc.initarraystep();
         _running = true;
+        _player.setText(GameData.get_curuser().get_username());
     }
     final TextView GetRecorder() {
         return _recorder;

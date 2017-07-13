@@ -17,14 +17,15 @@ public class MySQLHelper extends SQLiteOpenHelper {
 
     public static  final String CREATE_PLAYERINFO="create table PlayerInfo("
             + "id integer primary key autoincrement, "
-            + "playername text foreign key references User(username), "
-            + "money integer"
+            + "playername text, "
+            + "money integer, "
             + "best_record integer, "
             + "last_record integer) ";
 
-    public static final String CREATE_IMAGES="create table Images("
+    public static final String CREATE_RANKINGLIST="create table RankingList("
             + "id integer primary key autoincrement, "
-            + "url integer)";
+            + "playername text"
+            + "record int)";
 
 
 
@@ -38,8 +39,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER);
-        //sqLiteDatabase.execSQL(CREATE_PLAYERINFO);
-       // sqLiteDatabase.execSQL(CREATE_IMAGES);
+        sqLiteDatabase.execSQL(CREATE_PLAYERINFO);
         Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show();
     }
 
@@ -47,5 +47,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("drop table User");
         onCreate(sqLiteDatabase);
+        Toast.makeText(context,"Update Success",Toast.LENGTH_SHORT).show();
+
     }
 }

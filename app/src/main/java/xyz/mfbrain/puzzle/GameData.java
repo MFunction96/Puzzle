@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
  */
 
 public class GameData {
-    public static SQLiteDatabase _db;
-    public static Users _curuser =new Users();
+    private static SQLiteDatabase _db;
+    private static Users _curuser =new Users();
     public static void set_db(SQLiteDatabase d){
         _db =d;}
     public static void set_curuser(Users u){

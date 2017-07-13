@@ -28,7 +28,7 @@ public class PreloadActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_preload);
 
-        _mySQLHelper = new MySQLHelper(this, "User._db", null, 2);
+        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 1);
         GameData.set_db(_mySQLHelper.getWritableDatabase());
         ContentValues values = new ContentValues();
         values.put("username", "aa");

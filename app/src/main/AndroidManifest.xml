@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="xyz.mfbrain.puzzle">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
@@ -29,17 +29,13 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".GameLogin"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".SignUp"
-            android:launchMode="singleTask" />
         <activity android:name=".AdventureMode"></activity>
+        <activity android:name=".GameLogin" android:launchMode="singleTask"  />
+        <activity android:name=".SignUp" android:launchMode="singleTask" />
+        <activity android:name=".RankingList"/>
     </application>
 
 </manifest>

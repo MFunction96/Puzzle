@@ -1,4 +1,5 @@
 package xyz.mfbrain.puzzle;
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,7 +24,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
     private String confirm_password;
     private boolean regsucces = true;
     private SQLiteDatabase db;
-    private MainActivity mainActivit=new MainActivity();
+    private MainActivity mainActivit = new MainActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         text_confirm_password = (EditText) findViewById(R.id.text_reg_password_confirm);
         btn_reg = (Button) findViewById(R.id.btn_register);
         btn_reg.setOnClickListener(this);
-        db =GameData.get_db();
+        db = GameData.get_db();
     }
 
     @Override
@@ -46,7 +47,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         confirm_password = text_confirm_password.getText().toString();
 
         //查询数据库
-        Cursor cursor = db.query("User", new String[]{"username"},null, null, null, null, null);
+        Cursor cursor = db.query("User", new String[]{"username"}, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 String n = cursor.getString(cursor.getColumnIndex("username"));
@@ -68,7 +69,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
             } else {
                 Toast.makeText(this, "密码不一致", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             text_name.setText("");
             text_password.setText("");
             text_confirm_password.setText("");
@@ -83,11 +84,13 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         values.put("password", password);
         db.insert("User", null, values);
         values.clear();
-//        values.put("username", username);
-//        values.put("money",20);
-//        values.put("best_record",100000);
-//        values.put("last_record",100000);
-//        db.insert("UserInfo",null,values);
+
+        values.put("playername", username);
+        values.put("money", 20);
+        values.put("best_record", 100000);
+        values.put("last_record", 100000);
+        db.insert("PlayerInfo", null, values);
+        values.clear();
     }
 
     @Override
