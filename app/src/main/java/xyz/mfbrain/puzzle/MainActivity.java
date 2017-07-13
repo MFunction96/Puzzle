@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             _isid = true;
             _bmp = String.valueOf(_ia.getItemId(position));
+            GameData.set_imageid(position+"");
             if (level_chosen) {
                 _startgame.setEnabled(true);
             }

@@ -35,15 +35,17 @@ public class RankingList extends AppCompatActivity {
     private void InitPlayerList(){
         SQLiteDatabase _db=GameData.get_db();
         int i=1;
-        Cursor cursor=_db.query("PlayerInfo",new String[]{"playername","best_record"},null,null,null,null,"best_record");
+        Cursor cursor=_db.query("RankingList",new String[]{"playername","record"},"imageid=? ",new String[]{GameData.get_imageid()},null,null,"record");
         if(cursor.moveToFirst()){
             do{
                 Users u=new Users();
                 u.set_id(i++);
                 u.set_username(cursor.getString(cursor.getColumnIndex("playername")));
-                u.set_best_record(cursor.getInt(cursor.getColumnIndex("best_record")));
+                u.setRecord(cursor.getInt(cursor.getColumnIndex("record")));
                 _playersList.add(u);
             }while(cursor.moveToNext());
+            GameData.set_bestrecord( _playersList.get(0).get_last_record()+"");
+            GameData.set_recordkeeper(_playersList.get(0).get_username());
             cursor.close();
         }
     }

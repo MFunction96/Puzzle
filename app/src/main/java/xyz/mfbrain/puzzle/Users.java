@@ -17,6 +17,7 @@ public class Users {
         _username="?";
         _password="0";
         _isvalidate=false;
+        _best_record=100000;
     }
 
     public void set_id(int i){

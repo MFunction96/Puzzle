@@ -34,9 +34,10 @@
             android:text="确定"
             android:textColor="@android:color/black"/>
         <Button
+            android:id="@+id/btn_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="取消"/>
+            android:text="查看排行榜"/>
     </LinearLayout>
 
 </LinearLayout>

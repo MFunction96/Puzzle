@@ -120,6 +120,18 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
                         }
                     }
                 break;
+            case R.id.text_reg_password_confirm:
+                if(!text_confirm_password.hasFocus())
+                    if (TextUtils.isEmpty(text_confirm_password.getText().toString())) {
+                        Toast.makeText(SignUp.this, "请确认密码", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String p = text_confirm_password.getText().toString();
+                        if (p.length() < 6 || p.length() > 8) {
+                            Toast.makeText(SignUp.this, "密码不一致", Toast.LENGTH_SHORT).show();
+                            text_confirm_password.setText("");
+                        }
+                    }
+                break;
         }
 
     }

@@ -44,7 +44,7 @@ public class RankListAdapter extends ArrayAdapter<Users> {
         TextView _num = (TextView) _view.findViewById(R.id.list_number);
         _num.setText(_player.get_id()+"");
         _name.setText(_player.get_username());
-        _record.setText(_player.get_best_record()+"");
+        _record.setText(_player.get_last_record()+"");
         return _view;
     }
 }

@@ -24,8 +24,9 @@ public class MySQLHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_RANKINGLIST="create table RankingList("
             + "id integer primary key autoincrement, "
-            + "playername text"
-            + "record int)";
+            + "imageid text, "
+            + "playername text, "
+            + "record integer) ";
 
 
 
@@ -40,12 +41,14 @@ public class MySQLHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER);
         sqLiteDatabase.execSQL(CREATE_PLAYERINFO);
+        sqLiteDatabase.execSQL(CREATE_RANKINGLIST);
         Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("drop table User");
+        sqLiteDatabase.execSQL("drop table PlayerInfo");
         onCreate(sqLiteDatabase);
         Toast.makeText(context,"Update Success",Toast.LENGTH_SHORT).show();
 
