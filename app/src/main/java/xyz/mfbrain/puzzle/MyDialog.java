@@ -2,7 +2,6 @@ package xyz.mfbrain.puzzle;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +24,7 @@ public class MyDialog extends Dialog{
     public Context context;
     public View dialogView;
     public String message;    //对话框内容
+    public int id;  //选择对话框样式
 
     public MyDialog(@NonNull Context context) {
         super(context);
@@ -41,8 +41,14 @@ public class MyDialog extends Dialog{
         this.context=context;
     }
 
+    //定义对话框的内容
     public void initText(String s){
         this.message=s;
+    }
+
+    //对话框样式
+    public void initStyle(int i){
+        this.id=i;
     }
 
     public void donghua(){
@@ -58,7 +64,7 @@ public class MyDialog extends Dialog{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dialogView= View.inflate(context,R.layout.dialog_info,null);
+        dialogView= View.inflate(context,id,null);
         setContentView(dialogView);
 
         setCanceledOnTouchOutside(false);//点击边缘对话框不消失
