@@ -1,24 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="xyz.mfbrain.puzzle.AdventureMode">
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="center"
-        android:layout_gravity="top"
-        android:layout_marginLeft="400px"
-        />
-    <TableLayout
-        android:id="@+id/tl"
+    android:paddingBottom="40dip"
+    android:paddingLeft="20dip"
+    android:paddingRight="20dip"
+    android:paddingTop="20dip"
+    android:stretchColumns="*"
+    android:keepScreenOn="true"
+    style="@style/AppTheme"
+    tools:context="xyz.mfbrain.puzzle.GameActivity">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    </TableLayout>
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:id="@+id/proppanel"
+        android:baselineAligned="false">
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/addstep"
+            android:text="@string/addstep"
+            style="?android:buttonStyle"
+            tools:ignore="NestedWeights" />
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:id="@+id/hint_prop"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="@string/hint"
+            style="?android:buttonStyle"/>
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/restart_prop"
+            android:text="@string/restart"
+            style="?android:buttonStyle"/>
+        <Button
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/backmenu_prop"
+            android:text="@string/backmenu"
+            style="?android:buttonStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/description"
+            android:layout_weight="2"
+            android:minWidth="100dip"
+            tools:ignore="NestedWeights" />
+        <TableLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:stretchColumns="*">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="20sp"
+                    android:text="@string/winner"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded"/>
+                <TextView
+                    android:id="@+id/recorder"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textSize="20sp"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="20sp"
+                    android:text="@string/record"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded" />
+                <TextView
+                    android:id="@+id/record"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textSize="20sp"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="20sp"
+                    android:text="@string/current"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded"/>
+                <TextView
+                    android:id="@+id/player"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textSize="20sp"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded"
+                    android:text="@string/stepleft"
+                    android:textSize="20sp"/>
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:id="@+id/tv_dispaly_time"
+                        android:text="@string/o"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:text="@string/s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_dispaly_time"
+                        android:layout_toEndOf="@+id/tv_dispaly_time"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="8"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:id="@+id/tablelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*">
+
+        </TableLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
+

@@ -20,6 +20,7 @@ public class HelpClass extends Thread {
     public synchronized void run(){
         _aca.GetPauseGame().setClickable(false);
         _aca.GetRestartBtn().setClickable(false);
+        _aca.GetHintBtn().setClickable(false);
         set_imageview(false);
         while (!_gc.TraceStack.isEmpty()) {
             Message msg = new Message();
@@ -34,6 +35,7 @@ public class HelpClass extends Thread {
         }
         _aca.GetPauseGame().setClickable(true);
         _aca.GetRestartBtn().setClickable(true);
+        _aca.GetHintBtn().setClickable(true);
         set_imageview(true);
         Message msg = new Message();
         msg.what = 2;
