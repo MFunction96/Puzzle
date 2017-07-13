@@ -49,7 +49,7 @@ public class MyDialog extends Dialog{
         this.message=s;
     }
 
-    
+
 
     public void donghua(){
         AnimationSet animationSet=new AnimationSet(true);
