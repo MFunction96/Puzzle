@@ -21,7 +21,7 @@ final class ImageAdapter extends BaseAdapter {
     private Bitmap[] _bmp;
 
     ImageAdapter(MainActivity mainActivity) {
-        final int COUNT = 6;
+        final int COUNT = 9;
         BitmapWorkerTask[] bwt = new BitmapWorkerTask[COUNT];
         _ma = mainActivity;
         _bmpid = new int[COUNT];
@@ -32,6 +32,9 @@ final class ImageAdapter extends BaseAdapter {
         _bmpid[3] = R.drawable.lyoko4;
         _bmpid[4] = R.drawable.lyoko5;
         _bmpid[5] = R.drawable.lyoko6;
+        _bmpid[6] = R.drawable.conan1;
+        _bmpid[7] = R.drawable.conan2;
+        _bmpid[8] = R.drawable.conan3;
         for (int i = 0; i < COUNT; i++) {
 /*            bwt[i] = new BitmapWorkerTask(_bmp[i], _ma.getResources(), _ma.GetGridview(), this);
             bwt[i].execute(String.valueOf(_bmpid[i]));*/
