@@ -57,6 +57,13 @@ public class GameActivity extends AppCompatActivity {
     private Button _pausegame;
 
     private boolean _running;
+
+    private TextView _recorder;
+
+    private TextView _record;
+
+    private TextView _player;
+
     /**
      * UI更新Handler
      */
@@ -121,6 +128,9 @@ public class GameActivity extends AppCompatActivity {
         _backmenubtn = (Button) findViewById(R.id.backmenu);
         _pausegame = (Button) findViewById(R.id.pausegame);
         _imageview = (ImageView) findViewById(R.id.imageview);
+        _recorder = (TextView) findViewById(R.id.recorder);
+        _record = (TextView) findViewById(R.id.record);
+        _player = (TextView) findViewById(R.id.player);
         // TextView计时器
         _mtextviewtimer = (TextView) findViewById(R.id.tv_dispaly_time);
         _mtextviewtimer.setText("0");//从0s开始显示
@@ -149,7 +159,17 @@ public class GameActivity extends AppCompatActivity {
         _gc.initarraystep();
         _running = true;
     }
+    final TextView GetRecorder() {
+        return _recorder;
+    }
 
+    final TextView GetRecord() {
+        return _record;
+    }
+
+    final TextView GetPlayer() {
+        return _player;
+    }
 
     final TableLayout GetTableLayout() {
         return _tableLayout;

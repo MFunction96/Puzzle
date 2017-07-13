@@ -2,7 +2,6 @@ package xyz.mfbrain.puzzle;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,13 +16,15 @@ import android.widget.ImageView;
 
 final class ImageAdapter extends BaseAdapter {
 
-    private AppCompatActivity _aca;
+    private MainActivity _ma;
     private int[] _bmpid;
     private Bitmap[] _bmp;
 
-    ImageAdapter(AppCompatActivity appCompatActivity) {
-        _aca = appCompatActivity;
-        _bmpid = new int[6];
+    ImageAdapter(MainActivity mainActivity) {
+        final int COUNT = 6;
+        BitmapWorkerTask[] bwt = new BitmapWorkerTask[COUNT];
+        _ma = mainActivity;
+        _bmpid = new int[COUNT];
         _bmp = new Bitmap[_bmpid.length];
         _bmpid[0] = R.drawable.lyoko1;
         _bmpid[1] = R.drawable.lyoko2;
@@ -31,8 +32,10 @@ final class ImageAdapter extends BaseAdapter {
         _bmpid[3] = R.drawable.lyoko4;
         _bmpid[4] = R.drawable.lyoko5;
         _bmpid[5] = R.drawable.lyoko6;
-        for (int i = 0; i < _bmpid.length; i++) {
-            _bmp[i] = FixBmp(BitmapFactory.decodeResource(appCompatActivity.getResources(), _bmpid[i]));
+        for (int i = 0; i < COUNT; i++) {
+/*            bwt[i] = new BitmapWorkerTask(_bmp[i], _ma.getResources(), _ma.GetGridview(), this);
+            bwt[i].execute(String.valueOf(_bmpid[i]));*/
+            _bmp[i] = FixBmp(BitmapFactory.decodeResource(_ma.getResources(), _bmpid[i]));
         }
 
     }
@@ -56,7 +59,7 @@ final class ImageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageview;
         if (convertView == null) {
-            imageview = new ImageView(_aca);
+            imageview = new ImageView(_ma);
             imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageview.setAdjustViewBounds(true);
             imageview.setMaxWidth(256);

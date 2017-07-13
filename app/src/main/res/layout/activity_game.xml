@@ -55,13 +55,118 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:orientation="horizontal">
         <ImageView
             android:id="@+id/imageview"
-            android:layout_width="match_parent"
+            android:layout_width="0dip"
             android:layout_height="match_parent"
             android:contentDescription="@string/description"
-            android:minWidth="100dip" />
+            android:layout_weight="2"
+            android:minWidth="100dip"
+            tools:ignore="NestedWeights" />
+        <TableLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:stretchColumns="*">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="20sp"
+                    android:text="@string/winner"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded"/>
+                <TextView
+                    android:id="@+id/recorder"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textSize="20sp"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="20sp"
+                    android:text="@string/record"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded" />
+                <TextView
+                    android:id="@+id/record"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textSize="20sp"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="20sp"
+                    android:text="@string/current"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded"/>
+                <TextView
+                    android:id="@+id/player"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textSize="20sp"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded"
+                    android:text="@string/timepast"
+                    android:textSize="20sp"/>
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:id="@+id/tv_dispaly_time"
+                        android:text="@string/o"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:text="@string/s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_dispaly_time"
+                        android:layout_toEndOf="@+id/tv_dispaly_time"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -79,26 +184,7 @@
         </TableLayout>
 
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/tv_dispaly_time"
-            android:text="@string/o"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:text="@string/s"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tv_dispaly_time"
-            android:layout_toEndOf="@+id/tv_dispaly_time"
-            />
-    </RelativeLayout>
+
 
 </LinearLayout>
 

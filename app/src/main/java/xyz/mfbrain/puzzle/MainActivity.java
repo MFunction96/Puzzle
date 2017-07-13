@@ -1,14 +1,7 @@
 package xyz.mfbrain.puzzle;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.IdRes;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +10,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import java.io.FileNotFoundException;
 
 
 /**
@@ -186,5 +176,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
      */
     public static int GetColumns() {
         return columns;
+    }
+
+    final GridView GetGridview() {
+        return _gridview;
     }
 }
