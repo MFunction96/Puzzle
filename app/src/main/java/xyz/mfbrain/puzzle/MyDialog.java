@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Lisa on 2017/7/12.
@@ -22,6 +23,7 @@ import android.widget.Button;
 public class MyDialog extends Dialog{
     public Context context;
     public View dialogView;
+    public String message;    //对话框内容
 
     public MyDialog(@NonNull Context context) {
         super(context);
@@ -36,6 +38,10 @@ public class MyDialog extends Dialog{
     protected MyDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         this.context=context;
+    }
+
+    public void initText(String s){
+        this.message=s;
     }
 
     public void donghua(){
@@ -69,6 +75,8 @@ public class MyDialog extends Dialog{
             }
         });
 
+        TextView textView=(TextView)dialogView.findViewById(R.id.tv_intro);
+        textView.setText(message);
 
     }
 }
