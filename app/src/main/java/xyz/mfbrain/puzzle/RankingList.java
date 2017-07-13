@@ -37,13 +37,13 @@ public class RankingList extends AppCompatActivity {
         int i=1;
         Cursor cursor=_db.query("PlayerInfo",new String[]{"playername","best_record"},null,null,null,null,"best_record");
         if(cursor.moveToFirst()){
-            while(cursor.moveToNext()){
+            do{
                 Users u=new Users();
                 u.set_id(i++);
                 u.set_username(cursor.getString(cursor.getColumnIndex("playername")));
                 u.set_best_record(cursor.getInt(cursor.getColumnIndex("best_record")));
                 _playersList.add(u);
-            }
+            }while(cursor.moveToNext());
             cursor.close();
         }
     }
