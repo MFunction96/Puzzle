@@ -142,13 +142,13 @@ class GameController {
                 }
                 cursor.close();
                 if (_hasplayed) {
-                    values.put("record", GameData.get_curuser().get_last_record());
+                    values.put("record1", GameData.get_curuser().get_last_record());
                     _db.update("RankingList", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
 
                 } else {
                     values.put("imageid", GameData.get_imageid());
                     values.put("playername", GameData.get_curuser().get_username());
-                    values.put("record", GameData.get_curuser().get_last_record());
+                    values.put("record1", GameData.get_curuser().get_last_record());
                     _db.insert("RankingList", null, values);
                 }
             }

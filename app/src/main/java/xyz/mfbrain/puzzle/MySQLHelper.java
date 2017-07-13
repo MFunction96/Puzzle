@@ -26,7 +26,9 @@ public class MySQLHelper extends SQLiteOpenHelper {
             + "id integer primary key autoincrement, "
             + "imageid text, "
             + "playername text, "
-            + "record integer) ";
+            + "record1 integer,"
+            + "record2 integer,"
+            + "record3 integer) ";
 
 
 
@@ -49,6 +51,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("drop table User");
         sqLiteDatabase.execSQL("drop table PlayerInfo");
+        sqLiteDatabase.execSQL("drop table RankingList");
         onCreate(sqLiteDatabase);
         Toast.makeText(context,"Update Success",Toast.LENGTH_SHORT).show();
 

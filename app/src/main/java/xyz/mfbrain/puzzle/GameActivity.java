@@ -341,7 +341,7 @@ public class GameActivity extends AppCompatActivity {
     public void ShowDialog(int step_number){
         //其中的帮助走的步数为stepnumber_help
         MyDialog2 dialog=new MyDialog2(GameActivity.this);
-        dialog.initText("恭喜您，拼图已完成，一共用时"+_timerindex+" S");
+        dialog.initText("恭喜您，拼图已完成，一共用时"+_timerindex+" s");
         dialog.show();
     }
 }

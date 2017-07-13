@@ -22,7 +22,6 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
     private String username;
     private String password;
     private String confirm_password;
-    private boolean regsucces = true;
     private SQLiteDatabase db;
     private MainActivity mainActivit = new MainActivity();
 
@@ -42,6 +41,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
 
     @Override
     public void onClick(View view) {
+        boolean regsucces = true;
         username = text_name.getText().toString();
         password = text_password.getText().toString();
         confirm_password = text_confirm_password.getText().toString();
