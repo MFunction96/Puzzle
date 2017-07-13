@@ -26,19 +26,22 @@ public class MyDialog extends Dialog{
     public String message;    //对话框内容
     public int id;  //选择对话框样式
 
-    public MyDialog(@NonNull Context context) {
+    public MyDialog(@NonNull Context context,int i) {
         super(context);
         this.context=context;
+        this.id=i;
     }
 
-    public MyDialog(@NonNull Context context, @StyleRes int themeResId) {
+    public MyDialog(@NonNull Context context, @StyleRes int themeResId,int i) {
         super(context, themeResId);
         this.context=context;
+        this.id=i;
     }
 
-    protected MyDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    protected MyDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener,int i) {
         super(context, cancelable, cancelListener);
         this.context=context;
+        this.id=i;
     }
 
     //定义对话框的内容
@@ -46,10 +49,7 @@ public class MyDialog extends Dialog{
         this.message=s;
     }
 
-    //对话框样式
-    public void initStyle(int i){
-        this.id=i;
-    }
+    
 
     public void donghua(){
         AnimationSet animationSet=new AnimationSet(true);
