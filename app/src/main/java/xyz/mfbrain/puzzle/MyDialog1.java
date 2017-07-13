@@ -20,28 +20,26 @@ import android.widget.TextView;
  * Created by Lisa on 2017/7/12.
  */
 
-public class MyDialog extends Dialog{
+public class MyDialog1 extends Dialog{
     public Context context;
     public View dialogView;
     public String message;    //对话框内容
-    public int id;  //选择对话框样式
 
-    public MyDialog(@NonNull Context context,int i) {
+
+    public MyDialog1(@NonNull Context context) {
         super(context);
         this.context=context;
-        this.id=i;
     }
 
-    public MyDialog(@NonNull Context context, @StyleRes int themeResId,int i) {
+    public MyDialog1(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
         this.context=context;
-        this.id=i;
     }
 
-    protected MyDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener,int i) {
+    protected MyDialog1(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         this.context=context;
-        this.id=i;
+
     }
 
     //定义对话框的内容
@@ -64,7 +62,7 @@ public class MyDialog extends Dialog{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dialogView= View.inflate(context,id,null);
+        dialogView= View.inflate(context,R.layout.dialog1,null);
         setContentView(dialogView);
 
         setCanceledOnTouchOutside(false);//点击边缘对话框不消失
@@ -82,14 +80,6 @@ public class MyDialog extends Dialog{
             }
         });
 
-        Button bt_Rank=(Button)dialogView.findViewById(R.id.btRank);
-        bt_Rank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context,RankingList.class);
-                context.startActivity(intent);
-            }
-        });
 
         TextView textView=(TextView)dialogView.findViewById(R.id.tv_intro);
         textView.setText(message);
