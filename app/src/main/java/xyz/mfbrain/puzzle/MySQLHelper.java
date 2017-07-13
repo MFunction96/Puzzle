@@ -38,8 +38,8 @@ public class MySQLHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER);
-        sqLiteDatabase.execSQL(CREATE_USERINFO);
-        sqLiteDatabase.execSQL(CREATE_IMAGES);
+        //sqLiteDatabase.execSQL(CREATE_PLAYERINFO);
+       // sqLiteDatabase.execSQL(CREATE_IMAGES);
         Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show();
     }
 

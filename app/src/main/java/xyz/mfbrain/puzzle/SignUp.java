@@ -83,11 +83,11 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         values.put("password", password);
         db.insert("User", null, values);
         values.clear();
-        values.put("username", username);
-        values.put("money",20);
-        values.put("best_record",100000);
-        values.put("last_record",100000);
-        db.insert("UserInfo",null,values);
+//        values.put("username", username);
+//        values.put("money",20);
+//        values.put("best_record",100000);
+//        values.put("last_record",100000);
+//        db.insert("UserInfo",null,values);
     }
 
     @Override

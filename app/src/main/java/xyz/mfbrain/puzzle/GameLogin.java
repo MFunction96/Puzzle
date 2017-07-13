@@ -106,13 +106,12 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
 
     public void ValidateUser(){
         _db =GameData.get_db();
-        Cursor cursor = _db.query("User",new String[]{"username","password","best_record","last_record"},"username = ?",
+        Cursor cursor = _db.query("User",new String[]{"username","password"},"username = ?",
                 new String[]{username.getText().toString()}, null, null, null);
         if(cursor.moveToFirst()){
             do{
                 _user.set_username(username.getText().toString());
                 _user.set_password(cursor.getString(cursor.getColumnIndex("password")));
-                _user.setRecord(cursor.getInt(cursor.getColumnIndex("last_record")));
             }while (cursor.moveToNext());
         }
         cursor.close();
