@@ -50,7 +50,6 @@ public class PreloadActivity extends AppCompatActivity {
         _startgame.setOnClickListener(new StartGame());
         _login.setOnClickListener(new Login());
         _challenge.setOnClickListener(new Challenge());
-       // _free.setOnClickListener(new PickPicClick());
         GameStatus();
     }
 
@@ -78,8 +77,10 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            MyDialog1 dialog1 = new MyDialog1(PreloadActivity.this);
-            dialog1.initText("休闲益智类游戏");
+            MyDialog1 dialog1=new MyDialog1(PreloadActivity.this);
+            dialog1.initText("该游戏为休闲益智类游戏，其目的是将打乱的图片还原到最初的位置，界面左上方" +
+                    "有完整图片供参考。游戏类型分两种，自由模式和闯关模式.闯关模式有固定的图片，玩家要在规定的步数内完成游戏。" +
+                    "自由模式玩家可以自由选择图片跟游戏难度，还可以将自己喜欢的图片从本地加载进游戏内。");
             dialog1.show();
 
         }

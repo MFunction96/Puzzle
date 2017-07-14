@@ -10,6 +10,7 @@
     android:paddingTop="20dip"
     android:stretchColumns="*"
     android:keepScreenOn="true"
+    android:background="@drawable/background2"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.GameActivity">
 

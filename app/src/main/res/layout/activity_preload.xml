@@ -10,6 +10,7 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
+    android:background="@drawable/background1"
     tools:context="xyz.mfbrain.puzzle.PreloadActivity">
 
     <LinearLayout

@@ -27,11 +27,11 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class AdventureMode extends AppCompatActivity implements Runnable {
-    private int level=0;//关卡数
-
-    private int rows=2;
-    private int step_origin=30;
-    private int step_left=30;//剩余步数
+    private int level = 0;//关卡数
+    private int Maxlevel = 5;
+    private int rows = 2;
+    private int step_origin = 30;
+    private int step_left = 30;//剩余步数
 
     private int addstep;//增加步数道具
 
@@ -56,7 +56,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     private TextView step_left_num;
 
     private TableLayout tableLayout;
-    private static int[] pictures={R.drawable.lyoko1,R.drawable.lyoko2,R.drawable.lyoko3,R.drawable.lyoko4,R.drawable.lyoko5,R.drawable.lyoko6};
+    private static int[] pictures = {R.drawable.lyoko1, R.drawable.lyoko2, R.drawable.lyoko3, R.drawable.lyoko4, R.drawable.lyoko5, R.drawable.lyoko6};
 
     private TextView curplayer;
     private TextView bestrecord;
@@ -69,7 +69,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             msg.what = 1;
             handler.sendMessage(msg);
             try {
-                Thread.sleep(250);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -88,6 +88,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     int golbal_cols, golbal_rows;
     int array[][];
     LinkedList<Idclass> TraceStack = new LinkedList<Idclass>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,43 +99,43 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         init();
         bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
         _imageView.setImageBitmap(bitmap);
-        chooselevel(rows,rows);
-        step_left_num.setText(step_left+"");
+        chooselevel(rows, rows);
+        step_left_num.setText(step_left + "");
     }
 
     private void init() {
-        bestrecord=(TextView)findViewById(R.id.bestrecord);
+        bestrecord = (TextView) findViewById(R.id.bestrecord);
 
-        lastrecord=(TextView)findViewById(R.id.lastrecord);
+        lastrecord = (TextView) findViewById(R.id.lastrecord);
 
-        curplayer=(TextView)findViewById(R.id.curplayer);
+        curplayer = (TextView) findViewById(R.id.curplayer);
 
-        _imageView=(ImageView)findViewById(R.id.imageview_adventure);
+        _imageView = (ImageView) findViewById(R.id.imageview_adventure);
 
-        addstep_prop=(Button)findViewById(R.id.addstep);
+        addstep_prop = (Button) findViewById(R.id.addstep);
 
-        hint_prop=(Button)findViewById(R.id.hint_prop);
+        hint_prop = (Button) findViewById(R.id.hint_prop);
 
-        restart_prop=(Button)findViewById(R.id.restart_prop);
+        restart_prop = (Button) findViewById(R.id.restart_prop);
 
-        tableLayout=(TableLayout)findViewById(R.id.tablelayout);
+        tableLayout = (TableLayout) findViewById(R.id.tablelayout);
 
-        step_left_num=(TextView)findViewById(R.id.step_left_num);
+        step_left_num = (TextView) findViewById(R.id.step_left_num);
 
         bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
 
         addstep_prop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                step_left=step_left+5;
-                step_left_num.setText(step_left+"");
+                step_left = step_left + 5;
+                step_left_num.setText(step_left + "");
             }
         });
 
         hint_prop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Thread thread=new Thread(AdventureMode.this);
+                Thread thread = new Thread(AdventureMode.this);
                 thread.start();
             }
         });
@@ -145,9 +146,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
                 bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
                 _imageView.setImageBitmap(bitmap);
-                chooselevel(rows,rows);
-                step_left=step_origin;
-                step_left_num.setText(step_left+"");
+                chooselevel(rows, rows);
+                step_left = step_origin;
+                step_left_num.setText(step_left + "");
             }
         });
 
@@ -177,7 +178,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         TableRow.LayoutParams tlp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                 TableRow.LayoutParams.WRAP_CONTENT);
         tlp.setMargins(3, 3, 0, 0);
-        tlp.weight=1;
+        tlp.weight = 1;
         int blockwidth = (int) (bitmap.getWidth() / cols);
         int blockhight = (int) (bitmap.getHeight() / rows);
         for (int i = 0; i < rows; i++) {
@@ -203,7 +204,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left+"");
+                            step_left_num.setText(step_left + "");
                             checkfinish();
                         } else if (id + 10 == position) {
                             int id2 = id + 10;
@@ -213,7 +214,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left+"");
+                            step_left_num.setText(step_left + "");
                             checkfinish();
                         } else if (id - 1 == position) {
                             int id2 = id - 1;
@@ -223,7 +224,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left+"");
+                            step_left_num.setText(step_left + "");
                             checkfinish();
                         } else if (id + 1 == position) {
                             int id2 = id + 1;
@@ -233,7 +234,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left+"");
+                            step_left_num.setText(step_left + "");
                             checkfinish();
                         }
                     }
@@ -251,6 +252,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         }
         randomtable(rows, cols);
     }
+
     public void randomtable(int rows, int clos) {
         int direction[] = {1, -1, 10, -10};
         int tag = -10;
@@ -320,41 +322,46 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 }
             }
         }
-       if(step_left==0){
-           AlertDialog.Builder dialog_over=new AlertDialog.Builder(AdventureMode.this);
-           dialog_over.setTitle("游戏提示");
-           dialog_over.setMessage("游戏结束");
-           dialog_over.setCancelable(false);
-           dialog_over.setPositiveButton("重新开始", new DialogInterface.OnClickListener() {
-               @Override
-               public void onClick(DialogInterface dialog, int which) {
-                   TraceStack.clear();
-                   bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
-                   bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
-                   _imageView.setImageBitmap(bitmap);
-                   chooselevel(rows,rows);
-                   step_left=step_origin;
-                   step_left_num.setText(step_left+"");
-               }
-           });
-           dialog_over.setNegativeButton("退出", new DialogInterface.OnClickListener() {
-               @Override
-               public void onClick(DialogInterface dialog, int which) {
-                   Intent intent=new Intent(AdventureMode.this,PreloadActivity.class);
-                   startActivity(intent);
-               }
-           });
-           dialog_over.show();
+        if (step_left == 0) {
+            AlertDialog.Builder dialog_over = new AlertDialog.Builder(AdventureMode.this);
+            dialog_over.setTitle("游戏提示");
+            dialog_over.setMessage("游戏结束");
+            dialog_over.setCancelable(false);
+            dialog_over.setPositiveButton("重新开始", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    TraceStack.clear();
+                    bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
+                    bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
+                    _imageView.setImageBitmap(bitmap);
+                    chooselevel(rows, rows);
+                    step_left = step_origin;
+                    step_left_num.setText(step_left + "");
+                }
+            });
+            dialog_over.setNegativeButton("退出", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(AdventureMode.this, PreloadActivity.class);
+                    startActivity(intent);
+                }
+            });
+            dialog_over.show();
         }
+
         if (isfinished) {
-            SQLiteDatabase db=GameData.get_db();
-            ContentValues values=new ContentValues();
-            GameData.get_curuser().setAdRecord(level+1);
-            values.put("last_record",GameData.get_curuser().get_last_record());
-            values.put("best_record",GameData.get_curuser().get_best_record());
-            db.update("PlayerInfo",values,"playername=?",new String[]{GameData.get_curuser().get_username()});
+            SQLiteDatabase db = GameData.get_db();
+            ContentValues values = new ContentValues();
+            GameData.get_curuser().setAdRecord(level + 1);
+            values.put("last_record", GameData.get_curuser().get_last_record());
+            values.put("best_record", GameData.get_curuser().get_best_record());
+            db.update("PlayerInfo", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
             values.clear();
-            createDialog();
+            if (level == Maxlevel) {
+                createdialog_finish();
+            } else {
+                createDialog();
+            }
         }
 
     }
@@ -370,12 +377,17 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     changebitmap(idrecover.id1, idrecover.id2);
                     break;
                 case 2:
-                    createDialog();
+                    if (level == Maxlevel) {
+                        createdialog_finish();
+                    } else {
+                        createDialog();
+                    }
                     break;
 
             }
         }
     };
+
     public void createDialog() {
         AlertDialog.Builder dialog_next = new AlertDialog.Builder(AdventureMode.this);
         dialog_next.setTitle("游戏提示");
@@ -407,12 +419,27 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         });
         dialog_next.show();
     }
+    public void createdialog_finish(){
+        AlertDialog.Builder dialog_next = new AlertDialog.Builder(AdventureMode.this);
+        dialog_next.setTitle("游戏提示");
+        dialog_next.setMessage("恭喜你，现已通关");
+        dialog_next.setCancelable(false);
+        dialog_next.setPositiveButton("退出", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(AdventureMode.this, PreloadActivity.class);
+                startActivity(intent);
+            }
+        });
+        dialog_next.show();
 
-    private void UpdateInfo(){
-        Cursor cursor=GameData.get_db().query("PlayerInfo",null,"playername=?",new String[]{GameData.get_curuser().get_username()},null,null,null);
-        if(cursor.moveToFirst()){
-            bestrecord.setText(cursor.getString(cursor.getColumnIndex("best_record"))+"");
-            lastrecord.setText(cursor.getInt(cursor.getColumnIndex("last_record"))+"");
+    }
+
+    private void UpdateInfo() {
+        Cursor cursor = GameData.get_db().query("PlayerInfo", null, "playername=?", new String[]{GameData.get_curuser().get_username()}, null, null, null);
+        if (cursor.moveToFirst()) {
+            bestrecord.setText(cursor.getString(cursor.getColumnIndex("best_record")) + "");
+            lastrecord.setText(cursor.getInt(cursor.getColumnIndex("last_record")) + "");
         }
 
     }
