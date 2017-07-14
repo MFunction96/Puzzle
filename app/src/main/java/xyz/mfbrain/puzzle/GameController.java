@@ -130,32 +130,33 @@ class GameController {
             _ga.ShowDialog(_gu.GetStep_Player());
             if (_gameType == 1) {
                 //查询数据库
-                Cursor cursor = _db.query("RankingList", new String[]{"playername", "imageid"}, "imageid=? and playername=?", new String[]{GameData.get_imageid(), GameData.get_curuser().get_username()}, null, null, null);
-                if (cursor.moveToFirst()) {
-                    do {
-                        String n = cursor.getString(cursor.getColumnIndex("playername"));
-                        if (n.equals(GameData.get_curuser().get_username())) {
-                            _hasplayed = true;
-                            break;
-                        }
-                    } while (cursor.moveToNext());
-                }
-                cursor.close();
-                if (_hasplayed) {
-                    switch (GameData.get_gamedifficulty()) {
-                        case 2:
-                            values.put("record1", GameData.get_curuser().get_last_record());
-                            break;
-                        case 4:
-                            values.put("record2", GameData.get_curuser().get_last_record());
-                            break;
-                        case 5:
-                            values.put("record3", GameData.get_curuser().get_last_record());
-                            break;
-                    }
-                    _db.update("RankingList", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
-
-                } else {
+//                Cursor cursor = _db.query("RankingList", new String[]{"playername", "imageid"}, "imageid=? and playername=?", new String[]{GameData.get_imageid(), GameData.get_curuser().get_username()}, null, null, null);
+//                if (cursor.moveToFirst()) {
+//                    do {
+//                        String n = cursor.getString(cursor.getColumnIndex("playername"));
+//                        if (n.equals(GameData.get_curuser().get_username())) {
+//                            _hasplayed = true;
+//                            break;
+//                        }
+//                    } while (cursor.moveToNext());
+//                }
+//                cursor.close();
+//                if (_hasplayed) {
+//                    switch (GameData.get_gamedifficulty()) {
+//                        case 2:
+//                            values.put("record1", GameData.get_curuser().get_last_record());
+//                            break;
+//                        case 4:
+//                            values.put("record2", GameData.get_curuser().get_last_record());
+//                            break;
+//                        case 5:
+//                            values.put("record3", GameData.get_curuser().get_last_record());
+//                            break;
+//                    }
+//                   // _db.update("RankingList", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
+//
+//                } else
+                {
                     values.put("imageid", GameData.get_imageid());
                     values.put("playername", GameData.get_curuser().get_username());
                     switch (GameData.get_gamedifficulty()) {
