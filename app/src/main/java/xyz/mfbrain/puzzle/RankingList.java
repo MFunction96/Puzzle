@@ -15,10 +15,18 @@ import java.util.List;
 
 public class RankingList extends AppCompatActivity {
     private List<Users> _playersList=new ArrayList<>();
+    private Intent intent;
+    private boolean isfromhome=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_list);
+        intent=getIntent();
+        if(intent.getIntExtra("home",0)==1){
+            isfromhome=true;
+        }else{
+            isfromhome=false;
+        }
         InitPlayerList();
         RankListAdapter _rank_adapter=new RankListAdapter(this,R.layout.list_layout,_playersList);
         ListView _listView=(ListView)findViewById(R.id.rankllist);
@@ -27,8 +35,14 @@ public class RankingList extends AppCompatActivity {
         btnreturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(RankingList.this,MainActivity.class);
-                startActivity(intent);
+                if(isfromhome){
+                    Intent intent1=new Intent(RankingList.this,PreloadActivity.class);
+                    startActivity(intent1);
+                }else{
+                    Intent intent2=new Intent(RankingList.this,MainActivity.class);
+                    startActivity(intent2);
+                }
+
             }
         });
     }
@@ -57,27 +71,30 @@ public class RankingList extends AppCompatActivity {
                 _playersList.add(u);
             }while(cursor.moveToNext());
             cursor.close();
-            GameData.set_bestrecord( _playersList.get(0).get_last_record()+"");
-            GameData.set_recordkeeper(_playersList.get(0).get_username());
-            ContentValues values=new ContentValues();
-            switch (GameData.get_gamedifficulty()){
-                case 2:
-                    values.put("keeper1",GameData.get_recordkeeper());
-                    values.put("record1",GameData.get_bestrecord());
-                    break;
-                case 4:
-                    values.put("keeper2",GameData.get_recordkeeper());
-                    values.put("record2",GameData.get_bestrecord());
-                    break;
-                case 5:
-                    values.put("keeper3",GameData.get_recordkeeper());
-                    values.put("record3",GameData.get_bestrecord());
-            }
-            GameData.get_db().update("BestRecord",values,"imageid=?",new String[]{GameData.get_imageid()});
-            values.clear();
-
-
-
+          if(!isfromhome){
+              UpDateDataBase();
+          }
         }
+    }
+
+    private void UpDateDataBase(){
+        GameData.set_bestrecord( _playersList.get(0).get_last_record()+"");
+        GameData.set_recordkeeper(_playersList.get(0).get_username());
+        ContentValues values=new ContentValues();
+        switch (GameData.get_gamedifficulty()){
+            case 2:
+                values.put("keeper1",GameData.get_recordkeeper());
+                values.put("record1",GameData.get_bestrecord());
+                break;
+            case 4:
+                values.put("keeper2",GameData.get_recordkeeper());
+                values.put("record2",GameData.get_bestrecord());
+                break;
+            case 5:
+                values.put("keeper3",GameData.get_recordkeeper());
+                values.put("record3",GameData.get_bestrecord());
+        }
+        GameData.get_db().update("BestRecord",values,"imageid=?",new String[]{GameData.get_imageid()});
+        values.clear();
     }
 }

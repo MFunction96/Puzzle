@@ -74,6 +74,9 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            MyDialog1 dialog1=new MyDialog1(PreloadActivity.this);
+            dialog1.initText("休闲益智类游戏");
+            dialog1.show();
 
         }
     }
@@ -94,6 +97,7 @@ public class PreloadActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent();
             intent.setClass(PreloadActivity.this, RankingList.class);
+            intent.putExtra("home",1);
             startActivity(intent);
 
         }
@@ -104,13 +108,12 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(PreloadActivity.this, GameLogin.class);
+            intent.putExtra("home",1);
             startActivity(intent);
         }
     }
 
     private void InitDataBase() {
-        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 5);
-        GameData.set_db(_mySQLHelper.getWritableDatabase());
         ContentValues values = new ContentValues();
         values.put("username", "aa");
         values.put("password", "11");
@@ -136,9 +139,13 @@ public class PreloadActivity extends AppCompatActivity {
 
         _name.setText("欢迎    " + GameData.get_curuser().get_username() + "     !");
         if (_isLogin == 1) {
-            _startgame.setEnabled(true);
+            _startgame.setVisibility(View.VISIBLE);
+            _challenge.setVisibility(View.VISIBLE);
+            _ranklist.setVisibility(View.VISIBLE);
         } else {
-            _startgame.setEnabled(false);
+            _startgame.setVisibility(View.INVISIBLE);
+            _challenge.setVisibility(View.INVISIBLE);
+            _ranklist.setVisibility(View.INVISIBLE);
         }
 
     }

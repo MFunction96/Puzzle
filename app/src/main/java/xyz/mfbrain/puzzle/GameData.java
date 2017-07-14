@@ -9,9 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 public class GameData {
     private static SQLiteDatabase _db;
     private static Users _curuser = new Users();
-    private static String _imageid;
+    private static String _imageid="1";
     private static int _gametype=1;
-    private static int _gamedifficulty;
+    private static int _gamedifficulty=2;
     private static String _recordkeeper="noBody";
     private static String _bestrecord="10000";
 
