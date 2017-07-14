@@ -47,7 +47,7 @@ public class PreloadActivity extends AppCompatActivity {
         _ranklist.setOnClickListener(new RankList());
         _startgame.setOnClickListener(new StartGame());
         _login.setOnClickListener(new Login());
-
+        _challenge.setOnClickListener(new Challenge());
         GameStatus();
     }
 

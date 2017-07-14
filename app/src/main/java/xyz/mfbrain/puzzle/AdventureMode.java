@@ -153,14 +153,17 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         });
 
         curplayer.setText(GameData.get_curuser().get_username());
-        Cursor cursor=GameData.get_db().query("PlayerInfo",null,"playername=?",new String[]{GameData.get_curuser().get_username()},null,null,null);
-        if(cursor.moveToFirst()){
-            bestrecord.setText(cursor.getString(cursor.getColumnIndex("best_record"))+"");
-            lastrecord.setText(cursor.getInt(cursor.getColumnIndex("last_record"))+"");
-        }
+        UpdateInfo();
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        UpdateInfo();
+    }
+
     private void chooselevel(final int rows, final int cols) {
         golbal_rows = rows;
         golbal_cols = cols;
@@ -404,5 +407,14 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             }
         });
         dialog_next.show();
+    }
+
+    private void UpdateInfo(){
+        Cursor cursor=GameData.get_db().query("PlayerInfo",null,"playername=?",new String[]{GameData.get_curuser().get_username()},null,null,null);
+        if(cursor.moveToFirst()){
+            bestrecord.setText(cursor.getString(cursor.getColumnIndex("best_record"))+"");
+            lastrecord.setText(cursor.getInt(cursor.getColumnIndex("last_record"))+"");
+        }
+
     }
 }
