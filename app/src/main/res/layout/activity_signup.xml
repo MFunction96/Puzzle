@@ -5,78 +5,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="40dip"
+    android:paddingBottom="400dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
     tools:context="xyz.mfbrain.puzzle.SignUp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/username"
-            android:textSize="25sp"
-            />
-        <EditText
-            android:id="@+id/text_reg_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/password"
-            android:textSize="25sp"
-            />
-        <EditText
-            android:id="@+id/text_reg_password"
+        android:layout_height="0dip"
+        android:layout_weight="3">
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/confirm"
-            android:textSize="25sp"
-           />
-        <EditText
-            android:id="@+id/text_reg_password_confirm"
-            android:inputType="textPassword"
+            android:layout_height="0dip"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="@string/username"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:paddingTop="10dip"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
+            <EditText
+                android:id="@+id/text_reg_name"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:hint="@string/usernamehint"
+                android:gravity="left"
+                android:layout_weight="3"
+                android:textSize="16sp"
+                android:paddingBottom="10dip"
+                tools:ignore="RtlHardcoded"/>
+        </TableRow>
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
-
+            android:layout_height="0dip"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="@string/password"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:paddingTop="10dip"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded"/>
+            <EditText
+                android:id="@+id/text_reg_password"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="@string/passwordhint"
+                android:gravity="left"
+                android:layout_weight="3"
+                android:textSize="16sp"
+                android:paddingBottom="10dip"
+                tools:ignore="RtlHardcoded"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:text="@string/confirm"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:paddingTop="10dip"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded"/>
+            <EditText
+                android:id="@+id/text_reg_password_confirm"
+                android:inputType="textPassword"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:hint="@string/confirmhint"
+                android:gravity="left"
+                android:layout_weight="3"
+                android:textSize="16sp"
+                android:paddingBottom="10dip"
+                tools:ignore="RtlHardcoded"/>
+        </TableRow>
+    </TableLayout>
         <Button
             android:id="@+id/btn_register"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/register"
-            android:textSize="20sp" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:layout_marginTop="20dip"
+            android:layout_marginLeft="100dip"
+            android:layout_marginRight="100dip"/>
 
 
 

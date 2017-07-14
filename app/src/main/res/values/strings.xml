@@ -31,4 +31,5 @@
     <string name="ranklist">排行榜</string>
     <string name="about">关于</string>
     <string name="challenge">挑战拼</string>
+    <string name="confirmhint">重新输入密码</string>
 </resources>

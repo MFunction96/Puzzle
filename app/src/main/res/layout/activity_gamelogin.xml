@@ -4,21 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="160dip"
+    android:paddingBottom="400dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
-    android:paddingTop="100dip"
+    android:paddingTop="20dip"
     android:stretchColumns="*"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.GameLogin">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="2"
-        android:id="@+id/image"
-        android:contentDescription="@string/description"/>
-
 
     <TableLayout
         android:paddingTop="10dip"
