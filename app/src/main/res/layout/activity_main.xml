@@ -23,7 +23,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/picktip"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical"
+            tools:ignore="NestedWeights" />
 
         <Button
             android:id="@+id/pickpic"

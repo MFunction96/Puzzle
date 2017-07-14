@@ -34,4 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/startgame" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ranklist"
+        android:text="@string/ranklist"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/about"
+        android:text="@string/about"/>
 </LinearLayout>

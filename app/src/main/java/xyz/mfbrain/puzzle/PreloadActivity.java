@@ -1,6 +1,5 @@
 package xyz.mfbrain.puzzle;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,13 +12,19 @@ import android.widget.TextView;
 
 /**
  * Created by MFunction on 2017/7/7.
+ *
  * @author MFunction
  */
 
 public class PreloadActivity extends AppCompatActivity {
     private MySQLHelper _mySQLHelper;
-    private int _isLogin=0;
+    private int _isLogin = 0;
     private TextView _name;
+
+    private Button _ranklist;
+
+    private Button _about;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,29 +52,34 @@ public class PreloadActivity extends AppCompatActivity {
 //            GameData.get_db().insert("BestRecord", null, values);
 //            values.clear();
 //        }
-
-
+        _about.setOnClickListener(new About());
+        _ranklist.setOnClickListener(new RankList());
         Button _startgame = (Button) findViewById(R.id.start);
         _startgame.setOnClickListener(new StartGame());
-        Button _login=(Button)findViewById(R.id.btn_reg);
+        Button _login = (Button) findViewById(R.id.btn_reg);
         _login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(PreloadActivity.this,GameLogin.class);
+                Intent intent = new Intent(PreloadActivity.this, GameLogin.class);
                 startActivity(intent);
             }
         });
-        _name=(TextView)findViewById(R.id.text_name);
+        _name = (TextView) findViewById(R.id.text_name);
         Intent intent = getIntent();
-        _isLogin=intent.getIntExtra("isLogin",0);
+        _isLogin = intent.getIntExtra("isLogin", 0);
 
         _name = (TextView) findViewById(R.id.text_name);
         _name.setText("欢迎    " + GameData.get_curuser().get_username() + "     !");
-        if(_isLogin==1){
+        if (_isLogin == 1) {
             _startgame.setEnabled(true);
-        }else{
+        } else {
             _startgame.setEnabled(false);
         }
+    }
+
+    private void Init() {
+        _ranklist = (Button) findViewById(R.id.ranklist);
+        _about  =(Button) findViewById(R.id.about);
     }
 
     private class StartGame implements View.OnClickListener {
@@ -82,4 +92,19 @@ public class PreloadActivity extends AppCompatActivity {
         }
     }
 
+    private class About implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class RankList implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
 }
