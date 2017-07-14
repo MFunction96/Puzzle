@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _pickpicbtn.setOnClickListener(new PickPicClick());
         _startgame.setOnClickListener(new StartGame());
         _startgame.setEnabled(false);
+        Music.play(this,R.raw.background);
     }
 
     /**
