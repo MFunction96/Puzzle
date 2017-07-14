@@ -75,7 +75,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:textSize="20sp"
-                    android:text="当前玩家"
+                    android:text="@string/current"
                     android:gravity="right"
                     tools:ignore="RtlHardcoded"/>
 
@@ -97,7 +97,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:textSize="20sp"
-                    android:text="最佳记录"
+                    android:text="@string/bestrecord"
                     android:gravity="right"
                     tools:ignore="RtlHardcoded" />
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:textSize="20sp"
-                    android:text="最新记录"
+                    android:text="@string/latest"
                     android:gravity="right"
                     tools:ignore="RtlHardcoded"/>
 
