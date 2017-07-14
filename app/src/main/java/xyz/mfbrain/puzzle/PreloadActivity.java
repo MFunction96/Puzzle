@@ -25,6 +25,8 @@ public class PreloadActivity extends AppCompatActivity {
 
     private Button _about;
 
+    private Button _challenge;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class PreloadActivity extends AppCompatActivity {
         //设置全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_preload);
-
+        Init();
         _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 5);
         GameData.set_db(_mySQLHelper.getWritableDatabase());
 //        ContentValues values = new ContentValues();
@@ -54,6 +56,7 @@ public class PreloadActivity extends AppCompatActivity {
 //        }
         _about.setOnClickListener(new About());
         _ranklist.setOnClickListener(new RankList());
+        _challenge.setOnClickListener(new Challenge());
         Button _startgame = (Button) findViewById(R.id.start);
         _startgame.setOnClickListener(new StartGame());
         Button _login = (Button) findViewById(R.id.btn_reg);
@@ -80,6 +83,7 @@ public class PreloadActivity extends AppCompatActivity {
     private void Init() {
         _ranklist = (Button) findViewById(R.id.ranklist);
         _about  =(Button) findViewById(R.id.about);
+        _challenge = (Button) findViewById(R.id.challenge);
     }
 
     private class StartGame implements View.OnClickListener {
@@ -99,7 +103,13 @@ public class PreloadActivity extends AppCompatActivity {
 
         }
     }
+    private class Challenge implements View.OnClickListener {
 
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
     private class RankList implements View.OnClickListener {
 
         @Override

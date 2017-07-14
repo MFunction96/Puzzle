@@ -30,4 +30,5 @@
     <string name="stepleft">剩余步数: </string>
     <string name="ranklist">排行榜</string>
     <string name="about">关于</string>
+    <string name="challenge">挑战模式</string>
 </resources>
