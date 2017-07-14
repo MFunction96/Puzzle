@@ -24,29 +24,32 @@
 
         <Button
             android:id="@+id/addstep"
-            style="?android:buttonStyle"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/colorAccent"
             android:text="@string/addstep"
             tools:ignore="NestedWeights" />
 
         <Button
             android:id="@+id/hint_prop"
-            style="?android:buttonStyle"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/qiancheng"
             android:gravity="center"
             android:text="@string/hint" />
 
         <Button
+            android:id="@+id/restart_prop"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/restart_prop"
-            android:text="@string/restart"
-            style="?android:buttonStyle"/>
+            android:background="@android:color/holo_blue_bright"
+            android:text="@string/restart" />
     </LinearLayout>
 
     <LinearLayout

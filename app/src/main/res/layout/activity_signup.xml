@@ -104,6 +104,7 @@
 
     <Button
         android:id="@+id/btn_register"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_marginLeft="100dip"

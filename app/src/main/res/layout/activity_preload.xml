@@ -25,36 +25,47 @@
 
         <Button
             android:id="@+id/btn_reg"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
             android:text="@string/login" />
+
         <Button
+            android:id="@+id/about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/about"
-            android:text="@string/about"/>
+            android:background="@color/qiancheng"
+            android:text="@string/about" />
     </LinearLayout>
 
     <Button
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/qianhong"
         android:text="@string/startgame" />
+
     <Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/challenge"
-    android:text="@string/challenge"/>
-    <Button
+        android:id="@+id/challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/qiancheng"
+        android:text="@string/challenge" />
+
+    <Button
         android:id="@+id/free"
-        android:text="自由拼"/>
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/qianlan"
+        android:text="自由拼" />
+
+    <Button
         android:id="@+id/ranklist"
-        android:text="@string/ranklist"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/qianlv"
+        android:text="@string/ranklist" />
 
 
 </LinearLayout>

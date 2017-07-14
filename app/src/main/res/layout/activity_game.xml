@@ -21,36 +21,44 @@
         android:orientation="horizontal"
         android:id="@+id/controlpanel"
         android:baselineAligned="false">
+
         <Button
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:id="@+id/pausegame"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/qianhong"
             android:text="@string/pause"
-            style="?android:buttonStyle"
             tools:ignore="NestedWeights" />
+
         <Button
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
             android:id="@+id/hint"
+            style="?android:buttonStyle"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/qianlan"
             android:gravity="center"
-            android:layout_weight="1"
-            android:text="@string/hint"
-            style="?android:buttonStyle"/>
+            android:text="@string/hint" />
+
         <Button
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:id="@+id/restart"
-            android:text="@string/restart"
-            style="?android:buttonStyle"/>
-        <Button
+            style="?android:buttonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/qiancheng"
+            android:text="@string/restart" />
+
+        <Button
             android:id="@+id/backmenu"
-            android:text="@string/backmenu"
-            style="?android:buttonStyle"/>
+            style="?android:buttonStyle"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/qianlv"
+            android:text="@string/backmenu" />
     </LinearLayout>
 
     <LinearLayout

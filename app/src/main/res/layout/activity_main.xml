@@ -29,9 +29,11 @@
 
         <Button
             android:id="@+id/pickpic"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/colorPrimary"
             android:text="@string/pickpicture" />
     </LinearLayout>
     <TextView
@@ -80,11 +82,14 @@
 
         </GridView>
     </LinearLayout>
+
     <Button
         android:id="@+id/startgame"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/startgame"/>
+        android:background="@color/colorAccent"
+        android:text="@string/startgame" />
 </LinearLayout>
 
