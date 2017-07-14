@@ -142,17 +142,36 @@ class GameController {
                 }
                 cursor.close();
                 if (_hasplayed) {
-                    values.put("record1", GameData.get_curuser().get_last_record());
+                    switch (GameData.get_gamedifficulty()) {
+                        case 2:
+                            values.put("record1", GameData.get_curuser().get_last_record());
+                            break;
+                        case 4:
+                            values.put("record2", GameData.get_curuser().get_last_record());
+                            break;
+                        case 5:
+                            values.put("record3", GameData.get_curuser().get_last_record());
+                            break;
+                    }
                     _db.update("RankingList", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
 
                 } else {
                     values.put("imageid", GameData.get_imageid());
                     values.put("playername", GameData.get_curuser().get_username());
-                    values.put("record1", GameData.get_curuser().get_last_record());
+                    switch (GameData.get_gamedifficulty()) {
+                        case 2:
+                            values.put("record1", GameData.get_curuser().get_last_record());
+                            break;
+                        case 4:
+                            values.put("record2", GameData.get_curuser().get_last_record());
+                            break;
+                        case 5:
+                            values.put("record3", GameData.get_curuser().get_last_record());
+                            break;
+                    }
                     _db.insert("RankingList", null, values);
                 }
-            }
-            else if (_gameType == 2) {
+            } else if (_gameType == 2) {
                 values.put("last_record", GameData.get_curuser().get_last_record());
                 values.put("best_record", GameData.get_curuser().get_best_record());
                 _db.update("PlayerInfo", values, "playername=?", new String[]{GameData.get_curuser().get_username()});

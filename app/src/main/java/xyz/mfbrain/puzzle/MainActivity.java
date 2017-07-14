@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if (!_bmp.equals("")) {
             _startgame.setEnabled(true);
         }
+        GameData.set_gamedifficulty(rows);
     }
 
     @Override
