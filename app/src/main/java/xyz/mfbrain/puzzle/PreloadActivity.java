@@ -40,7 +40,10 @@ public class PreloadActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_preload);
         //更新和初次建立数据库时调用
+        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 5);
+        GameData.set_db(_mySQLHelper.getWritableDatabase());
         //InitDataBase();
+        Init();
         _about.setOnClickListener(new About());
         _ranklist.setOnClickListener(new RankList());
         _startgame.setOnClickListener(new StartGame());
@@ -102,8 +105,6 @@ public class PreloadActivity extends AppCompatActivity {
         }
     }
     private void InitDataBase(){
-        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 5);
-        GameData.set_db(_mySQLHelper.getWritableDatabase());
         ContentValues values = new ContentValues();
         values.put("username", "aa");
         values.put("password", "11");
