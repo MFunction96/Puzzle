@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 public class PreloadActivity extends AppCompatActivity {
     private MySQLHelper _mySQLHelper;
-    private int _isLogin = 0;
     private TextView _name;
 
     private Button _ranklist;
@@ -48,7 +47,7 @@ public class PreloadActivity extends AppCompatActivity {
         _ranklist.setOnClickListener(new RankList());
         _startgame.setOnClickListener(new StartGame());
         _login.setOnClickListener(new Login());
-        _name = (TextView) findViewById(R.id.text_name);
+
         GameStatus();
     }
 
@@ -57,7 +56,8 @@ public class PreloadActivity extends AppCompatActivity {
         _about = (Button) findViewById(R.id.about);
         _challenge = (Button) findViewById(R.id.challenge);
         _startgame = (Button) findViewById(R.id.start);
-        _login = (Button) findViewById(R.id.btn_reg);
+        _login = (Button) findViewById(R.id.btn_reg); _name = (TextView) findViewById(R.id.text_name);
+
     }
 
     private class StartGame implements View.OnClickListener {
@@ -65,7 +65,7 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            intent.setClass(PreloadActivity.this, MainActivity.class);
+            intent.setClass(PreloadActivity.this, AdventureMode.class);
             startActivity(intent);
         }
     }
@@ -107,9 +107,16 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(PreloadActivity.this, GameLogin.class);
-            intent.putExtra("home",1);
-            startActivity(intent);
+            if(GameData.get_islogin()){
+                GameData.set_curuser(new Users());
+                GameData.set_islogin(false);
+                GameStatus();
+            }else{
+                Intent intent = new Intent(PreloadActivity.this, GameLogin.class);
+                intent.putExtra("home",1);
+                startActivity(intent);
+                GameData.set_islogin(true);
+            }
         }
     }
 
@@ -134,15 +141,14 @@ public class PreloadActivity extends AppCompatActivity {
     }
 
     private void GameStatus() {
-        Intent intent = getIntent();
-        _isLogin = intent.getIntExtra("isLogin", 0);
-
         _name.setText("欢迎    " + GameData.get_curuser().get_username() + "     !");
-        if (_isLogin == 1) {
+        if (GameData.get_islogin()) {
             _startgame.setVisibility(View.VISIBLE);
             _challenge.setVisibility(View.VISIBLE);
             _ranklist.setVisibility(View.VISIBLE);
+            _login.setText("注销");
         } else {
+            _login.setText("登录");
             _startgame.setVisibility(View.INVISIBLE);
             _challenge.setVisibility(View.INVISIBLE);
             _ranklist.setVisibility(View.INVISIBLE);

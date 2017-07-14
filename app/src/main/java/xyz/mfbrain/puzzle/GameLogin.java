@@ -82,8 +82,8 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
                         password.setText("");
                     }
                     _editor.apply();
+                    GameData.set_islogin(true);
                     Intent intent1 = new Intent(this, PreloadActivity.class);
-                    intent1.putExtra("isLogin", 1);
                     startActivity(intent1);
                 } else {
                     Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();

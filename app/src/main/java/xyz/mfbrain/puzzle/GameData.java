@@ -9,11 +9,20 @@ import android.database.sqlite.SQLiteDatabase;
 public class GameData {
     private static SQLiteDatabase _db;
     private static Users _curuser = new Users();
-    private static String _imageid="1";
+    private static String _imageid="0";
     private static int _gametype=1;
     private static int _gamedifficulty=2;
     private static String _recordkeeper="noBody";
     private static String _bestrecord="10000";
+    private static boolean _islogin=false;
+
+    public static boolean get_islogin() {
+        return _islogin;
+    }
+
+    public static void set_islogin(boolean _islogin) {
+        GameData._islogin = _islogin;
+    }
 
     public static void set_recordkeeper(String _recordkeeper) {
         GameData._recordkeeper = _recordkeeper;
