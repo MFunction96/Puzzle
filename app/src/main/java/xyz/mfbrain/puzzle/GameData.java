@@ -11,7 +11,7 @@ public class GameData {
     private static Users _curuser = new Users();
     private static String _imageid;
     private static int _gametype=1;
-    private static String _gamedifficulty;
+    private static int _gamedifficulty;
     private static String _recordkeeper="noBody";
     private static String _bestrecord="10000";
 
@@ -23,7 +23,7 @@ public class GameData {
         GameData._bestrecord = _bestrecord;
     }
 
-    public static void set_gamedifficulty(String _gamedifficulty) {
+    public static void set_gamedifficulty(int _gamedifficulty) {
         GameData._gamedifficulty = _gamedifficulty;
     }
 
@@ -59,7 +59,7 @@ public class GameData {
         return _gametype;
     }
 
-    public static String get_gamedifficulty() {
+    public static int get_gamedifficulty() {
         return _gamedifficulty;
     }
 

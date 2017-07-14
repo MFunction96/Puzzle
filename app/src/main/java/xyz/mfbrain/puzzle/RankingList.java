@@ -1,5 +1,6 @@
 package xyz.mfbrain.puzzle;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -35,18 +36,48 @@ public class RankingList extends AppCompatActivity {
     private void InitPlayerList(){
         SQLiteDatabase _db=GameData.get_db();
         int i=1;
-        Cursor cursor=_db.query("RankingList",new String[]{"playername","record1"},"imageid=? ",new String[]{GameData.get_imageid()},null,null,"record1");
+        String s="record1";
+        switch (GameData.get_gamedifficulty()){
+            case 2:
+                s="record1";
+                break;
+            case 4:
+                s="record2";
+                break;
+            case 5:
+                s="record3";
+        }
+        Cursor cursor=_db.query("RankingList",new String[]{"playername",s},"imageid=? ",new String[]{GameData.get_imageid()},null,null,s);
         if(cursor.moveToFirst()){
             do{
                 Users u=new Users();
                 u.set_id(i++);
                 u.set_username(cursor.getString(cursor.getColumnIndex("playername")));
-                u.setRecord(cursor.getInt(cursor.getColumnIndex("record1")));
+                u.setRecord(cursor.getInt(cursor.getColumnIndex(s)));
                 _playersList.add(u);
             }while(cursor.moveToNext());
+            cursor.close();
             GameData.set_bestrecord( _playersList.get(0).get_last_record()+"");
             GameData.set_recordkeeper(_playersList.get(0).get_username());
-            cursor.close();
+            ContentValues values=new ContentValues();
+            switch (GameData.get_gamedifficulty()){
+                case 2:
+                    values.put("keeper1",GameData.get_recordkeeper());
+                    values.put("record1",GameData.get_bestrecord());
+                    break;
+                case 4:
+                    values.put("keeper2",GameData.get_recordkeeper());
+                    values.put("record2",GameData.get_bestrecord());
+                    break;
+                case 5:
+                    values.put("keeper3",GameData.get_recordkeeper());
+                    values.put("record3",GameData.get_bestrecord());
+            }
+            GameData.get_db().update("BestRecord",values,"imageid=?",new String[]{GameData.get_imageid()});
+            values.clear();
+
+
+
         }
     }
 }

@@ -2,6 +2,8 @@ package xyz.mfbrain.puzzle;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -159,8 +161,7 @@ public class GameActivity extends AppCompatActivity {
         _gc.initarraystep();
         _running = true;
         _player.setText(GameData.get_curuser().get_username());
-        _record.setText(GameData.get_bestrecord());
-        _recorder.setText(GameData.get_recordkeeper());
+        ShowBestRecord();
     }
     final TextView GetRecorder() {
         return _recorder;
@@ -343,5 +344,32 @@ public class GameActivity extends AppCompatActivity {
         MyDialog2 dialog=new MyDialog2(GameActivity.this);
         dialog.initText("恭喜您，拼图已完成，一共用时"+_timerindex+" s");
         dialog.show();
+    }
+
+    public void ShowBestRecord(){
+        String name="";
+        String record="";
+        SQLiteDatabase db=GameData.get_db();
+        switch (GameData.get_gamedifficulty()){
+            case 2:
+                name="keeper1";
+                record="record1";
+                break;
+            case 4:
+                name="keeper2";
+                record="record2";
+                break;
+            case 5:
+                name="keeper3";
+                record="record3";
+                break;
+        }
+        Cursor cursor=db.query("BestRecord",new String[]{name,record},"imageid=?",new String[]{GameData.get_imageid()},null,null,null);
+        if(cursor.moveToFirst()){
+            _recorder.setText(cursor.getString(cursor.getColumnIndex(name)));
+            _record.setText(cursor.getInt(cursor.getColumnIndex(record))+"");
+        }
+
+
     }
 }

@@ -30,6 +30,16 @@ public class MySQLHelper extends SQLiteOpenHelper {
             + "record2 integer,"
             + "record3 integer) ";
 
+    public static final String CREATE_BESTRECORD="create table BestRecord("
+            + "id integer primary key autoincrement, "
+            + "imageid text, "
+            + "keeper1 text, "
+            + "keeper2 text, "
+            + "keeper3 text, "
+            + "record1 integer,"
+            + "record2 integer,"
+            + "record3 integer) ";
+
 
 
     Context context;
@@ -44,6 +54,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_USER);
         sqLiteDatabase.execSQL(CREATE_PLAYERINFO);
         sqLiteDatabase.execSQL(CREATE_RANKINGLIST);
+        sqLiteDatabase.execSQL(CREATE_BESTRECORD);
         Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show();
     }
 
