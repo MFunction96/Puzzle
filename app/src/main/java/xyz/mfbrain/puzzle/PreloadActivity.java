@@ -31,6 +31,8 @@ public class PreloadActivity extends AppCompatActivity {
 
     private Button _login;
 
+    private Button _free;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class PreloadActivity extends AppCompatActivity {
         _startgame.setOnClickListener(new StartGame());
         _login.setOnClickListener(new Login());
         _challenge.setOnClickListener(new Challenge());
+       // _free.setOnClickListener(new PickPicClick());
         GameStatus();
     }
 
@@ -56,8 +59,9 @@ public class PreloadActivity extends AppCompatActivity {
         _about = (Button) findViewById(R.id.about);
         _challenge = (Button) findViewById(R.id.challenge);
         _startgame = (Button) findViewById(R.id.start);
-        _login = (Button) findViewById(R.id.btn_reg); _name = (TextView) findViewById(R.id.text_name);
-
+        _login = (Button) findViewById(R.id.btn_reg);
+        _name = (TextView) findViewById(R.id.text_name);
+        _free = (Button) findViewById(R.id.free);
     }
 
     private class StartGame implements View.OnClickListener {
@@ -74,7 +78,7 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            MyDialog1 dialog1=new MyDialog1(PreloadActivity.this);
+            MyDialog1 dialog1 = new MyDialog1(PreloadActivity.this);
             dialog1.initText("休闲益智类游戏");
             dialog1.show();
 
@@ -97,7 +101,7 @@ public class PreloadActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent();
             intent.setClass(PreloadActivity.this, RankingList.class);
-            intent.putExtra("home",1);
+            intent.putExtra("home", 1);
             startActivity(intent);
 
         }
@@ -107,16 +111,28 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            if(GameData.get_islogin()){
+            if (GameData.get_islogin()) {
                 GameData.set_curuser(new Users());
                 GameData.set_islogin(false);
                 GameStatus();
-            }else{
+            } else {
                 Intent intent = new Intent(PreloadActivity.this, GameLogin.class);
-                intent.putExtra("home",1);
+                intent.putExtra("home", 1);
                 startActivity(intent);
                 GameData.set_islogin(true);
             }
+        }
+    }
+
+    private class PickPicClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            intent.putExtra("crop", true);
+            intent.putExtra("return-data", true);
+            startActivityForResult(intent, 0);
         }
     }
 
@@ -146,12 +162,14 @@ public class PreloadActivity extends AppCompatActivity {
             _startgame.setVisibility(View.VISIBLE);
             _challenge.setVisibility(View.VISIBLE);
             _ranklist.setVisibility(View.VISIBLE);
+            _free.setVisibility(View.VISIBLE);
             _login.setText("注销");
         } else {
             _login.setText("登录");
             _startgame.setVisibility(View.INVISIBLE);
             _challenge.setVisibility(View.INVISIBLE);
             _ranklist.setVisibility(View.INVISIBLE);
+            _free.setVisibility(View.INVISIBLE);
         }
 
     }

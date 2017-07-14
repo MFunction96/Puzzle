@@ -20,22 +20,25 @@
         android:orientation="horizontal"
         android:id="@+id/proppanel"
         android:baselineAligned="false">
+
         <Button
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:id="@+id/addstep"
-            android:text="@string/addstep"
             style="?android:buttonStyle"
-            tools:ignore="NestedWeights" />
-        <Button
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:id="@+id/hint_prop"
-            android:gravity="center"
             android:layout_weight="1"
-            android:text="@string/hint"
-            style="?android:buttonStyle"/>
+            android:text="@string/addstep"
+            tools:ignore="NestedWeights" />
+
+        <Button
+            android:id="@+id/hint_prop"
+            style="?android:buttonStyle"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hint" />
+
         <Button
             android:layout_width="0dip"
             android:layout_height="match_parent"
