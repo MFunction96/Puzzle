@@ -22,17 +22,19 @@
         android:textColor="@android:color/black" />
 
 
-        <Button
-            android:layout_weight="1"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:id="@+id/btSure"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:text="确定"
-            android:textColor="@android:color/black" />
+    <Button
+        android:id="@+id/btSure"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:text="确定"
+        android:textColor="@android:color/black" />
 
 
 

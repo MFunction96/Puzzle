@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="qianhuang">#f5efd5</color>
+    <color name="qianlan">#d0eeff</color>
+    <color name="qianfen">#ffa6d7</color>
+    <color name="qianhong">#ff8787</color>
+    <color name="qianlv">#e1ffac</color>
+    <color name="qianzi">#e4b1ff</color>
+    <color name="qiancheng">#fff9a2</color>
 </resources>

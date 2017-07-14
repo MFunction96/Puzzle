@@ -10,6 +10,7 @@
     android:paddingTop="20dip"
     android:stretchColumns="*"
     android:keepScreenOn="true"
+    android:background="@drawable/background2"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.GameActivity">
 
@@ -20,29 +21,35 @@
         android:orientation="horizontal"
         android:id="@+id/proppanel"
         android:baselineAligned="false">
+
         <Button
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:id="@+id/addstep"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
             android:text="@string/addstep"
-            style="?android:buttonStyle"
             tools:ignore="NestedWeights" />
+
         <Button
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
             android:id="@+id/hint_prop"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:text="@string/hint"
-            style="?android:buttonStyle"/>
-        <Button
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/qiancheng"
+            android:gravity="center"
+            android:text="@string/hint" />
+
+        <Button
             android:id="@+id/restart_prop"
-            android:text="@string/restart"
-            style="?android:buttonStyle"/>
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_bright"
+            android:text="@string/restart" />
     </LinearLayout>
 
     <LinearLayout
@@ -72,7 +79,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:textSize="20sp"
-                    android:text="当前玩家"
+                    android:text="@string/current"
                     android:gravity="right"
                     tools:ignore="RtlHardcoded"/>
 
@@ -94,7 +101,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:textSize="20sp"
-                    android:text="最佳记录"
+                    android:text="@string/bestrecord"
                     android:gravity="right"
                     tools:ignore="RtlHardcoded" />
                 <TextView
@@ -115,7 +122,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:textSize="20sp"
-                    android:text="最新记录"
+                    android:text="@string/latest"
                     android:gravity="right"
                     tools:ignore="RtlHardcoded"/>
 

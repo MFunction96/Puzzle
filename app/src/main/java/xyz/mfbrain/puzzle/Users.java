@@ -34,6 +34,11 @@ public class Users {
         if(_last_record <= _best_record)
             _best_record = _last_record;
     }
+    public void setAdRecord(int c){
+        _last_record =c;
+        if(_last_record >= _best_record)
+            _best_record = _last_record;
+    }
     public void set_best_record(int b){_best_record=b;}
     public void set_money(int m){_money =m;}
     public void set_isvalidate(boolean b){_isvalidate=b;}
