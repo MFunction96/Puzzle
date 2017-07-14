@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/lyoko1" android:duration="300"></item>
+    <item android:drawable="@drawable/lyoko2" android:duration="300"></item>
+    <item android:drawable="@drawable/lyoko3" android:duration="300"></item>
+    <item android:drawable="@drawable/lyoko4" android:duration="300"></item>
+    <item android:drawable="@drawable/lyoko5" android:duration="300"></item>
+    <item android:drawable="@drawable/lyoko6" android:duration="300"></item>
+</animation-list>
