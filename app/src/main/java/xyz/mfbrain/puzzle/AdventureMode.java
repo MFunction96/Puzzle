@@ -70,7 +70,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             msg.what = 1;
             handler.sendMessage(msg);
             try {
-                Thread.sleep(500);
+                Thread.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -350,7 +350,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         if (isfinished) {
             SQLiteDatabase db=GameData.get_db();
             ContentValues values=new ContentValues();
-            GameData.get_curuser().setRecord(level+1);
+            GameData.get_curuser().setAdRecord(level+1);
             values.put("last_record",GameData.get_curuser().get_last_record());
             values.put("best_record",GameData.get_curuser().get_best_record());
             db.update("PlayerInfo",values,"playername=?",new String[]{GameData.get_curuser().get_username()});
