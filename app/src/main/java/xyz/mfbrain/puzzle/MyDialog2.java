@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Lisa on 2017/7/13.
@@ -55,6 +56,8 @@ public class MyDialog2 extends Dialog {
         window.setGravity(Gravity.CENTER);  //此处可以设置dialog显示的位置
         window.setWindowAnimations(R.style.myStyle);  //添加动画
 
+        TextView textView=(TextView)dialogView.findViewById(R.id.tv_intro);
+        textView.setText(message);  //设置内容
 
         Button bt_sure=(Button)dialogView.findViewById(R.id.btSure);
         bt_sure.setOnClickListener(new View.OnClickListener() {
