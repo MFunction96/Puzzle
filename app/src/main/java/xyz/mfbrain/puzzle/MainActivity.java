@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     protected void onResume() {
         super.onResume();
-        _bmp = "";
+/*        _bmp = "";
         level_chosen = false;
         _startgame.setEnabled(false);
         _level1.setChecked(false);
         _level2.setChecked(false);
-        _level3.setChecked(false);
+        _level3.setChecked(false);*/
     }
 
     /**
