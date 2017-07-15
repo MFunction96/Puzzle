@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/qianhong"
-        android:text="@string/startgame" />
+        android:text="闯关拼" />
 
     <Button
         android:id="@+id/challenge"

@@ -62,8 +62,11 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         if (regsucces) {
             if (password.equals(confirm_password)) {
                 registerUser();
+                GameData.get_curuser().set_username(username);
+                GameData.get_curuser().set_password(password);
                 Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, GameLogin.class);
+                intent.getIntExtra("justsign",1);
                 startActivity(intent);
 
             } else {
@@ -76,6 +79,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         }
 
     }
+
 
     private void registerUser() {
         //添加数据
