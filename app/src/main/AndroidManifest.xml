@@ -26,7 +26,7 @@
         <activity android:name=".PreloadActivity">
 
         </activity>
-        
+
         <activity
             android:name=".AnimationIntro"
             android:screenOrientation="portrait">
