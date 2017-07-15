@@ -139,4 +139,5 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
         cursor.close();
         isValidated = _user.get_password().equals(password.getText().toString());
     }
+
 }

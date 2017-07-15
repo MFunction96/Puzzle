@@ -23,7 +23,8 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".PreloadActivity">
+        <activity android:name=".PreloadActivity"
+            android:launchMode="singleTask">
 
         </activity>
         

@@ -33,6 +33,7 @@ public class PreloadActivity extends AppCompatActivity {
 
     private Button _free;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,12 @@ public class PreloadActivity extends AppCompatActivity {
         _challenge.setOnClickListener(new Challenge());
         GameStatus();
         Music.play(this,R.raw.start);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        GameStatus();
     }
 
     private void Init() {
@@ -91,8 +98,7 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setClass(PreloadActivity.this, MainActivity.class);
+            Intent intent = new Intent(PreloadActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }

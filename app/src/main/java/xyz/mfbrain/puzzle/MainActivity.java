@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         Music.play(this,R.raw.background);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Music.stop(this);
+    }
+
     /**
      *
      */

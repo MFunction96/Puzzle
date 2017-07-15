@@ -18,12 +18,10 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
     private EditText text_password;
     private EditText text_confirm_password;
     private Button btn_reg;
-    private Users user;
     private String username;
     private String password;
     private String confirm_password;
     private SQLiteDatabase db;
-    private MainActivity mainActivit = new MainActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
