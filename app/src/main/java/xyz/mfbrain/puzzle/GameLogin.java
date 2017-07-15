@@ -40,6 +40,8 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
         btn_sign_up.setOnClickListener(this);
         remember = (CheckBox) findViewById(R.id.cb_remember);
 
+
+
         _pref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isRemember = _pref.getBoolean("remember_password", false);
         if (isRemember) {
@@ -51,6 +53,16 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
         }
 
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent intent=getIntent();
+        if(intent.getIntExtra("justsign",0)==1){
+            username.setText(GameData.get_curuser().get_username());
+            username.setText(GameData.get_curuser().get_password());
+        }
     }
 
     @Override
@@ -96,6 +108,7 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
 
     }
 
+
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
         if (view.getId() == R.id.text_username) {
@@ -126,4 +139,5 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
         cursor.close();
         isValidated = _user.get_password().equals(password.getText().toString());
     }
+
 }

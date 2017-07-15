@@ -18,12 +18,10 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
     private EditText text_password;
     private EditText text_confirm_password;
     private Button btn_reg;
-    private Users user;
     private String username;
     private String password;
     private String confirm_password;
     private SQLiteDatabase db;
-    private MainActivity mainActivit = new MainActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +60,11 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         if (regsucces) {
             if (password.equals(confirm_password)) {
                 registerUser();
+                GameData.get_curuser().set_username(username);
+                GameData.get_curuser().set_password(password);
                 Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, GameLogin.class);
+                intent.getIntExtra("justsign",1);
                 startActivity(intent);
 
             } else {
@@ -76,6 +77,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         }
 
     }
+
 
     private void registerUser() {
         //添加数据
