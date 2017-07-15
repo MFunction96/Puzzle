@@ -51,6 +51,7 @@ public class PreloadActivity extends AppCompatActivity {
         _login.setOnClickListener(new Login());
         _challenge.setOnClickListener(new Challenge());
         GameStatus();
+        Music.play(this,R.raw.start);
     }
 
     private void Init() {
