@@ -42,7 +42,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity android:name=".RankingList"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".GameLogin"

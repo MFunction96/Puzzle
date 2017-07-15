@@ -441,6 +441,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             bestrecord.setText(cursor.getString(cursor.getColumnIndex("best_record")) + "");
             lastrecord.setText(cursor.getInt(cursor.getColumnIndex("last_record")) + "");
         }
+        cursor.close();
 
     }
 }

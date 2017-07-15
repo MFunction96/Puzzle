@@ -349,7 +349,6 @@ public class GameActivity extends AppCompatActivity {
     public void ShowBestRecord(){
         String name="";
         String record="";
-        SQLiteDatabase db=GameData.get_db();
         switch (GameData.get_gamedifficulty()){
             case 2:
                 name="keeper1";
@@ -364,11 +363,12 @@ public class GameActivity extends AppCompatActivity {
                 record="record3";
                 break;
         }
-        Cursor cursor=db.query("BestRecord",new String[]{name,record},"imageid=?",new String[]{GameData.get_imageid()},null,null,null);
+        Cursor cursor=GameData.get_db().query("BestRecord",new String[]{name,record},"imageid=?",new String[]{GameData.get_imageid()},null,null,null);
         if(cursor.moveToFirst()){
             _recorder.setText(cursor.getString(cursor.getColumnIndex(name)));
             _record.setText(cursor.getInt(cursor.getColumnIndex(record))+"");
         }
+        cursor.close();
 
 
     }
