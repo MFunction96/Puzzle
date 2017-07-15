@@ -58,6 +58,7 @@ public class RankingList extends AppCompatActivity {
         int i=Integer.parseInt(GameData.get_imageid());
         Bitmap bitmap=(Bitmap) imageAdapter.getItem(i);
         bitmap=GameUtil.zoomBitmap(bitmap,300,300);
+        bitmap=GameUtil.toRoundCornerImage(bitmap,50);
         ImageView imageView=(ImageView)findViewById(R.id.challenge_image);
         imageView.setImageBitmap(bitmap);
         TextView textView=(TextView)findViewById(R.id.challenge_text);
