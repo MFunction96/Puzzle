@@ -155,7 +155,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         _gc = new GameController(this);
-        _gu = new GameUtil(_bmp, _tableLayout, this, _gc);
+        _gu = new GameUtil( _tableLayout, this, _gc);
         _hp = new HelpClass(this, _gc);
         _gc.set_gu(_gu);
         _gc.initarraystep();

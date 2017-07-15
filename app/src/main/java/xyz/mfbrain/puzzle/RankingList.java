@@ -4,11 +4,14 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +20,12 @@ public class RankingList extends AppCompatActivity {
     private List<Users> _playersList=new ArrayList<>();
     private Intent intent;
     private boolean isfromhome=false;
+    ImageAdapter imageAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_list);
+        Init();
         intent=getIntent();
         if(intent.getIntExtra("home",0)==1){
             isfromhome=true;
@@ -45,6 +50,19 @@ public class RankingList extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void Init(){
+        imageAdapter=new ImageAdapter(this);
+        int i=Integer.parseInt(GameData.get_imageid());
+        Bitmap bitmap=(Bitmap) imageAdapter.getItem(i);
+        bitmap=GameUtil.zoomBitmap(bitmap,300,300);
+        ImageView imageView=(ImageView)findViewById(R.id.challenge_image);
+        imageView.setImageBitmap(bitmap);
+        TextView textView=(TextView)findViewById(R.id.challenge_text);
+        textView.setText(GameData.get_gametype()+"*"+GameData.get_gametype());
+
     }
 
     private void InitPlayerList(){

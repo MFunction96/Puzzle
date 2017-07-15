@@ -1,5 +1,6 @@
 package xyz.mfbrain.puzzle;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
@@ -16,11 +17,11 @@ import android.widget.ImageView;
 
 final class ImageAdapter extends BaseAdapter {
 
-    private MainActivity _ma;
+    private Activity _ma;
     private int[] _bmpid;
     private Bitmap[] _bmp;
 
-    ImageAdapter(MainActivity mainActivity) {
+    ImageAdapter(Activity mainActivity) {
         final int COUNT = 9;
         BitmapWorkerTask[] bwt = new BitmapWorkerTask[COUNT];
         _ma = mainActivity;

@@ -36,11 +36,12 @@ public class GameUtil {
 
     private int Step_Player = 0;//玩家移动的步数
 
-    GameUtil(Bitmap bm, TableLayout tl, Context c, GameController gameController) {
+    GameUtil(TableLayout tl, Context c, GameController gameController) {
         tableLayout = tl;
         context = c;
         _gc = gameController;
     }
+
 
 
     /**
@@ -51,7 +52,7 @@ public class GameUtil {
      * @param h      目标高
      * @return
      */
-    Bitmap zoomBitmap(Bitmap bitmap, int w, int h) {
+    static Bitmap zoomBitmap(Bitmap bitmap, int w, int h) {
         //得到原始位图宽 高
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -76,7 +77,7 @@ public class GameUtil {
      * @return
      */
 
-    Bitmap cutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
+   static Bitmap cutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
         return Bitmap.createBitmap(bitmap, x, y, w, h);
     }
 
