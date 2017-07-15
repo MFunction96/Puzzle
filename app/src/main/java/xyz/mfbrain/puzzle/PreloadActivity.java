@@ -95,11 +95,15 @@ public class PreloadActivity extends AppCompatActivity {
     }
 
     private class Challenge implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(PreloadActivity.this, MainActivity.class);
-            startActivity(intent);
+            try{
+                Intent intent = new Intent(PreloadActivity.this, MainActivity.class);
+                startActivity(intent);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
     }
 

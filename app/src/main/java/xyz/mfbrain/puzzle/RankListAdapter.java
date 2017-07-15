@@ -1,6 +1,7 @@
 package xyz.mfbrain.puzzle;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,6 +43,11 @@ public class RankListAdapter extends ArrayAdapter<Users> {
         TextView _name = (TextView) _view.findViewById(R.id.list_name);
         TextView _record = (TextView) _view.findViewById(R.id.list_record);
         TextView _num = (TextView) _view.findViewById(R.id.list_number);
+        if(_player.get_username().equals(GameData.get_curuser().get_username())){
+            _num.setTextColor(_context.getResources().getColor(R.color.qianhong));
+            _name.setTextColor(_context.getResources().getColor(R.color.qianhong));
+            _record.setTextColor(_context.getResources().getColor(R.color.qianhong));
+        }
         _num.setText(_player.get_id()+"");
         _name.setText(_player.get_username());
         _record.setText(_player.get_last_record()+"");

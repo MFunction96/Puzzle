@@ -63,8 +63,8 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
                 GameData.get_curuser().set_username(username);
                 GameData.get_curuser().set_password(password);
                 Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, GameLogin.class);
-                intent.getIntExtra("justsign",1);
+                Intent intent = new Intent(SignUp.this, GameLogin.class);
+                intent.putExtra("justsign",1);
                 startActivity(intent);
 
             } else {
