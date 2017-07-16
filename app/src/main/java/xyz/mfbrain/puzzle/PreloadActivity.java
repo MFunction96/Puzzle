@@ -126,8 +126,7 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            intent.setClass(PreloadActivity.this, RankingList.class);
-            intent.putExtra("home", 1);
+            intent.setClass(PreloadActivity.this, RankingList2.class);
             startActivity(intent);
 
         }

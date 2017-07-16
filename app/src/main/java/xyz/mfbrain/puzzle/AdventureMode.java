@@ -483,7 +483,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     private void UpdateInfo() {
         Cursor cursor = GameData.get_db().query("PlayerInfo", null, "playername=?", new String[]{GameData.get_curuser().get_username()}, null, null, null);
         if (cursor.moveToFirst()) {
-            bestrecord.setText(cursor.getString(cursor.getColumnIndex("best_record")) + "");
+            bestrecord.setText(cursor.getInt(cursor.getColumnIndex("best_record")) + "");
             lastrecord.setText(cursor.getInt(cursor.getColumnIndex("last_record")) + "");
             coin_num=(cursor.getInt(cursor.getColumnIndex("money")));
             Coin_num.setText(coin_num+"");
