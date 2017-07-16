@@ -12,21 +12,16 @@
     android:stretchColumns="*"
     android:background="@drawable/background5"
     tools:context="xyz.mfbrain.puzzle.PreloadActivity">
-
+    <Button
+        android:id="@+id/btn_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login" />
     <TextView
-        android:id="@+id/titleeng"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
         android:text="@string/app_name"
-        android:textSize="50sp"
-        android:gravity="center"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:text="@string/appnamecn"
         android:textSize="50sp"
         android:gravity="center"
         android:id="@+id/titlecn"/>
@@ -42,13 +37,7 @@
             android:layout_height="wrap_content"
             android:text="欢迎，请先登录" />
 
-        <Button
-            android:id="@+id/btn_reg"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="@string/login" />
+
 
         <Button
             android:id="@+id/about"

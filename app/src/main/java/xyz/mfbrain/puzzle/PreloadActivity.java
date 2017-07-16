@@ -34,8 +34,6 @@ public class PreloadActivity extends AppCompatActivity {
 
     private Button _free;
 
-    private TextView _titleeng;
-
     private TextView _titlecn;
 
     @Override
@@ -61,7 +59,6 @@ public class PreloadActivity extends AppCompatActivity {
         _startgame.setTypeface(typeFace);
         _login.setTypeface(typeFace);
         _challenge.setTypeface(typeFace);
-        _titleeng.setTypeface(typeFace);
         _titlecn.setTypeface(typeFace);
         GameStatus();
         Music.play(this,R.raw.start);
@@ -81,7 +78,6 @@ public class PreloadActivity extends AppCompatActivity {
         _login = (Button) findViewById(R.id.btn_reg);
         _name = (TextView) findViewById(R.id.text_name);
         _free = (Button) findViewById(R.id.free);
-        _titleeng = (TextView) findViewById(R.id.titleeng);
         _titlecn = (TextView) findViewById(R.id.titlecn);
     }
 
