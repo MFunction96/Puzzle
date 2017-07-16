@@ -50,6 +50,24 @@
             android:layout_weight="1"
             android:background="@android:color/holo_blue_bright"
             android:text="@string/restart" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="剩余金币:"/>
+        <TextView
+            android:id="@+id/coin_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="0"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/addcoin"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/addcoin"/>
     </LinearLayout>
 
     <LinearLayout
