@@ -54,6 +54,7 @@ public class PreloadActivity extends AppCompatActivity {
         _startgame.setOnClickListener(new StartGame());
         _login.setOnClickListener(new Login());
         _challenge.setOnClickListener(new Challenge());
+        _free.setOnClickListener(new Free());
         _about.setTypeface(typeFace);
         _ranklist.setTypeface(typeFace);
         _startgame.setTypeface(typeFace);
@@ -108,8 +109,25 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try{
+                GameData.set_gametype(1);
                 Intent intent = new Intent(PreloadActivity.this, MainActivity.class);
                 startActivity(intent);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private class Free implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            try{
+                GameData.set_gametype(3);
+                Intent intent = new Intent(PreloadActivity.this, FreeMode.class);
+                startActivity(intent);
+
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -156,6 +174,7 @@ public class PreloadActivity extends AppCompatActivity {
             startActivityForResult(intent, 0);
         }
     }
+
 
     private void InitDataBase() {
         ContentValues values = new ContentValues();

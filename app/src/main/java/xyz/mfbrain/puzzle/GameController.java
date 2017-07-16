@@ -82,8 +82,8 @@ class GameController {
 
     public void initarraystep() {
         int rows, columns;
-        rows = MainActivity.GetRows();
-        columns = MainActivity.GetColumns();
+        rows = GameData.get_gamedifficulty();
+        columns = GameData.get_gamedifficulty();
         arraystep = new int[rows][columns];
         for (int m = 0; m < rows; m++) {
             for (int n = 0; n < columns; n++) {
@@ -116,8 +116,8 @@ class GameController {
 
     public void checkfinish() {
         boolean isfinished = true;
-        for (int i = 0; i < MainActivity.GetRows(); i++) {
-            for (int j = 0; j < MainActivity.GetColumns(); j++) {
+        for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
+            for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
                 if (arraystep[i][j] != i * 10 + j) {
                     isfinished = false;
                 }

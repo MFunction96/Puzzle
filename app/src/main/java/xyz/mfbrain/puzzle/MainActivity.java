@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioButton _level2;
     private RadioButton _level3;
     private GridView _gridview;
-    private Button _pickpicbtn;
     private Button _startgame;
     private boolean _isid;
     private String _bmp;
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _gridview.setAdapter(_ia);
         _gridview.setOnItemClickListener(new ItemClickListener());
         _levelgroup.setOnCheckedChangeListener(this);
-        _pickpicbtn.setOnClickListener(new PickPicClick());
         _startgame.setOnClickListener(new StartGame());
         _startgame.setEnabled(false);
         Music.play(this,R.raw.background);
@@ -76,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _level1 = (RadioButton) findViewById(R.id.easy);
         _level2 = (RadioButton) findViewById(R.id.middle);
         _level3 = (RadioButton) findViewById(R.id.hard);
-        _pickpicbtn = (Button) findViewById(R.id.pickpic);
         _gridview = (GridView) findViewById(R.id.gridview);
         _startgame = (Button) findViewById(R.id.startgame);
         level_chosen = false;
@@ -115,29 +112,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         GameData.set_gamedifficulty(rows);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0) {
-            _isid = false;
-            _bmp = data.getData().toString();
-            if (level_chosen) {
-                _startgame.setEnabled(true);
-            }
-        }
-    }
 
-    private class PickPicClick implements View.OnClickListener {
 
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("image/*");
-            intent.putExtra("crop", true);
-            intent.putExtra("return-data", true);
-            startActivityForResult(intent, 0);
-        }
-    }
+
     private class StartGame implements View.OnClickListener {
 
         @Override
@@ -163,10 +140,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 _startgame.setEnabled(true);
             }
         }
-    }
-
-    final Button GetPickPicBtn() {
-        return _pickpicbtn;
     }
 
     /**
