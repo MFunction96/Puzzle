@@ -9,7 +9,7 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:background="@drawable/background2"
+    android:background="@drawable/background6"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.MainActivity">
 
