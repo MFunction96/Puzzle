@@ -34,4 +34,5 @@
     <string name="confirmhint">重新输入密码</string>
     <string name="bestrecord">最佳纪录：</string>
     <string name="latest">最新记录：</string>
+    <string name="appnamecn">滑块拼图</string>
 </resources>
