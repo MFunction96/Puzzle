@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="xyz.mfbrain.puzzle.RankingList2">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <ImageView
+                android:id="@+id/list2_image"
+                app:srcCompat="@android:drawable/checkbox_off_background"
+                android:layout_column="1"/>
+
+            <RadioGroup
+                android:id="@+id/difgroup"
+                android:layout_column="2"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+        </TableRow>
+        <TableRow>
+            <GridView
+                android:id="@+id/list2_grid"
+                android:numColumns="1"
+                android:layout_column="1" />
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="排行榜"
+                        android:textColor="#ffff"
+                        android:textSize="28sp" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="名次"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="玩家姓名"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="记录"
+                        android:textSize="20sp" />
+                </TableRow>
+
+                <TableRow>
+                    <ListView
+                        android:id="@+id/rankllist2"
+                        style="@style/Widget.AppCompat.ListView"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1" />
+                </TableRow>
+            </TableLayout>
+
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

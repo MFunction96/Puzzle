@@ -205,8 +205,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onRestart() {
+        super.onRestart();
         UpdateInfo();
     }
 
@@ -396,13 +396,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         }
 
         if (isfinished) {
-            SQLiteDatabase db = GameData.get_db();
-            ContentValues values = new ContentValues();
-            GameData.get_curuser().setAdRecord(level + 1);
-            values.put("last_record", GameData.get_curuser().get_last_record());
-            values.put("best_record", GameData.get_curuser().get_best_record());
-            db.update("PlayerInfo", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
-            values.clear();
+           UpdateDataBase();
             if (level == Maxlevel) {
                 createdialog_finish();
             } else {
@@ -491,8 +485,21 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         if (cursor.moveToFirst()) {
             bestrecord.setText(cursor.getString(cursor.getColumnIndex("best_record")) + "");
             lastrecord.setText(cursor.getInt(cursor.getColumnIndex("last_record")) + "");
+            coin_num=(cursor.getInt(cursor.getColumnIndex("money")));
+            Coin_num.setText(coin_num+"");
         }
         cursor.close();
+    }
+
+    private void UpdateDataBase(){
+        SQLiteDatabase db = GameData.get_db();
+        ContentValues values = new ContentValues();
+        GameData.get_curuser().setAdRecord(level + 1);
+        values.put("last_record", GameData.get_curuser().get_last_record());
+        values.put("best_record", GameData.get_curuser().get_best_record());
+        values.put("money",coin_num);
+        db.update("PlayerInfo", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
+        values.clear();
     }
     public Boolean checkcoinnumber(int substract_coin){
         if(coin_num-substract_coin>=0){

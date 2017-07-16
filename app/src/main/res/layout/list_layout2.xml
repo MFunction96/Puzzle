@@ -11,7 +11,8 @@
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:maxHeight="30dp"
-        android:maxWidth="30dp" />
+        android:maxWidth="30dp"
+        android:scaleType="centerInside"/>
 
     <TextView
         android:id="@+id/list_name2"

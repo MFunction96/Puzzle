@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="xyz.mfbrain.puzzle">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:largeHeap="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"
@@ -23,12 +23,9 @@
             android:name=".GameActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".PreloadActivity"
-            android:launchMode="singleTask">
-
-        </activity>
-
+        <activity
+            android:name=".PreloadActivity"
+            android:launchMode="singleTask"></activity>
         <activity
             android:name=".AnimationIntro"
             android:screenOrientation="portrait">
@@ -38,19 +35,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdventureMode"
+        <activity
+            android:name=".AdventureMode"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".RankingList"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RankingList"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GameLogin"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SignUp"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".RankingList2"></activity>
     </application>
 
 </manifest>
