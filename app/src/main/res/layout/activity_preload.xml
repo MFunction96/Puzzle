@@ -5,27 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="40dip"
+    android:paddingBottom="60dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
     android:background="@drawable/background5"
     tools:context="xyz.mfbrain.puzzle.PreloadActivity">
-    <Button
-        android:id="@+id/btn_reg"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        style="@style/ButtonStyle"
-        android:layout_gravity="right"
-        android:layout_marginLeft="200dip"
-        android:text="@string/login"
-        tools:ignore="RtlHardcoded" />
+        android:orientation="horizontal"
+        android:gravity="right"
+        tools:ignore="RtlHardcoded">
+        <Button
+            android:id="@+id/btn_reg"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            style="@style/ButtonStyle"
+            android:layout_gravity="right"
+            android:text="@string/login"
+            tools:ignore="NestedWeights,RtlHardcoded" />
+        <Button
+            android:id="@+id/about"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/ButtonStyle"
+            android:text="@string/about" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:text="@string/app_name"
         android:textSize="50sp"
         android:gravity="center"
@@ -34,51 +49,48 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/text_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="欢迎，请先登录" />
-
-
+        android:layout_height="0dip"
+        android:layout_marginLeft="80dip"
+        android:layout_marginRight="80dip"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <Button
-            android:id="@+id/about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/start"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
             style="@style/ButtonStyle"
-            android:text="@string/about" />
+            android:text="@string/adventure"
+            tools:ignore="NestedWeights" />
+
+        <Button
+            android:id="@+id/challenge"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            style="@style/ButtonStyle"
+            android:text="@string/challenge" />
+
+        <Button
+            android:id="@+id/free"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            style="@style/ButtonStyle"
+            android:text="@string/freedom" />
+
+        <Button
+            android:id="@+id/ranklist"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            style="@style/ButtonStyle"
+            android:text="@string/ranklist" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
-        android:text="闯关拼" />
-
-    <Button
-        android:id="@+id/challenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
-        android:text="@string/challenge" />
-
-    <Button
-        android:id="@+id/free"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
-        android:text="自由拼" />
-
-    <Button
-        android:id="@+id/ranklist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
-        android:text="@string/ranklist" />
 
 
 </LinearLayout>

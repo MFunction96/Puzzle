@@ -37,4 +37,6 @@
     <string name="coinleft">剩余金币：</string>
     <string name="timeleft">剩余时间：</string>
     <string name="addtime">增加时间</string>
+    <string name="adventure">闯关拼</string>
+    <string name="freedom">自由拼</string>
 </resources>
