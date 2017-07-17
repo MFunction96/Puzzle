@@ -1,23 +1,14 @@
 package xyz.mfbrain.puzzle;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Random;
-
-import static android.view.View.INVISIBLE;
 
 /**
  * Created by MFunction on 2017/7/4.
@@ -28,7 +19,7 @@ import static android.view.View.INVISIBLE;
 
 class GameController {
     GameActivity _ga;
-    GameUtil _gu;
+    ImageUtil _gu;
     private AppCompatActivity _pa;
     int _position = 0;//用于记录空白位置的id
     //用于记录图片的移动轨迹
@@ -61,8 +52,8 @@ class GameController {
         _hasplayed = false;
     }
 
-    public void set_gu(GameUtil gameUtil) {
-        _gu = gameUtil;
+    public void set_gu(ImageUtil imageUtil) {
+        _gu = imageUtil;
     }
 
     //将图片随机打乱

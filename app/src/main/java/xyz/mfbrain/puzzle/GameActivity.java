@@ -3,7 +3,6 @@ package xyz.mfbrain.puzzle;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -36,7 +35,7 @@ public class GameActivity extends AppCompatActivity {
 
     private GameController _gc, _gc_another;
 
-    private GameUtil _gu;
+    private ImageUtil _gu;
 
     private HelpClass _hp;
 
@@ -141,18 +140,18 @@ public class GameActivity extends AppCompatActivity {
         _backmenubtn.setOnClickListener(new BackMenu());
         Intent intent = getIntent();
         if (intent.getBooleanExtra("id", false)) {
-            _bmp = GameUtil.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmp"))));
+            _bmp = ImageUtil.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmp"))));
         } else {
             ContentResolver cr = getContentResolver();
             try {
-                _bmp = GameUtil.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(intent.getStringExtra("bmp")))));
+                _bmp = ImageUtil.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(intent.getStringExtra("bmp")))));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         _gc = new GameController(this);
-        _gu = new GameUtil(_tableLayout, this, _gc,this);
+        _gu = new ImageUtil(_tableLayout, this, _gc,this);
         _hp = new HelpClass(this, _gc);
         _gc.set_gu(_gu);
         _gc.initarraystep();
