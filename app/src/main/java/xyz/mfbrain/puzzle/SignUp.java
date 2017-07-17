@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUp extends AppCompatActivity implements OnClickListener, View.OnFocusChangeListener {
@@ -36,6 +38,16 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         btn_reg = (Button) findViewById(R.id.btn_register);
         btn_reg.setOnClickListener(this);
         db = GameData.get_db();
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        text_confirm_password.setTypeface(typeFace);
+        text_password.setTypeface(typeFace);
+        text_name.setTypeface(typeFace);
+        TextView textview = (TextView) findViewById(R.id.username);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.password);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.confirm);
+        textview.setTypeface(typeFace);
     }
 
     @Override
