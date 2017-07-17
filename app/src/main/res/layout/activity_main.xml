@@ -9,7 +9,7 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:background="@drawable/background2"
+    android:background="@drawable/background6"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.MainActivity">
 
@@ -27,14 +27,6 @@
             android:gravity="center_vertical"
             tools:ignore="NestedWeights" />
 
-        <Button
-            android:id="@+id/pickpic"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="@string/pickpicture" />
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
@@ -85,11 +77,10 @@
 
     <Button
         android:id="@+id/startgame"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/colorAccent"
+        style="@style/ButtonStyle"
         android:text="@string/startgame" />
 </LinearLayout>
 

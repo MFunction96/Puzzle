@@ -10,8 +10,27 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:background="@drawable/background1"
+    android:background="@drawable/background5"
     tools:context="xyz.mfbrain.puzzle.PreloadActivity">
+    <Button
+        android:id="@+id/btn_reg"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        style="@style/ButtonStyle"
+        android:layout_gravity="right"
+        android:layout_marginLeft="200dip"
+        android:text="@string/login"
+        tools:ignore="RtlHardcoded" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="4"
+        android:text="@string/app_name"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:id="@+id/titlecn"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,19 +42,13 @@
             android:layout_height="wrap_content"
             android:text="欢迎，请先登录" />
 
-        <Button
-            android:id="@+id/btn_reg"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="@string/login" />
+
 
         <Button
             android:id="@+id/about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/qiancheng"
+            style="@style/ButtonStyle"
             android:text="@string/about" />
     </LinearLayout>
 
@@ -43,28 +56,28 @@
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/qianhong"
+        style="@style/ButtonStyle"
         android:text="闯关拼" />
 
     <Button
         android:id="@+id/challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/qiancheng"
+        style="@style/ButtonStyle"
         android:text="@string/challenge" />
 
     <Button
         android:id="@+id/free"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/qianlan"
+        style="@style/ButtonStyle"
         android:text="自由拼" />
 
     <Button
         android:id="@+id/ranklist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/qianlv"
+        style="@style/ButtonStyle"
         android:text="@string/ranklist" />
 
 

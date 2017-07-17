@@ -2,6 +2,7 @@ package xyz.mfbrain.puzzle;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class PreloadActivity extends AppCompatActivity {
 
     private Button _free;
 
+    private TextView _titlecn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,13 +48,22 @@ public class PreloadActivity extends AppCompatActivity {
         GameData.set_db(_mySQLHelper.getWritableDatabase());
         //InitDataBase();
         Init();
+        Typeface typeFace =Typeface.createFromAsset(getAssets(),"fonts/fzstk.ttf");
         _about.setOnClickListener(new About());
         _ranklist.setOnClickListener(new RankList());
         _startgame.setOnClickListener(new StartGame());
         _login.setOnClickListener(new Login());
         _challenge.setOnClickListener(new Challenge());
+        _free.setOnClickListener(new Free());
+        _about.setTypeface(typeFace);
+        _ranklist.setTypeface(typeFace);
+        _startgame.setTypeface(typeFace);
+        _login.setTypeface(typeFace);
+        _challenge.setTypeface(typeFace);
+        _titlecn.setTypeface(typeFace);
+        _free.setTypeface(typeFace);
         GameStatus();
-        Music.play(this,R.raw.start);
+        Music.play(this,R.raw.start,true);
     }
 
     @Override
@@ -69,6 +80,7 @@ public class PreloadActivity extends AppCompatActivity {
         _login = (Button) findViewById(R.id.btn_reg);
         _name = (TextView) findViewById(R.id.text_name);
         _free = (Button) findViewById(R.id.free);
+        _titlecn = (TextView) findViewById(R.id.titlecn);
     }
 
     private class StartGame implements View.OnClickListener {
@@ -98,8 +110,25 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try{
+                GameData.set_gametype(1);
                 Intent intent = new Intent(PreloadActivity.this, MainActivity.class);
                 startActivity(intent);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private class Free implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            try{
+                GameData.set_gametype(3);
+                Intent intent = new Intent(PreloadActivity.this, FreeMode.class);
+                startActivity(intent);
+
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -112,8 +141,7 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            intent.setClass(PreloadActivity.this, RankingList.class);
-            intent.putExtra("home", 1);
+            intent.setClass(PreloadActivity.this, RankingList2.class);
             startActivity(intent);
 
         }
@@ -147,6 +175,7 @@ public class PreloadActivity extends AppCompatActivity {
             startActivityForResult(intent, 0);
         }
     }
+
 
     private void InitDataBase() {
         ContentValues values = new ContentValues();

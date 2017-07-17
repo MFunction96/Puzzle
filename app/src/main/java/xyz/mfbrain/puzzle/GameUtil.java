@@ -2,7 +2,13 @@ package xyz.mfbrain.puzzle;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,10 +42,11 @@ public class GameUtil {
 
     private int Step_Player = 0;//玩家移动的步数
 
-    GameUtil(TableLayout tl, Context c, GameController gameController) {
+    GameUtil(TableLayout tl, Context c, GameController gameController,GameActivity gameActivity) {
         tableLayout = tl;
         context = c;
         _gc = gameController;
+        _ga=gameActivity;
     }
 
 
@@ -117,6 +124,7 @@ public class GameUtil {
                         if (id - 10 == _gc._position) {
                             int id2 = id - 10;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -126,6 +134,7 @@ public class GameUtil {
                         } else if (id + 10 == _gc._position) {
                             int id2 = id + 10;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -135,6 +144,7 @@ public class GameUtil {
                         } else if (id - 1 == _gc._position) {
                             int id2 = id - 1;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -144,6 +154,7 @@ public class GameUtil {
                         } else if (id + 1 == _gc._position) {
                             int id2 = id + 1;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -169,6 +180,54 @@ public class GameUtil {
 
     public int GetStep_Player() {
         return Step_Player;
+    }
+
+    /**
+     * 获取圆角位图的方法
+     *
+     * @param bitmap
+     *            需要转化成圆角的位图
+     * @param pixels
+     *            圆角的度数，数值越大，圆角越大
+     * @return 处理后的圆角位图
+     */
+    public static Bitmap toRoundCornerImage(Bitmap bitmap, int pixels) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = pixels;
+        // 抗锯齿
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        return output;
+    }
+    public static Bitmap FixBmp(Bitmap bmp) {
+        int x, y, width, height;
+        final int sw = bmp.getWidth(), sh = bmp.getHeight();
+        if (sw < sh) {
+            x = 0;
+            y = sh - sw >> 1;
+            width = sw;
+            height = sw;
+        } else if (sw > sh) {
+            x = sw - sh >> 1;
+            y = 0;
+            width = sh;
+            height = sh;
+        } else {
+            x = 0;
+            y = 0;
+            width = sw;
+            height = sh;
+        }
+        return Bitmap.createBitmap(bmp, x, y, width, height);
     }
 
 

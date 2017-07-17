@@ -18,20 +18,12 @@ import java.util.List;
 
 public class RankingList extends AppCompatActivity {
     private List<Users> _playersList=new ArrayList<>();
-    private Intent intent;
-    private boolean isfromhome=false;
     ImageAdapter imageAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_list);
         Init();
-        intent=getIntent();
-        if(intent.getIntExtra("home",0)==1){
-            isfromhome=true;
-        }else{
-            isfromhome=false;
-        }
         InitPlayerList();
         RankListAdapter _rank_adapter=new RankListAdapter(this,R.layout.list_layout,_playersList);
         ListView _listView=(ListView)findViewById(R.id.rankllist);
@@ -40,13 +32,9 @@ public class RankingList extends AppCompatActivity {
         btnreturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isfromhome){
                     Intent intent1=new Intent(RankingList.this,PreloadActivity.class);
                     startActivity(intent1);
-                }else{
-                    Intent intent2=new Intent(RankingList.this,MainActivity.class);
-                    startActivity(intent2);
-                }
+
 
             }
         });
@@ -58,6 +46,7 @@ public class RankingList extends AppCompatActivity {
         int i=Integer.parseInt(GameData.get_imageid());
         Bitmap bitmap=(Bitmap) imageAdapter.getItem(i);
         bitmap=GameUtil.zoomBitmap(bitmap,300,300);
+        bitmap=GameUtil.toRoundCornerImage(bitmap,50);
         ImageView imageView=(ImageView)findViewById(R.id.challenge_image);
         imageView.setImageBitmap(bitmap);
         TextView textView=(TextView)findViewById(R.id.challenge_text);
@@ -89,9 +78,8 @@ public class RankingList extends AppCompatActivity {
                 _playersList.add(u);
             }while(cursor.moveToNext());
             cursor.close();
-          if(!isfromhome){
               UpDateDataBase();
-          }
+
         }
     }
 

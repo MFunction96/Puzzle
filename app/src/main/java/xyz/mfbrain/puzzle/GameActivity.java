@@ -104,16 +104,13 @@ public class GameActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
         Init();
-        _imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        _imageview.setAdjustViewBounds(true);
-        _imageview.setMaxWidth(256);
-        _imageview.setMaxHeight(256);
-        _imageview.setPadding(8, 8, 8, 8);
-        _imageview.setImageBitmap(_bmp);
 
-        _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
-        _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
-        _gc.randomtable(MainActivity.GetRows(), MainActivity.GetColumns());
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Init();
     }
 
     /**
@@ -144,24 +141,37 @@ public class GameActivity extends AppCompatActivity {
         _backmenubtn.setOnClickListener(new BackMenu());
         Intent intent = getIntent();
         if (intent.getBooleanExtra("id", false)) {
-            _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmp"))));
+            _bmp = GameUtil.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmp"))));
         } else {
             ContentResolver cr = getContentResolver();
             try {
-                _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(intent.getStringExtra("bmp")))));
+                _bmp = GameUtil.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(intent.getStringExtra("bmp")))));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         _gc = new GameController(this);
-        _gu = new GameUtil( _tableLayout, this, _gc);
+        _gu = new GameUtil(_tableLayout, this, _gc,this);
         _hp = new HelpClass(this, _gc);
         _gc.set_gu(_gu);
         _gc.initarraystep();
         _running = true;
         _player.setText(GameData.get_curuser().get_username());
-        ShowBestRecord();
+        if(GameData.get_gametype()!=3){
+            ShowBestRecord();
+        }
+        int i=GameData.get_gamedifficulty();
+        _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
+        _gu.fillGameZone(_bmp, GameData.get_gamedifficulty(),GameData.get_gamedifficulty());
+        _gc.randomtable(GameData.get_gamedifficulty(),GameData.get_gamedifficulty());
+        _imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        _imageview.setAdjustViewBounds(true);
+        _imageview.setMaxWidth(256);
+        _imageview.setMaxHeight(256);
+        _imageview.setPadding(8, 8, 8, 8);
+        _imageview.setImageBitmap(_bmp);
+
     }
     final TextView GetRecorder() {
         return _recorder;
@@ -235,8 +245,8 @@ public class GameActivity extends AppCompatActivity {
             // 启用计时
             StartTimer();
             _gc.TraceStack.clear();
-            _gu.fillGameZone(_bmp, MainActivity.GetRows(), MainActivity.GetColumns());
-            _gc.randomtable(MainActivity.GetRows(), MainActivity.GetColumns());
+            _gu.fillGameZone(_bmp, GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
+            _gc.randomtable(GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
         }
     }
 
@@ -246,10 +256,17 @@ public class GameActivity extends AppCompatActivity {
     private class BackMenu implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            _gc.TraceStack.clear();
             // 停止计时器
-            CancelTimer();
             Intent intent = new Intent();
-            intent.setClass(GameActivity.this, MainActivity.class);
+            CancelTimer();
+            if(GameData.get_gametype()!=3){
+                intent.setClass(GameActivity.this, MainActivity.class);
+
+            }else{
+                intent.setClass(GameActivity.this, FreeMode.class);
+            }
+
             startActivity(intent);
         }
     }
@@ -272,8 +289,8 @@ public class GameActivity extends AppCompatActivity {
                 StartTimer();
             }
             _running = !_running;
-            for (int i = 0; i < MainActivity.GetRows(); i++) {
-                for (int j = 0; j < MainActivity.GetColumns(); j++) {
+            for (int i = 0; i <GameData.get_gamedifficulty(); i++) {
+                for (int j = 0; j <GameData.get_gamedifficulty(); j++) {
                     int id = i * 10 + j;
                     GetImageView(id).setClickable(_running);
                 }
@@ -341,9 +358,15 @@ public class GameActivity extends AppCompatActivity {
     //帮助结束后，显示Dialog
     public void ShowDialog(int step_number){
         //其中的帮助走的步数为stepnumber_help
-        MyDialog2 dialog=new MyDialog2(GameActivity.this);
-        dialog.initText("恭喜您，拼图已完成，一共用时"+(_timerindex-1)+" s");
-        dialog.show();
+        if(GameData.get_gametype()==3){
+            MyDialog1 dialog1=new MyDialog1(GameActivity.this);
+            dialog1.initText("恭喜您，拼图已完成，一共用时"+(_timerindex-1)+" s");
+            dialog1.show();
+        }else{
+            MyDialog2 dialog=new MyDialog2(GameActivity.this);
+            dialog.initText("恭喜您，拼图已完成，一共用时"+(_timerindex-1)+" s");
+            dialog.show();
+        }
     }
 
     public void ShowBestRecord(){

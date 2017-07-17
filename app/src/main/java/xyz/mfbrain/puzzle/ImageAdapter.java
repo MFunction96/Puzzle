@@ -39,7 +39,7 @@ final class ImageAdapter extends BaseAdapter {
         for (int i = 0; i < COUNT; i++) {
 /*            bwt[i] = new BitmapWorkerTask(_bmp[i], _ma.getResources(), _ma.GetGridview(), this);
             bwt[i].execute(String.valueOf(_bmpid[i]));*/
-            _bmp[i] = FixBmp(BitmapFactory.decodeResource(_ma.getResources(), _bmpid[i]));
+            _bmp[i] = GameUtil.FixBmp(BitmapFactory.decodeResource(_ma.getResources(), _bmpid[i]));
         }
 
     }
@@ -76,25 +76,5 @@ final class ImageAdapter extends BaseAdapter {
         return imageview;
     }
 
-    static Bitmap FixBmp(Bitmap bmp) {
-        int x, y, width, height;
-        final int sw = bmp.getWidth(), sh = bmp.getHeight();
-        if (sw < sh) {
-            x = 0;
-            y = sh - sw >> 1;
-            width = sw;
-            height = sw;
-        } else if (sw > sh) {
-            x = sw - sh >> 1;
-            y = 0;
-            width = sh;
-            height = sh;
-        } else {
-            x = 0;
-            y = 0;
-            width = sw;
-            height = sh;
-        }
-        return Bitmap.createBitmap(bmp, x, y, width, height);
-    }
+
 }

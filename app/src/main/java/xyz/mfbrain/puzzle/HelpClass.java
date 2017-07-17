@@ -43,8 +43,8 @@ public class HelpClass extends Thread {
     }
 
    private void set_imageview(Boolean isRunning) {
-       for (int i = 0; i < MainActivity.GetRows(); i++) {
-           for (int j = 0; j < MainActivity.GetColumns(); j++) {
+       for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
+           for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
                int id = i * 10 + j;
                _aca.GetImageView(id).setClickable(isRunning);
            }

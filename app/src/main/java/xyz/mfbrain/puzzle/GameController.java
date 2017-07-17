@@ -6,11 +6,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Random;
+
+import static android.view.View.INVISIBLE;
 
 /**
  * Created by MFunction on 2017/7/4.
@@ -28,7 +35,7 @@ class GameController {
     private int arraystep[][];
     //用于记录每一步操作的栈，其内存储了一个类，该类内部有两个id，是每一步交换的id
     LinkedList<Idclass> TraceStack = new LinkedList<Idclass>();
-
+    private boolean isAniming;//是否在进行动画
     //记录id的类
     public static class Idclass {
         int id1;
@@ -82,8 +89,8 @@ class GameController {
 
     public void initarraystep() {
         int rows, columns;
-        rows = MainActivity.GetRows();
-        columns = MainActivity.GetColumns();
+        rows = GameData.get_gamedifficulty();
+        columns = GameData.get_gamedifficulty();
         arraystep = new int[rows][columns];
         for (int m = 0; m < rows; m++) {
             for (int n = 0; n < columns; n++) {
@@ -93,14 +100,15 @@ class GameController {
     }
 
     public void ChangeBitmap(int id1, int id2) {
+
         //将两个id对应的imageview的图片交换
         int ten1, ten2, single1, single2, change;
         //通过传进的Id得到对应的imageview
-        ImageView imageview1 = (ImageView) _ga.GetImageView(id1);
-        ImageView imageview2 = (ImageView) _ga.GetImageView(id2);
+        final ImageView imageview1 = (ImageView) _ga.GetImageView(id1);
+        final ImageView imageview2 = (ImageView) _ga.GetImageView(id2);
         //得到两个ImageView的图片
-        Bitmap bitmap1 = ((BitmapDrawable) imageview1.getDrawable()).getBitmap();
-        Bitmap bitmap2 = ((BitmapDrawable) imageview2.getDrawable()).getBitmap();
+        final Bitmap bitmap1 = ((BitmapDrawable) imageview1.getDrawable()).getBitmap();
+        final Bitmap bitmap2 = ((BitmapDrawable) imageview2.getDrawable()).getBitmap();
         //交换两者的图片
         imageview1.setImageBitmap(bitmap2);
         imageview2.setImageBitmap(bitmap1);
@@ -116,8 +124,8 @@ class GameController {
 
     public void checkfinish() {
         boolean isfinished = true;
-        for (int i = 0; i < MainActivity.GetRows(); i++) {
-            for (int j = 0; j < MainActivity.GetColumns(); j++) {
+        for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
+            for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
                 if (arraystep[i][j] != i * 10 + j) {
                     isfinished = false;
                 }

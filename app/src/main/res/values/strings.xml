@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Puzzle</string>
+    <string name="app_name">滑块拼图</string>
     <string name="description">Code Lyoko</string>
     <string name="pickpicture">从图库选取图片</string>
     <string name="level1">3x3</string>
