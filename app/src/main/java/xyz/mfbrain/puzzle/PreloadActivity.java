@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 public class PreloadActivity extends AppCompatActivity {
     private MySQLHelper _mySQLHelper;
-    private TextView _name;
 
     private Button _ranklist;
 
@@ -78,7 +77,6 @@ public class PreloadActivity extends AppCompatActivity {
         _challenge = (Button) findViewById(R.id.challenge);
         _startgame = (Button) findViewById(R.id.start);
         _login = (Button) findViewById(R.id.btn_reg);
-        _name = (TextView) findViewById(R.id.text_name);
         _free = (Button) findViewById(R.id.free);
         _titlecn = (TextView) findViewById(R.id.titlecn);
     }
@@ -198,13 +196,13 @@ public class PreloadActivity extends AppCompatActivity {
     }
 
     private void GameStatus() {
-        _name.setText("欢迎    " + GameData.get_curuser().get_username() + "     !");
         if (GameData.get_islogin()) {
             _startgame.setVisibility(View.VISIBLE);
             _challenge.setVisibility(View.VISIBLE);
             _ranklist.setVisibility(View.VISIBLE);
             _free.setVisibility(View.VISIBLE);
-            _login.setText("注销");
+            _login.setText("欢迎    " + GameData.get_curuser().get_username() + "     !");
+            _login.setEnabled(false);
         } else {
             _login.setText("登录");
             _startgame.setVisibility(View.INVISIBLE);
