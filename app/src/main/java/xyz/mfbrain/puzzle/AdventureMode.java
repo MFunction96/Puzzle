@@ -48,6 +48,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
     private int time_origin=60;//初始时间
 
+    private int last_record;
     private ImageView _imageView;
 
     private Button addstep_prop;
@@ -141,11 +142,81 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         WindowManager wm = this.getWindowManager();
         screenwidth = wm.getDefaultDisplay().getWidth();
         setContentView(R.layout.activity_adventuremode);
-        init();
-        bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
-        _imageView.setImageBitmap(bitmap);
-        chooselevel(rows, rows);
-        step_left_num.setText(step_left + "");
+        last_record=GameData.get_curuser().get_last_record();
+        if(last_record>1){
+            final AlertDialog.Builder question=new AlertDialog.Builder(AdventureMode.this);
+                question.setTitle("游戏提示");
+                question.setMessage("是否回到上次进度？");
+                question.setPositiveButton("读档", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        check(last_record);
+                        init();
+                        bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
+                        _imageView.setImageBitmap(bitmap);
+                        chooselevel(rows, rows);
+                        step_left_num.setText(step_left + "");
+                    }
+                });
+            question.setNegativeButton("新游戏", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    init();
+                    bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
+                    _imageView.setImageBitmap(bitmap);
+                    chooselevel(rows, rows);
+                    step_left_num.setText(step_left + "");
+                }
+            });
+            question.show();
+        }
+        else {
+            init();
+            bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
+            _imageView.setImageBitmap(bitmap);
+            chooselevel(rows, rows);
+            step_left_num.setText(step_left + "");
+        }
+    }
+
+    private void check(int last_record) {
+        level=last_record-1;
+        switch (last_record){
+            case 1:
+                rows=3;
+                break;
+            case 2:
+                rows=3;
+                break;
+            case 3:
+                rows=4;
+                time_origin=time_origin+60;
+                step_origin+=20;
+                step_left=step_origin;
+                timeleft=time_origin;
+                break;
+            case 4:
+                rows=4;
+                time_origin=time_origin+60;
+                step_origin+=20;
+                step_left=step_origin;
+                timeleft=time_origin;
+                break;
+            case 5:
+                rows=5;
+                time_origin=time_origin+120;
+                step_origin+=40;
+                step_left=step_origin;
+                timeleft=time_origin;
+                break;
+            case 6:
+                rows=5;
+                time_origin=time_origin+120;
+                step_origin+=40;
+                step_left=step_origin;
+                timeleft=time_origin;
+                break;
+        }
     }
 
     private void init() {
@@ -475,7 +546,6 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         }
 
         if (isfinished) {
-           UpdateDataBase();
 
             //取消计时
             MyTimer.CancelTimer();
@@ -564,6 +634,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         dialog_next.show();
         coin_num=coin_num+award_coin;
         Coin_num.setText(coin_num+"");
+        UpdateDataBase();
     }
     public void createdialog_finish(){
         AlertDialog.Builder dialog_next = new AlertDialog.Builder(AdventureMode.this);
@@ -581,7 +652,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             }
         });
         dialog_next.show();
-
+        UpdateDataBase();
     }
 
     private void UpdateInfo() {
