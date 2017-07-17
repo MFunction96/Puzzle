@@ -63,7 +63,7 @@ public class PreloadActivity extends AppCompatActivity {
         _titlecn.setTypeface(typeFace);
         _free.setTypeface(typeFace);
         GameStatus();
-        Music.play(this,R.raw.start);
+        Music.play(this,R.raw.start,true);
     }
 
     @Override

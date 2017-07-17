@@ -152,7 +152,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         _gc = new GameController(this);
-        _gu = new GameUtil( _tableLayout, this, _gc);
+        _gu = new GameUtil(_tableLayout, this, _gc,this);
         _hp = new HelpClass(this, _gc);
         _gc.set_gu(_gu);
         _gc.initarraystep();
@@ -256,6 +256,7 @@ public class GameActivity extends AppCompatActivity {
     private class BackMenu implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            _gc.TraceStack.clear();
             // 停止计时器
             Intent intent = new Intent();
             CancelTimer();

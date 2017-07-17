@@ -42,10 +42,11 @@ public class GameUtil {
 
     private int Step_Player = 0;//玩家移动的步数
 
-    GameUtil(TableLayout tl, Context c, GameController gameController) {
+    GameUtil(TableLayout tl, Context c, GameController gameController,GameActivity gameActivity) {
         tableLayout = tl;
         context = c;
         _gc = gameController;
+        _ga=gameActivity;
     }
 
 
@@ -123,6 +124,7 @@ public class GameUtil {
                         if (id - 10 == _gc._position) {
                             int id2 = id - 10;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -132,6 +134,7 @@ public class GameUtil {
                         } else if (id + 10 == _gc._position) {
                             int id2 = id + 10;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -141,6 +144,7 @@ public class GameUtil {
                         } else if (id - 1 == _gc._position) {
                             int id2 = id - 1;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -150,6 +154,7 @@ public class GameUtil {
                         } else if (id + 1 == _gc._position) {
                             int id2 = id + 1;
                             _gc.ChangeBitmap(id, id2);
+                            Music.play(_ga,R.raw.yidong2,false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;

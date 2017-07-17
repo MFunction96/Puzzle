@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _levelgroup.setOnCheckedChangeListener(this);
         _startgame.setOnClickListener(new StartGame());
         _startgame.setEnabled(false);
-        Music.play(this,R.raw.background);
+        Music.play(this,R.raw.background,true);
     }
 
     @Override

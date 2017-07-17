@@ -463,6 +463,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         });
         dialog_next.setMessage("本关通过,奖励道具币"+award_coin+"枚");
         dialog_next.show();
+        coin_num=coin_num+award_coin;
+        Coin_num.setText(coin_num+"");
     }
     public void createdialog_finish(){
         AlertDialog.Builder dialog_next = new AlertDialog.Builder(AdventureMode.this);

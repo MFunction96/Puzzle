@@ -8,14 +8,14 @@ public class Music {
 
     /** Stop old song and start new one */
 
-    public static void play(Context context, int resource) {
+
+    public static void play(Context context, int resource,Boolean isloop) {
         stop(context);
-            mp = MediaPlayer.create(context, resource);
-            mp.setLooping(true);
-            mp.start();
+        mp = MediaPlayer.create(context, resource);
+        mp.setLooping(isloop);
+        mp.start();
 
     }
-
 
     /** Stop the music */
     public static void stop(Context context) {
