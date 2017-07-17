@@ -31,7 +31,15 @@
             android:textSize="14sp"
             android:text="@string/addstep"
             tools:ignore="NestedWeights" />
-
+        <Button
+            android:id="@+id/addtime"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/ButtonStyle"
+            android:textSize="14sp"
+            android:text="@string/addtime"
+            tools:ignore="NestedWeights" />
         <Button
             android:id="@+id/hint_prop"
             android:layout_width="0dip"
@@ -50,24 +58,7 @@
             style="@style/ButtonStyle"
             android:textSize="14sp"
             android:text="@string/restart" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="剩余金币:"/>
-        <TextView
-            android:id="@+id/coin_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:text="0"
-            android:layout_gravity="center"/>
-        <Button
-            android:id="@+id/addcoin"
-            android:layout_width="42dp"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/addcoin"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -92,23 +83,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="1">
+
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:textSize="20sp"
-                    android:text="@string/current"
                     android:gravity="right"
-                    tools:ignore="RtlHardcoded"/>
-
-                <TextView
-                    android:id="@+id/curplayer"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="left"
+                    android:text="@string/coinleft"
                     android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/coin_num"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:textSize="20sp"
+                    android:layout_weight="2"
+                    tools:ignore="RtlHardcoded" />
+
+                <Button
+                    android:id="@+id/addcoin"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.5"
+                    android:background="@mipmap/addcoin" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -130,6 +130,14 @@
                     android:textSize="20sp"
                     android:gravity="left"
                     tools:ignore="RtlHardcoded"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.5"
+                    android:visibility="invisible"
+                    android:background="@mipmap/addcoin" />
+
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -152,19 +160,28 @@
                     android:gravity="left"
                     android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.5"
+                    android:visibility="invisible"
+                    android:background="@mipmap/addcoin" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="1">
+
                 <TextView
+                    android:id="@+id/textView3"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="right"
-                    tools:ignore="RtlHardcoded"
                     android:text="@string/stepleft"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
+
                 <RelativeLayout
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
@@ -178,6 +195,50 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"/>
                 </RelativeLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.5"
+                    android:visibility="invisible"
+                    android:background="@mipmap/addcoin" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textSize="20sp"
+                    android:text="@string/timeleft"
+                    android:gravity="right"
+                    tools:ignore="RtlHardcoded" />
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:id="@+id/time_left"
+                        android:text="@string/o"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:text="@string/s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/time_left"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.5"
+                    android:visibility="invisible"
+                    android:background="@mipmap/addcoin" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

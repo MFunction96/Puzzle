@@ -34,4 +34,7 @@
     <string name="confirmhint">重新输入密码</string>
     <string name="bestrecord">最佳纪录：</string>
     <string name="latest">最新记录：</string>
+    <string name="coinleft">剩余金币：</string>
+    <string name="timeleft">剩余时间：</string>
+    <string name="addtime">增加时间</string>
 </resources>

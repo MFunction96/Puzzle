@@ -1,5 +1,6 @@
 package xyz.mfbrain.puzzle;
 
+import android.media.MediaPlayer;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,6 +33,7 @@ public class HelpClass extends Thread {
                 e.printStackTrace();
             }
             stepnumber_help++;
+
         }
         _aca.GetPauseGame().setClickable(true);
         _aca.GetRestartBtn().setClickable(true);
