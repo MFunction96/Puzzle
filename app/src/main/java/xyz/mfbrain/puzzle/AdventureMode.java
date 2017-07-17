@@ -48,7 +48,6 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
     private int time_origin=60;//初始时间
 
-    private int last_record;
     private ImageView _imageView;
 
     private Button addstep_prop;

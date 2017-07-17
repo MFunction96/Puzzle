@@ -17,8 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="2"
-        android:paddingTop="10dip"
-        >
+        android:paddingTop="10dip">
 
         <TableRow
             android:layout_width="match_parent"
@@ -32,6 +31,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:paddingTop="8dip"
+                android:id="@+id/userhint"
                 android:text="@string/username"
                 android:textSize="16sp"
                 tools:ignore="RtlHardcoded" />
@@ -55,6 +55,7 @@
             android:gravity="bottom">
 
             <TextView
+                android:id="@+id/pwdhint"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -101,7 +102,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/register"
-            style="@style/ButtonStyle" />
+            style="@style/ButtonStyle"
+            android:background="@color/background"
+            android:textColor="@color/colorPrimaryDark"/>
     </LinearLayout>
 
     <Button
