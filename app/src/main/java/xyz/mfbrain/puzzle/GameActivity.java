@@ -85,10 +85,10 @@ public class GameActivity extends AppCompatActivity {
     };
     // 计时器
     private TextView _mtextviewtimer;
-    // 计时器类
+   /* // 计时器类
     public static Timer _mtimer;
     //计时器线程
-    public static TimerTask _mtimertask;
+    public static TimerTask _mtimertask;*/
 
     /**
      * 创建窗体方法
@@ -133,7 +133,8 @@ public class GameActivity extends AppCompatActivity {
         _mtextviewtimer = (TextView) findViewById(R.id.tv_dispaly_time);
         _mtextviewtimer.setText("0");//从0s开始显示
         // 启用计时
-        StartTimer();
+        MyTimer.StartTimer(_mhandler);
+
         _pausegame.setOnClickListener(new PauseGame());
         _hintbtn.setOnClickListener(new Hint());
         _restartbtn.setOnClickListener(new Restart());
@@ -226,9 +227,10 @@ public class GameActivity extends AppCompatActivity {
     private class Hint implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            // 停止计时器
-            CancelTimer();
+
             _mtextviewtimer.setText(String.valueOf(_timerindex));
+            // 停止计时器
+            MyTimer.CancelTimer();
             _hp.start();
         }
     }
@@ -240,9 +242,12 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             // 停止计时器
-            CancelTimer();
+            MyTimer.CancelTimer();
+            _timerindex=0;
             // 启用计时
-            StartTimer();
+            MyTimer.StartTimer(_mhandler);
+
+
             _gc.TraceStack.clear();
             _gu.fillGameZone(_bmp, GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
             _gc.randomtable(GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
@@ -258,7 +263,8 @@ public class GameActivity extends AppCompatActivity {
             _gc.TraceStack.clear();
             // 停止计时器
             Intent intent = new Intent();
-            CancelTimer();
+            MyTimer.CancelTimer();
+            _timerindex=0;
             if(GameData.get_gametype()!=3){
                 intent.setClass(GameActivity.this, MainActivity.class);
 
@@ -280,12 +286,13 @@ public class GameActivity extends AppCompatActivity {
             if (_running) {
                 _pausegame.setText("开始游戏");
                 //暂停计时
-                _mtimer.cancel();
-                _mtimertask.cancel();
+                MyTimer.CancelTimer();
+                _timerindex=0;
+
             } else {
                 _pausegame.setText("暂停游戏");
                 //继续计时
-                StartTimer();
+                MyTimer.StartTimer(_mhandler);
             }
             _running = !_running;
             for (int i = 0; i <GameData.get_gamedifficulty(); i++) {
@@ -319,16 +326,16 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * 停止计时
-     */
+     *//*
     public void CancelTimer() {
         _mtimer.cancel();
         _mtimertask.cancel();
         _timerindex = 0;
     }
 
-    /**
+    *//**
      * 开始计时
-     */
+     *//*
     public void StartTimer() {
 
         // 启用计时器
@@ -345,7 +352,7 @@ public class GameActivity extends AppCompatActivity {
         };
         // 每1000ms执行 延迟0s
         _mtimer.schedule(_mtimertask, 0, 1000);
-    }
+    }*/
 
     public void SetTimerIndex(int t) {
         _timerindex = t;

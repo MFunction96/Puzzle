@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,8 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AdventureMode extends AppCompatActivity implements Runnable {
     private int level = 0;//关卡数
@@ -75,6 +78,34 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     private TextView Timeleft;
 
     private TextView Coin_num;
+
+
+    /**
+     * UI更新Handler
+     */
+    private Handler _mhandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    // 更新计时器
+                    Timeleft.setText(String.valueOf(timeleft));
+                    timeleft--;
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    public void SetTimerLeft(int t) {
+        timeleft = t;
+    }
+
+    public int GetTimerLeft() {
+        return timeleft;
+    }
+
 
     @Override
     public void run() {
@@ -146,6 +177,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
         coin_num=0;
         Timeleft.setText(timeleft+"");
+
+        // 启用计时
+        MyTimer.StartTimer(_mhandler);
 
         bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
 
@@ -220,6 +254,11 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 step_left_num.setText(step_left + "");
                 timeleft=time_origin;
                 Timeleft.setText(timeleft+"");
+
+                // 停止计时器
+                MyTimer.CancelTimer();
+                // 启用计时
+                MyTimer.StartTimer(_mhandler);
             }
         });
 
@@ -231,6 +270,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     protected void onRestart() {
         super.onRestart();
         UpdateInfo();
+        // 启用计时
+        MyTimer.StartTimer(_mhandler);
     }
 
     private void chooselevel(final int rows, final int cols) {
@@ -406,6 +447,10 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     chooselevel(rows, rows);
                     step_left = step_origin;
                     timeleft=time_origin;
+
+                    //取消计时
+                    MyTimer.CancelTimer();
+
                     step_left_num.setText(step_left + "");
                     Timeleft.setText(timeleft+"");
                 }
@@ -413,8 +458,13 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             dialog_over.setNegativeButton("退出", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+
+
                     Intent intent = new Intent(AdventureMode.this, PreloadActivity.class);
                     startActivity(intent);
+
+                    //取消计时
+                    MyTimer.CancelTimer();
                 }
             });
             dialog_over.show();
@@ -422,9 +472,15 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
         if (isfinished) {
            UpdateDataBase();
+
+            //取消计时
+            MyTimer.CancelTimer();
+
             if (level == Maxlevel) {
                 createdialog_finish();
+
             } else {
+
                 createDialog();
             }
         }
@@ -472,6 +528,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 }
                 step_left = step_origin;
                 timeleft=time_origin;
+
+
+
                 level++;
                 TraceStack.clear();
                 bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
@@ -480,6 +539,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 chooselevel(rows, rows);
                 step_left_num.setText(step_left + "");
                 Timeleft.setText(timeleft+"");
+
+                // 启用计时
+                MyTimer.StartTimer(_mhandler);
             }
         });
         dialog_next.setNegativeButton("退出", new DialogInterface.OnClickListener() {

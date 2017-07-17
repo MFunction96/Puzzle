@@ -178,8 +178,10 @@ class GameController {
 
             }
             values.clear();
-            GameActivity._mtimer.cancel();
-            GameActivity._mtimertask.cancel();
+            //GameActivity._mtimer.cancel();
+           // GameActivity._mtimertask.cancel();
+
+            MyTimer.CancelTimer();
             _ga.SetTimerIndex(0);
         }
 
