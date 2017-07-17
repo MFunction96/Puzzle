@@ -39,7 +39,7 @@ final class ImageAdapter extends BaseAdapter {
         for (int i = 0; i < COUNT; i++) {
 /*            bwt[i] = new BitmapWorkerTask(_bmp[i], _ma.getResources(), _ma.GetGridview(), this);
             bwt[i].execute(String.valueOf(_bmpid[i]));*/
-            _bmp[i] = GameUtil.FixBmp(BitmapFactory.decodeResource(_ma.getResources(), _bmpid[i]));
+            _bmp[i] = ImageUtil.FixBmp(BitmapFactory.decodeResource(_ma.getResources(), _bmpid[i]));
         }
 
     }

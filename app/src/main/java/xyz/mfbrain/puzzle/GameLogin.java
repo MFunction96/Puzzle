@@ -76,7 +76,7 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
                            do {
                                _user.set_money(cursor.getInt(cursor.getColumnIndex("money")));
                                _user.setRecord(cursor.getInt(cursor.getColumnIndex("last_record")));
-                               _user.set_best_record(cursor.getInt(cursor.getColumnIndex("last_record")));
+                               _user.set_best_record(cursor.getInt(cursor.getColumnIndex("best_record")));
                            } while (cursor.moveToNext());
                        }
                        cursor.close();
