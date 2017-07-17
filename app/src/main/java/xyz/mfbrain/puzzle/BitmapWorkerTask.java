@@ -78,7 +78,7 @@ class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap> {
     // Once complete, see if ImageView is still around and set bitmap.
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        _bmp = ImageAdapter.FixBmp(bitmap);
+        _bmp = GameUtil.FixBmp(bitmap);
         if (_ia != null) {
             _ia.notifyDataSetChanged();
             _gridview.deferNotifyDataSetChanged();

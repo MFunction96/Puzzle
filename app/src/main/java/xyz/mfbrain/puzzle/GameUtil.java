@@ -203,6 +203,27 @@ public class GameUtil {
         canvas.drawBitmap(bitmap, rect, rect, paint);
         return output;
     }
+    public static Bitmap FixBmp(Bitmap bmp) {
+        int x, y, width, height;
+        final int sw = bmp.getWidth(), sh = bmp.getHeight();
+        if (sw < sh) {
+            x = 0;
+            y = sh - sw >> 1;
+            width = sw;
+            height = sw;
+        } else if (sw > sh) {
+            x = sw - sh >> 1;
+            y = 0;
+            width = sh;
+            height = sh;
+        } else {
+            x = 0;
+            y = 0;
+            width = sw;
+            height = sh;
+        }
+        return Bitmap.createBitmap(bmp, x, y, width, height);
+    }
 
 
 }

@@ -75,7 +75,7 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
             _bmp = data.getData().toString();
             ContentResolver cr = getContentResolver();
             try {
-                _btm = ImageAdapter.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(_bmp))));
+                _btm = GameUtil.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(_bmp))));
                 _btm=GameUtil.zoomBitmap(_btm,500,500);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

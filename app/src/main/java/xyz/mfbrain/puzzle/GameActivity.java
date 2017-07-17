@@ -141,11 +141,11 @@ public class GameActivity extends AppCompatActivity {
         _backmenubtn.setOnClickListener(new BackMenu());
         Intent intent = getIntent();
         if (intent.getBooleanExtra("id", false)) {
-            _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmp"))));
+            _bmp = GameUtil.FixBmp(BitmapFactory.decodeResource(getResources(), Integer.valueOf(getIntent().getStringExtra("bmp"))));
         } else {
             ContentResolver cr = getContentResolver();
             try {
-                _bmp = ImageAdapter.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(intent.getStringExtra("bmp")))));
+                _bmp = GameUtil.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(intent.getStringExtra("bmp")))));
             } catch (Exception e) {
                 e.printStackTrace();
             }
