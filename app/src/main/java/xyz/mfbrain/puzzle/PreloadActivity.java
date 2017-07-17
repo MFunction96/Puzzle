@@ -61,6 +61,7 @@ public class PreloadActivity extends AppCompatActivity {
         _login.setTypeface(typeFace);
         _challenge.setTypeface(typeFace);
         _titlecn.setTypeface(typeFace);
+        _free.setTypeface(typeFace);
         GameStatus();
         Music.play(this,R.raw.start);
     }

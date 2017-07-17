@@ -10,7 +10,7 @@
     android:paddingTop="20dip"
     android:stretchColumns="*"
     android:keepScreenOn="true"
-    android:background="@drawable/background2"
+    android:background="@drawable/background5"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.GameActivity">
 
@@ -24,40 +24,36 @@
 
         <Button
             android:id="@+id/pausegame"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/qianhong"
+            style="@style/ButtonStyle"
             android:text="@string/pause"
             tools:ignore="NestedWeights" />
 
         <Button
             android:id="@+id/hint"
-            style="?android:buttonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/qianlan"
+            style="@style/ButtonStyle"
             android:gravity="center"
             android:text="@string/hint" />
 
         <Button
             android:id="@+id/restart"
-            style="?android:buttonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/qiancheng"
+            style="@style/ButtonStyle"
             android:text="@string/restart" />
 
         <Button
             android:id="@+id/backmenu"
-            style="?android:buttonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/qianlv"
+            style="@style/ButtonStyle"
             android:text="@string/backmenu" />
     </LinearLayout>
 

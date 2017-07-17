@@ -10,7 +10,7 @@
     android:paddingTop="20dip"
     android:stretchColumns="*"
     android:keepScreenOn="true"
-    android:background="@drawable/background2"
+    android:background="@drawable/background5"
     style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.GameActivity">
 
@@ -24,31 +24,31 @@
 
         <Button
             android:id="@+id/addstep"
-            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorAccent"
+            style="@style/ButtonStyle"
+            android:textSize="14sp"
             android:text="@string/addstep"
             tools:ignore="NestedWeights" />
 
         <Button
             android:id="@+id/hint_prop"
-            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/qiancheng"
             android:gravity="center"
+            style="@style/ButtonStyle"
+            android:textSize="14sp"
             android:text="@string/hint" />
 
         <Button
             android:id="@+id/restart_prop"
-            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/holo_blue_bright"
+            style="@style/ButtonStyle"
+            android:textSize="14sp"
             android:text="@string/restart" />
         <TextView
             android:layout_width="0dp"
