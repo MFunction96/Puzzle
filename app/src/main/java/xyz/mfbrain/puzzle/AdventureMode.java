@@ -145,6 +145,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         addtime=(Button)findViewById(R.id.addtime);
 
         coin_num=0;
+        Timeleft.setText(timeleft+"");
 
         bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
 
