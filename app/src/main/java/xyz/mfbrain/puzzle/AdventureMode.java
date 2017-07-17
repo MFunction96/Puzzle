@@ -270,6 +270,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     protected void onRestart() {
         super.onRestart();
         UpdateInfo();
+        // 停止计时器
+        MyTimer.CancelTimer();
         // 启用计时
         MyTimer.StartTimer(_mhandler);
     }
@@ -450,6 +452,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
                     //取消计时
                     MyTimer.CancelTimer();
+                    // 启用计时
+                    MyTimer.StartTimer(_mhandler);
 
                     step_left_num.setText(step_left + "");
                     Timeleft.setText(timeleft+"");
@@ -540,6 +544,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 step_left_num.setText(step_left + "");
                 Timeleft.setText(timeleft+"");
 
+                // 停止计时器
+                MyTimer.CancelTimer();
                 // 启用计时
                 MyTimer.StartTimer(_mhandler);
             }
@@ -549,6 +555,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(AdventureMode.this, PreloadActivity.class);
                 startActivity(intent);
+
+                // 停止计时器
+                MyTimer.CancelTimer();
             }
         });
         dialog_next.setMessage("本关通过,奖励道具币"+award_coin+"枚");
@@ -566,6 +575,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(AdventureMode.this, PreloadActivity.class);
                 startActivity(intent);
+
+                // 停止计时器
+                MyTimer.CancelTimer();
             }
         });
         dialog_next.show();
