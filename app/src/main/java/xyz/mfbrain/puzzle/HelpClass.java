@@ -13,12 +13,14 @@ import android.widget.TableLayout;
 public class HelpClass extends Thread {
     GameActivity _aca;
     GameController _gc;
-    int stepnumber_help=0;//点击帮助后需要走的步数
-    HelpClass(GameActivity appCompatActivity,GameController gameController) {
+    int stepnumber_help = 0;//点击帮助后需要走的步数
+
+    HelpClass(GameActivity appCompatActivity, GameController gameController) {
         _aca = appCompatActivity;
-        _gc=gameController;
+        _gc = gameController;
     }
-    public synchronized void run(){
+
+    public synchronized void run() {
         _aca.GetPauseGame().setClickable(false);
         _aca.GetRestartBtn().setClickable(false);
         _aca.GetHintBtn().setClickable(false);
@@ -44,13 +46,13 @@ public class HelpClass extends Thread {
         _aca.handler.sendMessage(msg);
     }
 
-   private void set_imageview(Boolean isRunning) {
-       for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
-           for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
-               int id = i * 10 + j;
-               _aca.GetImageView(id).setClickable(isRunning);
-           }
+    private void set_imageview(Boolean isRunning) {
+        for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
+            for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
+                int id = i * 10 + j;
+                _aca.GetImageView(id).setClickable(isRunning);
+            }
 
-       }
-   }
+        }
+    }
 }

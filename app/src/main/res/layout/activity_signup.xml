@@ -4,13 +4,13 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background5"
     android:orientation="vertical"
     android:paddingBottom="400dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:background="@drawable/background5"
     tools:context="xyz.mfbrain.puzzle.SignUp">
 
     <TableLayout
@@ -108,14 +108,14 @@
 
     <Button
         android:id="@+id/btn_register"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_marginLeft="100dip"
         android:layout_marginRight="100dip"
         android:layout_weight="1"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/register"
-        style="@style/ButtonStyle" />
+        android:text="@string/register" />
 
 
 </LinearLayout>

@@ -77,7 +77,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
                 GameData.get_curuser().set_password(password);
                 Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignUp.this, GameLogin.class);
-                intent.putExtra("justsign",1);
+                intent.putExtra("justsign", 1);
                 startActivity(intent);
 
             } else {
@@ -136,7 +136,7 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
                     }
                 break;
             case R.id.text_reg_password_confirm:
-                if(!text_confirm_password.hasFocus())
+                if (!text_confirm_password.hasFocus())
                     if (TextUtils.isEmpty(text_password.getText().toString())) {
                         Toast.makeText(SignUp.this, "请确认密码", Toast.LENGTH_SHORT).show();
                     } else {

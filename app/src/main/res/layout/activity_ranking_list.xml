@@ -2,16 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background6"
     android:orientation="vertical"
     android:paddingBottom="20dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:background="@drawable/background6"
-    style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.RankingList">
 
 
@@ -37,9 +37,9 @@
         <TableRow>
 
             <TextView
+                android:layout_weight="1"
                 android:text="挑战图片"
-                android:textSize="20sp"
-                android:layout_weight="1"/>
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/challenge_image"
@@ -54,8 +54,8 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_weight="1"
                 android:id="@+id/challenge_text"
+                android:layout_weight="1"
                 android:text="3*3"
                 android:textSize="20sp" />
         </TableRow>
@@ -86,6 +86,7 @@
         </TableRow>
 
         <TableRow>
+
             <ListView
                 android:id="@+id/rankllist"
                 style="@style/Widget.AppCompat.ListView"
@@ -98,15 +99,15 @@
 
     <Button
         android:id="@+id/btn_return"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_weight="1"
         android:gravity="center_horizontal"
         android:text="返回主菜单"
-        style="@style/ButtonStyle"
-        android:textSize="20sp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background5"
+    android:keepScreenOn="true"
     android:orientation="vertical"
     android:paddingBottom="40dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:keepScreenOn="true"
-    android:background="@drawable/background5"
-    style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.GameActivity">
 
 
@@ -20,19 +20,22 @@
         android:layout_height="0dip"
         android:layout_weight="3"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/imageview_adventure"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:contentDescription="@string/description"
             android:layout_weight="2"
+            android:contentDescription="@string/description"
             android:minWidth="100dip"
             tools:ignore="NestedWeights" />
+
         <TableLayout
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:stretchColumns="*">
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -52,9 +55,9 @@
                     android:id="@+id/coin_num"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:gravity="left"
                     android:textSize="20sp"
-                    android:layout_weight="2"
                     tools:ignore="RtlHardcoded" />
 
                 <Button
@@ -64,49 +67,54 @@
                     android:layout_weight="0.5"
                     android:background="@mipmap/addcoin" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="1">
+
                 <TextView
                     android:id="@+id/bestrecordhint"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:textSize="20sp"
-                    android:text="@string/bestrecord"
                     android:gravity="right"
+                    android:text="@string/bestrecord"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
+
                 <TextView
                     android:id="@+id/bestrecord"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:textSize="20sp"
                     android:gravity="left"
-                    tools:ignore="RtlHardcoded"/>
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:visibility="invisible"
-                    android:background="@mipmap/addcoin" />
+                    android:background="@mipmap/addcoin"
+                    android:visibility="invisible" />
 
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="1">
+
                 <TextView
                     android:id="@+id/lastestrecordhint"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:textSize="20sp"
-                    android:text="@string/latest"
                     android:gravity="right"
-                    tools:ignore="RtlHardcoded"/>
+                    android:text="@string/latest"
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/lastrecord"
@@ -116,13 +124,15 @@
                     android:gravity="left"
                     android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
+
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:visibility="invisible"
-                    android:background="@mipmap/addcoin" />
+                    android:background="@mipmap/addcoin"
+                    android:visibility="invisible" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -140,59 +150,66 @@
 
                 <TextView
                     android:id="@+id/step_left_num"
-                    android:text="@string/o"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="left"
+                    android:text="@string/o"
                     android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
+
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:visibility="invisible"
-                    android:background="@mipmap/addcoin" />
+                    android:background="@mipmap/addcoin"
+                    android:visibility="invisible" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="1">
+
                 <TextView
                     android:id="@+id/lefttimehint"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:textSize="20sp"
-                    android:text="@string/timeleft"
                     android:gravity="right"
+                    android:text="@string/timeleft"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
+
                 <RelativeLayout
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="left"
                     tools:ignore="RtlHardcoded">
+
                     <TextView
                         android:id="@+id/time_left"
-                        android:text="@string/o"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"/>
+                        android:text="@string/o"
+                        android:textSize="20sp" />
+
                     <TextView
-                        android:text="@string/s"
                         android:id="@+id/second"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/time_left"
-                        android:textSize="20sp"/>
+                        android:text="@string/s"
+                        android:textSize="20sp" />
                 </RelativeLayout>
+
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:visibility="invisible"
-                    android:background="@mipmap/addcoin" />
+                    android:background="@mipmap/addcoin"
+                    android:visibility="invisible" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
@@ -207,53 +224,55 @@
     </TableLayout>
 
     <LinearLayout
+        android:id="@+id/proppanel"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:id="@+id/proppanel"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/addstep"
+            style="@style/ButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            style="@style/ButtonStyle"
             android:background="@drawable/button1"
-            android:textSize="14sp"
             android:text="@string/addstep"
+            android:textSize="14sp"
             tools:ignore="NestedWeights" />
+
         <Button
             android:id="@+id/addtime"
+            style="@style/ButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            style="@style/ButtonStyle"
             android:background="@drawable/button2"
-            android:textSize="14sp"
             android:text="@string/addtime"
+            android:textSize="14sp"
             tools:ignore="NestedWeights" />
+
         <Button
             android:id="@+id/hint_prop"
+            style="@style/ButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:background="@drawable/button3"
-            style="@style/ButtonStyle"
-            android:textSize="14sp"
-            android:text="@string/hint" />
+            android:gravity="center"
+            android:text="@string/hint"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/restart_prop"
+            style="@style/ButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            style="@style/ButtonStyle"
             android:background="@drawable/button5"
-            android:textSize="14sp"
-            android:text="@string/restart" />
+            android:text="@string/restart"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

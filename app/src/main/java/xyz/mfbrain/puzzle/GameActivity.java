@@ -31,7 +31,7 @@ public class GameActivity extends AppCompatActivity {
 
     private Bitmap _bmp;
 
-    private GameController _gc, _gc_another;
+    private GameController _gc;
 
     private ImageUtil _gu;
 

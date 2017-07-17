@@ -27,6 +27,7 @@ class GameController {
     //用于记录每一步操作的栈，其内存储了一个类，该类内部有两个id，是每一步交换的id
     LinkedList<Idclass> TraceStack = new LinkedList<Idclass>();
     private boolean isAniming;//是否在进行动画
+
     //记录id的类
     public static class Idclass {
         int id1;
@@ -179,7 +180,7 @@ class GameController {
             }
             values.clear();
             //GameActivity._mtimer.cancel();
-           // GameActivity._mtimertask.cancel();
+            // GameActivity._mtimertask.cancel();
 
             MyTimer.CancelTimer();
             _ga.SetTimerIndex(0);

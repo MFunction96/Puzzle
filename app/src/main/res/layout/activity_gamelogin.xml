@@ -4,13 +4,13 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background5"
     android:orientation="vertical"
     android:paddingBottom="380dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:background="@drawable/background5"
     tools:context="xyz.mfbrain.puzzle.GameLogin">
 
     <TableLayout
@@ -26,12 +26,12 @@
             android:gravity="bottom">
 
             <TextView
+                android:id="@+id/userhint"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="right"
                 android:paddingTop="8dip"
-                android:id="@+id/userhint"
                 android:text="@string/username"
                 android:textSize="16sp"
                 tools:ignore="RtlHardcoded" />
@@ -98,23 +98,23 @@
 
         <Button
             android:id="@+id/btn_sign_up"
+            style="@style/ButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/register"
-            style="@style/ButtonStyle"
             android:background="@color/background"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:text="@string/register"
+            android:textColor="@color/colorPrimaryDark" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_sign_in"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_marginLeft="80dip"
         android:layout_marginRight="80dip"
         android:layout_weight="1"
-        android:text="@string/login"
-        style="@style/ButtonStyle" />
+        android:text="@string/login" />
 
 </LinearLayout>

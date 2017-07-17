@@ -18,15 +18,15 @@ public class AnimationIntro extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduction);
-        ImageView imageView=(ImageView)findViewById(R.id.iv);
+        ImageView imageView = (ImageView) findViewById(R.id.iv);
         final AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
         animationDrawable.start();
 
-        Button button=(Button)findViewById(R.id.bt_skip);
+        Button button = (Button) findViewById(R.id.bt_skip);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(AnimationIntro.this,PreloadActivity.class);
+                Intent intent = new Intent(AnimationIntro.this, PreloadActivity.class);
                 startActivity(intent);
             }
         });

@@ -10,19 +10,19 @@ import android.widget.Toast;
  */
 
 public class MySQLHelper extends SQLiteOpenHelper {
-    public static  final String CREATE_USER="create table User ("
+    public static final String CREATE_USER = "create table User ("
             + "id integer primary key autoincrement, "
             + "username text, "
             + "password text)  ";
 
-    public static  final String CREATE_PLAYERINFO="create table PlayerInfo("
+    public static final String CREATE_PLAYERINFO = "create table PlayerInfo("
             + "id integer primary key autoincrement, "
             + "playername text, "
             + "money integer, "
             + "best_record integer, "
             + "last_record integer) ";
 
-    public static final String CREATE_RANKINGLIST="create table RankingList("
+    public static final String CREATE_RANKINGLIST = "create table RankingList("
             + "id integer primary key autoincrement, "
             + "imageid text, "
             + "playername text, "
@@ -30,7 +30,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
             + "record2 integer,"
             + "record3 integer) ";
 
-    public static final String CREATE_BESTRECORD="create table BestRecord("
+    public static final String CREATE_BESTRECORD = "create table BestRecord("
             + "id integer primary key autoincrement, "
             + "imageid text, "
             + "keeper1 text, "
@@ -45,7 +45,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
 
     public MySQLHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_PLAYERINFO);
         sqLiteDatabase.execSQL(CREATE_RANKINGLIST);
         sqLiteDatabase.execSQL(CREATE_BESTRECORD);
-        Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("drop table PlayerInfo");
         sqLiteDatabase.execSQL("drop table RankingList");
         onCreate(sqLiteDatabase);
-        Toast.makeText(context,"Update Success",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Update Success", Toast.LENGTH_SHORT).show();
 
     }
 }

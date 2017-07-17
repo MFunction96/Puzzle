@@ -20,7 +20,7 @@ import android.widget.TextView;
  * Created by Lisa on 2017/7/12.
  */
 
-public class MyDialog1 extends Dialog{
+public class MyDialog1 extends Dialog {
     public Context context;
     public View dialogView;
     public String message;    //对话框内容
@@ -28,31 +28,30 @@ public class MyDialog1 extends Dialog{
 
     public MyDialog1(@NonNull Context context) {
         super(context);
-        this.context=context;
+        this.context = context;
     }
 
     public MyDialog1(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
-        this.context=context;
+        this.context = context;
     }
 
     protected MyDialog1(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
-        this.context=context;
+        this.context = context;
 
     }
 
     //定义对话框的内容
-    public void initText(String s){
-        this.message=s;
+    public void initText(String s) {
+        this.message = s;
     }
 
 
-
-    public void donghua(){
-        AnimationSet animationSet=new AnimationSet(true);
-        RotateAnimation rotateAnimation=new RotateAnimation(0,360, Animation.RELATIVE_TO_SELF,0.5f,
-                Animation.RELATIVE_TO_SELF,0.5f);
+    public void donghua() {
+        AnimationSet animationSet = new AnimationSet(true);
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(2000);
         animationSet.addAnimation(rotateAnimation);
         dialogView.startAnimation(rotateAnimation);
@@ -62,7 +61,7 @@ public class MyDialog1 extends Dialog{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dialogView= View.inflate(context,R.layout.dialog1,null);
+        dialogView = View.inflate(context, R.layout.dialog1, null);
         setContentView(dialogView);
 
         setCanceledOnTouchOutside(false);//点击边缘对话框不消失
@@ -72,7 +71,7 @@ public class MyDialog1 extends Dialog{
         window.setWindowAnimations(R.style.myStyle);  //添加动画
 
 
-        Button bt_sure=(Button)dialogView.findViewById(R.id.btSure);
+        Button bt_sure = (Button) dialogView.findViewById(R.id.btSure);
         bt_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +80,7 @@ public class MyDialog1 extends Dialog{
         });
 
 
-        TextView textView=(TextView)dialogView.findViewById(R.id.tv_intro);
+        TextView textView = (TextView) dialogView.findViewById(R.id.tv_intro);
         textView.setText(message);
 
     }

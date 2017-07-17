@@ -26,28 +26,29 @@ public class MyDialog2 extends Dialog {
 
     public MyDialog2(@NonNull Context context) {
         super(context);
-        this.context=context;
+        this.context = context;
     }
 
     public MyDialog2(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
-        this.context=context;
+        this.context = context;
     }
 
     protected MyDialog2(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
-        this.context=context;
+        this.context = context;
     }
+
     //定义对话框的内容
-    public void initText(String s){
-        this.message=s;
+    public void initText(String s) {
+        this.message = s;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dialogView= View.inflate(context,R.layout.dialog2,null);
+        dialogView = View.inflate(context, R.layout.dialog2, null);
         setContentView(dialogView);
 
         setCanceledOnTouchOutside(false);//点击边缘对话框不消失
@@ -56,10 +57,10 @@ public class MyDialog2 extends Dialog {
         window.setGravity(Gravity.CENTER);  //此处可以设置dialog显示的位置
         window.setWindowAnimations(R.style.myStyle);  //添加动画
 
-        TextView textView=(TextView)dialogView.findViewById(R.id.tv_intro);
+        TextView textView = (TextView) dialogView.findViewById(R.id.tv_intro);
         textView.setText(message);  //设置内容
 
-        Button bt_sure=(Button)dialogView.findViewById(R.id.btSure);
+        Button bt_sure = (Button) dialogView.findViewById(R.id.btSure);
         bt_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,11 +68,11 @@ public class MyDialog2 extends Dialog {
             }
         });
 
-        Button btn_list=(Button)dialogView.findViewById(R.id.btn_list);
+        Button btn_list = (Button) dialogView.findViewById(R.id.btn_list);
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,RankingList.class);
+                Intent intent = new Intent(context, RankingList.class);
                 context.startActivity(intent);
             }
         });

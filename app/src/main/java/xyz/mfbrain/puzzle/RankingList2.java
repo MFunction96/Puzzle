@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RankingList2 extends AppCompatActivity implements AdapterView.OnItemClickListener,RadioGroup.OnCheckedChangeListener,View.OnClickListener{
+public class RankingList2 extends AppCompatActivity implements AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
     private ImageAdapter _imageAdapter;
 
@@ -37,8 +37,8 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
     private RadioButton _level3;
 
     private Button _btn_return;
-    private boolean _imagehaschosen=false;
-    private boolean _isdifficultyhaschosen=false;
+    private boolean _imagehaschosen = false;
+    private boolean _isdifficultyhaschosen = false;
 
 
     @Override
@@ -48,27 +48,27 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
         init();
     }
 
-    private void init(){
-        _playersList=new ArrayList<>();
-        _imageAdapter=new ImageAdapter(this);
-        _rg=(RadioGroup)findViewById(R.id.difgroup);
+    private void init() {
+        _playersList = new ArrayList<>();
+        _imageAdapter = new ImageAdapter(this);
+        _rg = (RadioGroup) findViewById(R.id.difgroup);
         _rg.setOnCheckedChangeListener(this);
-        _btn_return=(Button)findViewById(R.id.list2_btn);
+        _btn_return = (Button) findViewById(R.id.list2_btn);
         _btn_return.setOnClickListener(this);
         _level1 = (RadioButton) findViewById(R.id.level1);
         _level2 = (RadioButton) findViewById(R.id.level2);
         _level3 = (RadioButton) findViewById(R.id.level3);
-        _listView=(ListView)findViewById(R.id.rankllist2);
-        _gd=(GridView)findViewById(R.id.list2_grid);
+        _listView = (ListView) findViewById(R.id.rankllist2);
+        _gd = (GridView) findViewById(R.id.list2_grid);
         _gd.setAdapter(_imageAdapter);
         _gd.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        GameData.set_imageid(position+"");
-        _imagehaschosen=true;
-        if(_isdifficultyhaschosen){
+        GameData.set_imageid(position + "");
+        _imagehaschosen = true;
+        if (_isdifficultyhaschosen) {
             ShowRankingList();
         }
     }
@@ -82,42 +82,42 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
         } else if (checkedId == _level3.getId()) {
             GameData.set_gamedifficulty(5);
         }
-        _isdifficultyhaschosen=true;
-       ShowRankingList();
+        _isdifficultyhaschosen = true;
+        ShowRankingList();
     }
 
-    private void InitPlayerList(){
+    private void InitPlayerList() {
         _playersList.clear();
-        SQLiteDatabase _db=GameData.get_db();
-        int i=1;
-        String s="record1";
-        switch (GameData.get_gamedifficulty()){
+        SQLiteDatabase _db = GameData.get_db();
+        int i = 1;
+        String s = "record1";
+        switch (GameData.get_gamedifficulty()) {
             case 2:
-                s="record1";
+                s = "record1";
                 break;
             case 4:
-                s="record2";
+                s = "record2";
                 break;
             case 5:
-                s="record3";
+                s = "record3";
         }
-        Cursor cursor=_db.query("RankingList",new String[]{"playername",s},"imageid=? ",new String[]{GameData.get_imageid()},null,null,s);
-        if(cursor.moveToFirst()){
-            do{
-                Users u=new Users();
+        Cursor cursor = _db.query("RankingList", new String[]{"playername", s}, "imageid=? ", new String[]{GameData.get_imageid()}, null, null, s);
+        if (cursor.moveToFirst()) {
+            do {
+                Users u = new Users();
                 u.set_id(i++);
                 u.set_username(cursor.getString(cursor.getColumnIndex("playername")));
                 u.setRecord(cursor.getInt(cursor.getColumnIndex(s)));
                 _playersList.add(u);
-            }while(cursor.moveToNext());
+            } while (cursor.moveToNext());
             cursor.close();
         }
     }
 
-    private void ShowRankingList(){
-        if(_imagehaschosen){
+    private void ShowRankingList() {
+        if (_imagehaschosen) {
             InitPlayerList();
-            _listAdapter=new RankListAdapter(this,R.layout.list_layout,_playersList);
+            _listAdapter = new RankListAdapter(this, R.layout.list_layout, _playersList);
             _listView.setAdapter(_listAdapter);
         }
 
@@ -125,7 +125,7 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent(this,PreloadActivity.class);
+        Intent intent = new Intent(this, PreloadActivity.class);
         startActivity(intent);
     }
 }

@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -16,16 +17,16 @@ import android.widget.RadioGroup;
 
 import java.io.FileNotFoundException;
 
-public class FreeMode extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener{
-   private Bitmap _btm;
-    private   Button _btn;
+public class FreeMode extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+    private Bitmap _btm;
+    private Button _btn;
     private ImageView _image;
-    private   RadioGroup _rg;
-    private  RadioButton _freeLevel1;
-    private  RadioButton _freeLevel2;
-    private  RadioButton _freeLevel3;
-    private   boolean _islevelChosen;
-    private  boolean  _isImageChosen;
+    private RadioGroup _rg;
+    private RadioButton _freeLevel1;
+    private RadioButton _freeLevel2;
+    private RadioButton _freeLevel3;
+    private boolean _islevelChosen;
+    private boolean _isImageChosen;
     private String _bmp;
     private boolean _isid;
 
@@ -37,32 +38,37 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
         Init();
     }
 
-    private void Init(){
-        _btn=(Button)findViewById(R.id.free_btn);
+    private void Init() {
+        _btn = (Button) findViewById(R.id.free_btn);
         _btn.setOnClickListener(this);
-        _rg=(RadioGroup)findViewById(R.id.free_group);
+        _rg = (RadioGroup) findViewById(R.id.free_group);
         _rg.setOnCheckedChangeListener(this);
-        _freeLevel1=(RadioButton)findViewById(R.id.free_level1);
-        _freeLevel2=(RadioButton)findViewById(R.id.free_level2);
-        _freeLevel3=(RadioButton)findViewById(R.id.free_level3);
-        _image=(ImageView) findViewById(R.id.free_image);
+        _freeLevel1 = (RadioButton) findViewById(R.id.free_level1);
+        _freeLevel2 = (RadioButton) findViewById(R.id.free_level2);
+        _freeLevel3 = (RadioButton) findViewById(R.id.free_level3);
+        _image = (ImageView) findViewById(R.id.free_image);
         _image.setOnClickListener(this);
         _btn.setEnabled(false);
-        _bmp="";
+        _bmp = "";
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        _freeLevel1.setTypeface(typeFace);
+        _freeLevel2.setTypeface(typeFace);
+        _freeLevel3.setTypeface(typeFace);
+        _btn.setTypeface(typeFace);
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.free_image){
+        if (v.getId() == R.id.free_image) {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("image/*");
             intent.putExtra("crop", true);
             intent.putExtra("return-data", true);
             startActivityForResult(intent, 0);
-        } else if(v.getId()==R.id.free_btn){
+        } else if (v.getId() == R.id.free_btn) {
             Intent it = new Intent();
             it.setClass(this, GameActivity.class);
-            it.putExtra("id",_isid);
+            it.putExtra("id", _isid);
             it.putExtra("bmp", _bmp);
             startActivity(it);
         }
@@ -76,13 +82,13 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
             ContentResolver cr = getContentResolver();
             try {
                 _btm = ImageUtil.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(_bmp))));
-                _btm= ImageUtil.zoomBitmap(_btm,500,500);
+                _btm = ImageUtil.zoomBitmap(_btm, 500, 500);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             _image.setImageBitmap(_btm);
             if (_islevelChosen) {
-               _btn.setEnabled(true);
+                _btn.setEnabled(true);
                 _btn.setText("开始游戏");
             }
         }
@@ -94,7 +100,7 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
             GameData.set_gamedifficulty(2);
         } else if (checkedId == _freeLevel2.getId()) {
             GameData.set_gamedifficulty(4);
-        } else if (checkedId ==_freeLevel3.getId()) {
+        } else if (checkedId == _freeLevel3.getId()) {
             GameData.set_gamedifficulty(5);
         }
         _islevelChosen = true;

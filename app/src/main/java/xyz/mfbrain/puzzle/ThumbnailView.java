@@ -13,7 +13,7 @@ import android.widget.ImageView;
  * Created by Lisa on 2017/7/13.
  */
 //实现选中图片时的按压效果
-public class ThumbnailView extends android.support.v7.widget.AppCompatImageView{
+public class ThumbnailView extends android.support.v7.widget.AppCompatImageView {
     public ThumbnailView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
@@ -40,31 +40,33 @@ public class ThumbnailView extends android.support.v7.widget.AppCompatImageView{
     }
 
     /**
-     *   设置滤镜
+     * 设置滤镜
      */
     private void setFilter() {
         //先获取设置的src图片
-       Drawable drawable=getDrawable();
+        Drawable drawable = getDrawable();
         //当src图片为Null，获取背景图片
-        if (drawable==null) {
-            drawable=getBackground();
+        if (drawable == null) {
+            drawable = getBackground();
         }
-        if(drawable!=null){
+        if (drawable != null) {
             //设置滤镜
-            drawable.setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);;
+            drawable.setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+            ;
         }
     }
+
     /**
-     *   清除滤镜
+     * 清除滤镜
      */
     private void removeFilter() {
         //先获取设置的src图片
-        Drawable drawable=getDrawable();
+        Drawable drawable = getDrawable();
         //当src图片为Null，获取背景图片
-        if (drawable==null) {
-            drawable=getBackground();
+        if (drawable == null) {
+            drawable = getBackground();
         }
-        if(drawable!=null){
+        if (drawable != null) {
             //清除滤镜
             drawable.clearColorFilter();
         }

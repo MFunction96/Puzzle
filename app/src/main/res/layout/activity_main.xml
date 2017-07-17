@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background6"
     android:orientation="vertical"
     android:paddingBottom="20dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    android:background="@drawable/background6"
-    style="@style/AppTheme"
     tools:context="xyz.mfbrain.puzzle.MainActivity">
 
     <LinearLayout
@@ -24,16 +24,18 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/picktip"
             android:gravity="center_vertical"
+            android:text="@string/picktip"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/pickdiff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/level"/>
+        android:text="@string/level" />
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
@@ -44,23 +46,24 @@
             android:id="@+id/easy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/level1"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="@string/level1" />
 
         <RadioButton
             android:id="@+id/middle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/level2"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="@string/level2" />
 
         <RadioButton
             android:id="@+id/hard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/level3"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="@string/level3" />
     </RadioGroup>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
@@ -79,10 +82,10 @@
 
     <Button
         android:id="@+id/startgame"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        style="@style/ButtonStyle"
         android:text="@string/startgame" />
 </LinearLayout>
 

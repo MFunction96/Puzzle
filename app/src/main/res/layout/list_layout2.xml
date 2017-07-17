@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/list_image"
@@ -12,7 +13,7 @@
         android:adjustViewBounds="true"
         android:maxHeight="30dp"
         android:maxWidth="30dp"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/list_name2"

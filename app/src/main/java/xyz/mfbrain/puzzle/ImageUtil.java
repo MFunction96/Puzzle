@@ -46,9 +46,8 @@ public class ImageUtil {
         tableLayout = tl;
         context = c;
         _gc = gameController;
-        _ga=gameActivity;
+        _ga = gameActivity;
     }
-
 
 
     /**
@@ -84,7 +83,7 @@ public class ImageUtil {
      * @return
      */
 
-   static Bitmap cutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
+    static Bitmap cutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
         return Bitmap.createBitmap(bitmap, x, y, w, h);
     }
 
@@ -111,7 +110,7 @@ public class ImageUtil {
             currow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             //添加单元格
             for (int j = 0; j < colunms; j++) {
-                _gc._position=(rows-1)*10+colunms-1;
+                _gc._position = (rows - 1) * 10 + colunms - 1;
                 curimage = new ImageView(context);//新建ImageView对象
                 curimage.setId(i * 10 + j);//为imageview赋id
                 //设置ImageView属性
@@ -124,7 +123,7 @@ public class ImageUtil {
                         if (id - 10 == _gc._position) {
                             int id2 = id - 10;
                             _gc.ChangeBitmap(id, id2);
-                            Music.play(_ga,R.raw.yidong2,false);
+                            Music.play(_ga, R.raw.yidong2, false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -134,7 +133,7 @@ public class ImageUtil {
                         } else if (id + 10 == _gc._position) {
                             int id2 = id + 10;
                             _gc.ChangeBitmap(id, id2);
-                            Music.play(_ga,R.raw.yidong2,false);
+                            Music.play(_ga, R.raw.yidong2, false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -144,7 +143,7 @@ public class ImageUtil {
                         } else if (id - 1 == _gc._position) {
                             int id2 = id - 1;
                             _gc.ChangeBitmap(id, id2);
-                            Music.play(_ga,R.raw.yidong2,false);
+                            Music.play(_ga, R.raw.yidong2, false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -154,7 +153,7 @@ public class ImageUtil {
                         } else if (id + 1 == _gc._position) {
                             int id2 = id + 1;
                             _gc.ChangeBitmap(id, id2);
-                            Music.play(_ga,R.raw.yidong2,false);
+                            Music.play(_ga, R.raw.yidong2, false);
                             GameController.Idclass idclass1 = new GameController.Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -185,10 +184,8 @@ public class ImageUtil {
     /**
      * 获取圆角位图的方法
      *
-     * @param bitmap
-     *            需要转化成圆角的位图
-     * @param pixels
-     *            圆角的度数，数值越大，圆角越大
+     * @param bitmap 需要转化成圆角的位图
+     * @param pixels 圆角的度数，数值越大，圆角越大
      * @return 处理后的圆角位图
      */
     public static Bitmap toRoundCornerImage(Bitmap bitmap, int pixels) {
@@ -208,6 +205,7 @@ public class ImageUtil {
         canvas.drawBitmap(bitmap, rect, rect, paint);
         return output;
     }
+
     public static Bitmap FixBmp(Bitmap bmp) {
         int x, y, width, height;
         final int sw = bmp.getWidth(), sh = bmp.getHeight();

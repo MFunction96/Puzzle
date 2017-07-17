@@ -47,7 +47,7 @@ public class PreloadActivity extends AppCompatActivity {
         GameData.set_db(_mySQLHelper.getWritableDatabase());
         //InitDataBase();
         Init();
-        Typeface typeFace =Typeface.createFromAsset(getAssets(),"fonts/fzstk.ttf");
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
         _about.setOnClickListener(new About());
         _ranklist.setOnClickListener(new RankList());
         _startgame.setOnClickListener(new StartGame());
@@ -62,7 +62,7 @@ public class PreloadActivity extends AppCompatActivity {
         _titlecn.setTypeface(typeFace);
         _free.setTypeface(typeFace);
         GameStatus();
-        Music.play(this,R.raw.start,true);
+        Music.play(this, R.raw.start, true);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            MyDialog1 dialog1=new MyDialog1(PreloadActivity.this);
+            MyDialog1 dialog1 = new MyDialog1(PreloadActivity.this);
             dialog1.initText("该游戏为休闲益智类游戏，其目的是将打乱的图片还原到最初的位置，界面左上方" +
                     "有完整图片供参考。游戏类型分两种，自由模式和闯关模式.闯关模式有固定的图片，玩家要在规定的步数内完成游戏。" +
                     "自由模式玩家可以自由选择图片跟游戏难度，还可以将自己喜欢的图片从本地加载进游戏内。");
@@ -107,12 +107,12 @@ public class PreloadActivity extends AppCompatActivity {
     private class Challenge implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            try{
+            try {
                 GameData.set_gametype(1);
                 Intent intent = new Intent(PreloadActivity.this, MainActivity.class);
                 startActivity(intent);
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -122,12 +122,12 @@ public class PreloadActivity extends AppCompatActivity {
     private class Free implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            try{
+            try {
                 GameData.set_gametype(3);
                 Intent intent = new Intent(PreloadActivity.this, FreeMode.class);
                 startActivity(intent);
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

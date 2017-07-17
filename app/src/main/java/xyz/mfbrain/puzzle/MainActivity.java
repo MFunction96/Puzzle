@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _levelgroup.setOnCheckedChangeListener(this);
         _startgame.setOnClickListener(new StartGame());
         _startgame.setEnabled(false);
-        Music.play(this,R.raw.background,true);
+        Music.play(this, R.raw.background, true);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _gridview = (GridView) findViewById(R.id.gridview);
         _startgame = (Button) findViewById(R.id.startgame);
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
-        TextView textView = (TextView)findViewById(R.id.pickimg);
+        TextView textView = (TextView) findViewById(R.id.pickimg);
         textView.setTypeface(typeFace);
         textView = (TextView) findViewById(R.id.pickdiff);
         textView.setTypeface(typeFace);
@@ -124,19 +124,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
 
-
-
     private class StartGame implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
             Intent it = new Intent();
             it.setClass(MainActivity.this, GameActivity.class);
-            it.putExtra("id",_isid);
+            it.putExtra("id", _isid);
             it.putExtra("bmp", _bmp);
             startActivity(it);
         }
     }
+
     /**
      *
      */
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             _isid = true;
             _bmp = String.valueOf(_ia.getItemId(position));
-            GameData.set_imageid(position+"");
+            GameData.set_imageid(position + "");
             if (level_chosen) {
                 _startgame.setEnabled(true);
             }

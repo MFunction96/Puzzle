@@ -67,49 +67,49 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onRestart() {
         super.onRestart();
-            username.setText(GameData.get_curuser().get_username());
-            password.setText(GameData.get_curuser().get_password());
+        username.setText(GameData.get_curuser().get_username());
+        password.setText(GameData.get_curuser().get_password());
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_sign_in:
-               if(username.getText().toString().equals("")){
-                   Toast.makeText(this,"用户名不能为空",Toast.LENGTH_SHORT);
-               }else{
-                   ValidateUser();
-                   if (isValidated) {
-                       Cursor cursor = _db.query("PlayerInfo", null, "playername = ?",
-                               new String[]{_user.get_username()}, null, null, null);
-                       if (cursor.moveToFirst()) {
-                           do {
-                               _user.set_money(cursor.getInt(cursor.getColumnIndex("money")));
-                               _user.setRecord(cursor.getInt(cursor.getColumnIndex("last_record")));
-                               _user.set_best_record(cursor.getInt(cursor.getColumnIndex("best_record")));
-                           } while (cursor.moveToNext());
-                       }
-                       cursor.close();
-                       _user.set_isvalidate(true);
-                       GameData.set_curuser(_user);
-                       _editor = _pref.edit();
-                       if (remember.isChecked()) {
-                           _editor.putBoolean("remember_password", true);
-                           _editor.putString("username", username.getText().toString());
-                           _editor.putString("password", password.getText().toString());
-                       } else {
-                           _editor.clear();
-                           username.setText("");
-                           password.setText("");
-                       }
-                       _editor.apply();
-                       GameData.set_islogin(true);
-                       Intent intent1 = new Intent(this, PreloadActivity.class);
-                       startActivity(intent1);
-                   } else {
-                       Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
-                   }
-               }
+                if (username.getText().toString().equals("")) {
+                    Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT);
+                } else {
+                    ValidateUser();
+                    if (isValidated) {
+                        Cursor cursor = _db.query("PlayerInfo", null, "playername = ?",
+                                new String[]{_user.get_username()}, null, null, null);
+                        if (cursor.moveToFirst()) {
+                            do {
+                                _user.set_money(cursor.getInt(cursor.getColumnIndex("money")));
+                                _user.setRecord(cursor.getInt(cursor.getColumnIndex("last_record")));
+                                _user.set_best_record(cursor.getInt(cursor.getColumnIndex("best_record")));
+                            } while (cursor.moveToNext());
+                        }
+                        cursor.close();
+                        _user.set_isvalidate(true);
+                        GameData.set_curuser(_user);
+                        _editor = _pref.edit();
+                        if (remember.isChecked()) {
+                            _editor.putBoolean("remember_password", true);
+                            _editor.putString("username", username.getText().toString());
+                            _editor.putString("password", password.getText().toString());
+                        } else {
+                            _editor.clear();
+                            username.setText("");
+                            password.setText("");
+                        }
+                        _editor.apply();
+                        GameData.set_islogin(true);
+                        Intent intent1 = new Intent(this, PreloadActivity.class);
+                        startActivity(intent1);
+                    } else {
+                        Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
+                    }
+                }
                 break;
             case R.id.btn_sign_up:
                 Intent intent2 = new Intent(this, SignUp.class);

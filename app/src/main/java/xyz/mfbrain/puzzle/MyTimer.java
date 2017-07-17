@@ -24,7 +24,7 @@ public class MyTimer {
         _mtimertask.cancel();
     }
 
-  // 开始计时
+    // 开始计时
 
     public static void StartTimer(final Handler _mhandler) {
 
@@ -37,7 +37,7 @@ public class MyTimer {
             public void run() {
                 Message msg = new Message();
                 msg.what = 1;
-                 _mhandler.sendMessage(msg);
+                _mhandler.sendMessage(msg);
             }
         };
         // 每1000ms执行 延迟0s
