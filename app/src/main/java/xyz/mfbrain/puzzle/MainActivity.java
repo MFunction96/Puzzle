@@ -1,6 +1,7 @@
 package xyz.mfbrain.puzzle;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 
 /**
@@ -76,6 +78,15 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _level3 = (RadioButton) findViewById(R.id.hard);
         _gridview = (GridView) findViewById(R.id.gridview);
         _startgame = (Button) findViewById(R.id.startgame);
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        TextView textView = (TextView)findViewById(R.id.pickimg);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.pickdiff);
+        textView.setTypeface(typeFace);
+        _level1.setTypeface(typeFace);
+        _level2.setTypeface(typeFace);
+        _level3.setTypeface(typeFace);
+        _startgame.setTypeface(typeFace);
         level_chosen = false;
         _ia = new ImageAdapter(this);
         _bmp = "";

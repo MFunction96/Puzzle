@@ -1,14 +1,13 @@
 package xyz.mfbrain.puzzle;
 
-import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Message;
@@ -19,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -28,8 +26,6 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class AdventureMode extends AppCompatActivity implements Runnable {
     private int level = 0;//关卡数
@@ -156,7 +152,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                         bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
                         _imageView.setImageBitmap(bitmap);
                         chooselevel(rows, rows);
-                        step_left_num.setText(step_left + "");
+                        step_left_num.setText(String.valueOf(step_left));
                     }
                 });
             question.setNegativeButton("新游戏", new DialogInterface.OnClickListener() {
@@ -166,7 +162,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
                     _imageView.setImageBitmap(bitmap);
                     chooselevel(rows, rows);
-                    step_left_num.setText(step_left + "");
+                    step_left_num.setText(String.valueOf(step_left));
                 }
             });
             question.show();
@@ -176,7 +172,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
             _imageView.setImageBitmap(bitmap);
             chooselevel(rows, rows);
-            step_left_num.setText(step_left + "");
+            step_left_num.setText(String.valueOf(step_left));
         }
     }
 
@@ -246,9 +242,31 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         Timeleft=(TextView)findViewById(R.id.time_left);
 
         addtime=(Button)findViewById(R.id.addtime);
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        bestrecord.setTypeface(typeFace);
+        lastrecord.setTypeface(typeFace);
+        addstep_prop.setTypeface(typeFace);
+        hint_prop.setTypeface(typeFace);
+        restart_prop.setTypeface(typeFace);
+        Coin_num.setTypeface(typeFace);
+        step_left_num.setTypeface(typeFace);
+        Timeleft.setTypeface(typeFace);
+        addtime.setTypeface(typeFace);
 
+        TextView textview = (TextView) findViewById(R.id.textView2);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.bestrecordhint);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.lastestrecordhint);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.textView3);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.lefttimehint);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.second);
+        textview.setTypeface(typeFace);
         coin_num=0;
-        Timeleft.setText(timeleft+"");
+        Timeleft.setText(String.valueOf(timeleft));
 
         // 启用计时
         MyTimer.StartTimer(_mhandler);
@@ -263,7 +281,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
                 if(checkcoinnumber(3)) {
                     step_left = step_left + 5;
-                    step_left_num.setText(step_left + "");
+                    step_left_num.setText(String.valueOf(step_left));
                 }else
                 {
                     Toast.makeText(AdventureMode.this,"金币不足",Toast.LENGTH_SHORT).show();
@@ -276,7 +294,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             public void onClick(View v) {
                 if(checkcoinnumber(3)) {
                     timeleft=timeleft+10;
-                    Timeleft.setText(timeleft + "");
+                    Timeleft.setText(String.valueOf(timeleft));
                 }else
                 {
                     Toast.makeText(AdventureMode.this,"金币不足",Toast.LENGTH_SHORT).show();
@@ -293,7 +311,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         coin_num=coin_num+10;
-                        Coin_num.setText(coin_num+"");
+                        Coin_num.setText(String.valueOf(coin_num));
                     }
                 });
                 shop.show();
@@ -323,9 +341,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 _imageView.setImageBitmap(bitmap);
                 chooselevel(rows, rows);
                 step_left = step_origin;
-                step_left_num.setText(step_left + "");
+                step_left_num.setText(String.valueOf(step_left));
                 timeleft=time_origin;
-                Timeleft.setText(timeleft+"");
+                Timeleft.setText(String.valueOf(timeleft));
 
                 // 停止计时器
                 MyTimer.CancelTimer();
@@ -363,8 +381,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 TableRow.LayoutParams.WRAP_CONTENT);
         tlp.setMargins(3, 3, 0, 0);
         tlp.weight = 1;
-        int blockwidth = (int) (bitmap.getWidth() / cols);
-        int blockhight = (int) (bitmap.getHeight() / rows);
+        int blockwidth = bitmap.getWidth() / cols;
+        int blockhight = bitmap.getHeight() / rows;
         for (int i = 0; i < rows; i++) {
             final TableRow tableRow = new TableRow(this);
             final int imageid[][] = new int[rows][cols];
@@ -388,7 +406,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         } else if (id + 10 == position) {
                             int id2 = id + 10;
@@ -398,7 +416,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         } else if (id - 1 == position) {
                             int id2 = id - 1;
@@ -408,7 +426,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         } else if (id + 1 == position) {
                             int id2 = id + 1;
@@ -418,7 +436,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         }
                     }
@@ -427,7 +445,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 if (i == rows - 1 && j == cols - 1) {
                     curimg.setImageBitmap(null);
                 } else {
-                    curimg.setImageBitmap(bitmap.createBitmap(bitmap, blockwidth * j, blockhight * i, blockwidth, blockhight));
+                    curimg.setImageBitmap(Bitmap.createBitmap(bitmap, blockwidth * j, blockhight * i, blockwidth, blockhight));
                 }
                 tableRow.addView(curimg);
 
@@ -487,14 +505,12 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         //建立矩阵
         Matrix matrix = new Matrix();
         matrix.postScale(scalewidth, scalehight);
-        Bitmap newbitmap = bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-        return newbitmap;
+        return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
 
     }
 
     private Bitmap cutbitmap(Bitmap bitmap, int x, int y, int width, int height) {
-        Bitmap newbitmap = bitmap.createBitmap(bitmap, x, y, width, height);
-        return newbitmap;
+        return Bitmap.createBitmap(bitmap, x, y, width, height);
     }
 
     public void checkfinish() {
@@ -527,8 +543,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     // 启用计时
                     MyTimer.StartTimer(_mhandler);
 
-                    step_left_num.setText(step_left + "");
-                    Timeleft.setText(timeleft+"");
+                    step_left_num.setText(String.valueOf(step_left));
+                    Timeleft.setText(String.valueOf(timeleft));
                 }
             });
             dialog_over.setNegativeButton("退出", new DialogInterface.OnClickListener() {
@@ -612,8 +628,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
                 _imageView.setImageBitmap(bitmap);
                 chooselevel(rows, rows);
-                step_left_num.setText(step_left + "");
-                Timeleft.setText(timeleft+"");
+                step_left_num.setText(String.valueOf(step_left));
+                Timeleft.setText(String.valueOf(timeleft));
 
                 // 停止计时器
                 MyTimer.CancelTimer();
@@ -634,7 +650,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         dialog_next.setMessage("本关通过,奖励道具币"+award_coin+"枚");
         dialog_next.show();
         coin_num=coin_num+award_coin;
-        Coin_num.setText(coin_num+"");
+        Coin_num.setText(String.valueOf(coin_num));
         UpdateDataBase();
     }
     public void createdialog_finish(){
@@ -657,10 +673,10 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     }
 
     private void UpdateInfo() {
-        bestrecord.setText(GameData.get_curuser().get_best_record() + "");
-        lastrecord.setText(GameData.get_curuser().get_last_record() + "");
+        bestrecord.setText(String.valueOf(GameData.get_curuser().get_best_record()));
+        lastrecord.setText(String.valueOf(GameData.get_curuser().get_last_record()));
         coin_num=(GameData.get_curuser().get_money());
-        Coin_num.setText(coin_num+"");
+        Coin_num.setText(String.valueOf(coin_num));
     }
 
     private void UpdateDataBase(){
@@ -676,7 +692,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     public Boolean checkcoinnumber(int substract_coin){
         if(coin_num-substract_coin>=0){
             coin_num=coin_num-substract_coin;
-            Coin_num.setText(coin_num+"");
+            Coin_num.setText(String.valueOf(coin_num));
             return true;
         }
         return false;

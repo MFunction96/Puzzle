@@ -39,4 +39,10 @@
     <string name="addtime">增加时间</string>
     <string name="adventure">闯关拼</string>
     <string name="freedom">自由拼</string>
+    <string name="descriptions">游戏说明</string>
+    <string name="ok">确定</string>
+    <string name="introduce">介绍</string>
+    <string name="viewrank">查看排行榜</string>
+    <string name="entergame">进入游戏</string>
+    <string name="startfree">开拼</string>
 </resources>

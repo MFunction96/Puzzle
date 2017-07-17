@@ -12,8 +12,8 @@ public class GameData {
     private static String _imageid="0";
     private static int _gametype=1;
     private static int _gamedifficulty=2;
-    private static String _recordkeeper="noBody";
-    private static String _bestrecord="10000";
+    private static String _recordkeeper="-----";
+    private static String _bestrecord="-----";
     private static boolean _islogin=false;
 
     public static boolean get_islogin() {

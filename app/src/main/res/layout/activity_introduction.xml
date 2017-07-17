@@ -9,12 +9,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="-150dp"
-        android:text="进入游戏"/>
+        android:text="@string/entergame"/>
     <ImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/donghua"/>
+        android:background="@drawable/donghua"
+        android:contentDescription="@string/description" />
 
 
 </FrameLayout>

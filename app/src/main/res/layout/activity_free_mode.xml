@@ -55,7 +55,7 @@
         android:id="@+id/free_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开拼"
+        android:text="@string/startfree"
         android:layout_below="@+id/free_group"
         android:layout_centerHorizontal="true"
         style="@style/ButtonStyle"

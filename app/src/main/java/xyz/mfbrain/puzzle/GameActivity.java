@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,9 +20,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by MFunction on 2017/7/5.
@@ -135,6 +133,27 @@ public class GameActivity extends AppCompatActivity {
         // 启用计时
         MyTimer.StartTimer(_mhandler);
 
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        _hintbtn.setTypeface(typeFace);
+        _record.setTypeface(typeFace);
+        _recorder.setTypeface(typeFace);
+        _pausegame.setTypeface(typeFace);
+        _player.setTypeface(typeFace);
+        _backmenubtn.setTypeface(typeFace);
+        _restartbtn.setTypeface(typeFace);
+        _mtextviewtimer.setTypeface(typeFace);
+
+        TextView textView = (TextView) findViewById(R.id.recorderhint);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.recordhint);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.playerhint);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.timehint);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.secondhint);
+        textView.setTypeface(typeFace);
+
         _pausegame.setOnClickListener(new PauseGame());
         _hintbtn.setOnClickListener(new Hint());
         _restartbtn.setOnClickListener(new Restart());
@@ -152,19 +171,19 @@ public class GameActivity extends AppCompatActivity {
         }
 
         _gc = new GameController(this);
-        _gu = new ImageUtil(_tableLayout, this, _gc,this);
+        _gu = new ImageUtil(_tableLayout, this, _gc, this);
         _hp = new HelpClass(this, _gc);
         _gc.set_gu(_gu);
         _gc.initarraystep();
         _running = true;
         _player.setText(GameData.get_curuser().get_username());
-        if(GameData.get_gametype()!=3){
+        if (GameData.get_gametype() != 3) {
             ShowBestRecord();
         }
-        int i=GameData.get_gamedifficulty();
-        _bmp = _gu.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
-        _gu.fillGameZone(_bmp, GameData.get_gamedifficulty(),GameData.get_gamedifficulty());
-        _gc.randomtable(GameData.get_gamedifficulty(),GameData.get_gamedifficulty());
+        int i = GameData.get_gamedifficulty();
+        _bmp = ImageUtil.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
+        _gu.fillGameZone(_bmp, GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
+        _gc.randomtable(GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
         _imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
         _imageview.setAdjustViewBounds(true);
         _imageview.setMaxWidth(256);
@@ -173,6 +192,7 @@ public class GameActivity extends AppCompatActivity {
         _imageview.setImageBitmap(_bmp);
 
     }
+
     final TextView GetRecorder() {
         return _recorder;
     }
@@ -243,7 +263,7 @@ public class GameActivity extends AppCompatActivity {
         public void onClick(View v) {
             // 停止计时器
             MyTimer.CancelTimer();
-            _timerindex=0;
+            _timerindex = 0;
             // 启用计时
             MyTimer.StartTimer(_mhandler);
 
@@ -264,11 +284,11 @@ public class GameActivity extends AppCompatActivity {
             // 停止计时器
             Intent intent = new Intent();
             MyTimer.CancelTimer();
-            _timerindex=0;
-            if(GameData.get_gametype()!=3){
+            _timerindex = 0;
+            if (GameData.get_gametype() != 3) {
                 intent.setClass(GameActivity.this, MainActivity.class);
 
-            }else{
+            } else {
                 intent.setClass(GameActivity.this, FreeMode.class);
             }
 
@@ -287,7 +307,7 @@ public class GameActivity extends AppCompatActivity {
                 _pausegame.setText("开始游戏");
                 //暂停计时
                 MyTimer.CancelTimer();
-                _timerindex=0;
+                _timerindex = 0;
 
             } else {
                 _pausegame.setText("暂停游戏");
@@ -295,8 +315,8 @@ public class GameActivity extends AppCompatActivity {
                 MyTimer.StartTimer(_mhandler);
             }
             _running = !_running;
-            for (int i = 0; i <GameData.get_gamedifficulty(); i++) {
-                for (int j = 0; j <GameData.get_gamedifficulty(); j++) {
+            for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
+                for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
                     int id = i * 10 + j;
                     GetImageView(id).setClickable(_running);
                 }
@@ -333,7 +353,9 @@ public class GameActivity extends AppCompatActivity {
         _timerindex = 0;
     }
 
-    *//**
+    */
+
+    /**
      * 开始计时
      *//*
     public void StartTimer() {
@@ -353,7 +375,6 @@ public class GameActivity extends AppCompatActivity {
         // 每1000ms执行 延迟0s
         _mtimer.schedule(_mtimertask, 0, 1000);
     }*/
-
     public void SetTimerIndex(int t) {
         _timerindex = t;
     }
@@ -361,41 +382,42 @@ public class GameActivity extends AppCompatActivity {
     public int GetTimerIndex() {
         return _timerindex;
     }
+
     //帮助结束后，显示Dialog
-    public void ShowDialog(int step_number){
+    public void ShowDialog(int step_number) {
         //其中的帮助走的步数为stepnumber_help
-        if(GameData.get_gametype()==3){
-            MyDialog1 dialog1=new MyDialog1(GameActivity.this);
-            dialog1.initText("恭喜您，拼图已完成，一共用时"+(_timerindex-1)+" s");
+        if (GameData.get_gametype() == 3) {
+            MyDialog1 dialog1 = new MyDialog1(GameActivity.this);
+            dialog1.initText("恭喜您，拼图已完成，一共用时" + (_timerindex - 1) + " s");
             dialog1.show();
-        }else{
-            MyDialog2 dialog=new MyDialog2(GameActivity.this);
-            dialog.initText("恭喜您，拼图已完成，一共用时"+(_timerindex-1)+" s");
+        } else {
+            MyDialog2 dialog = new MyDialog2(GameActivity.this);
+            dialog.initText("恭喜您，拼图已完成，一共用时" + (_timerindex - 1) + " s");
             dialog.show();
         }
     }
 
-    public void ShowBestRecord(){
-        String name="";
-        String record="";
-        switch (GameData.get_gamedifficulty()){
+    public void ShowBestRecord() {
+        String name = "";
+        String record = "";
+        switch (GameData.get_gamedifficulty()) {
             case 2:
-                name="keeper1";
-                record="record1";
+                name = "keeper1";
+                record = "record1";
                 break;
             case 4:
-                name="keeper2";
-                record="record2";
+                name = "keeper2";
+                record = "record2";
                 break;
             case 5:
-                name="keeper3";
-                record="record3";
+                name = "keeper3";
+                record = "record3";
                 break;
         }
-        Cursor cursor=GameData.get_db().query("BestRecord",new String[]{name,record},"imageid=?",new String[]{GameData.get_imageid()},null,null,null);
-        if(cursor.moveToFirst()){
+        Cursor cursor = GameData.get_db().query("BestRecord", new String[]{name, record}, "imageid=?", new String[]{GameData.get_imageid()}, null, null, null);
+        if (cursor.moveToFirst()) {
             _recorder.setText(cursor.getString(cursor.getColumnIndex(name)));
-            _record.setText(cursor.getInt(cursor.getColumnIndex(record))+"");
+            _record.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex(record))));
         }
         cursor.close();
 
