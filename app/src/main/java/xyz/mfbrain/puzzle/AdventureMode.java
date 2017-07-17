@@ -1,14 +1,13 @@
 package xyz.mfbrain.puzzle;
 
-import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Message;
@@ -19,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -28,8 +26,6 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class AdventureMode extends AppCompatActivity implements Runnable {
     private int level = 0;//关卡数
@@ -42,11 +38,11 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
     private int coin_num;//剩余金币的数量
 
-    private int award_coin=2;//奖励金币的数量
+    private int award_coin = 2;//奖励金币的数量
 
-    private int timeleft=60;//剩余时间
+    private int timeleft = 60;//剩余时间
 
-    private int time_origin=60;//初始时间
+    private int time_origin = 60;//初始时间
 
     private ImageView _imageView;
 
@@ -98,6 +94,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             }
         }
     };
+
     public void SetTimerLeft(int t) {
         timeleft = t;
     }
@@ -132,7 +129,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
     int golbal_cols, golbal_rows;
     int array[][];
-    LinkedList<Idclass> TraceStack = new LinkedList<Idclass>();
+    LinkedList<Idclass> TraceStack = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +142,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
         _imageView.setImageBitmap(bitmap);
         chooselevel(rows, rows);
-        step_left_num.setText(step_left + "");
+        step_left_num.setText(String.valueOf(step_left));
     }
 
     private void init() {
@@ -161,9 +158,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
         hint_prop = (Button) findViewById(R.id.hint_prop);
 
-        Coin_num=(TextView)findViewById(R.id.coin_num);
+        Coin_num = (TextView) findViewById(R.id.coin_num);
 
-        addcoin=(Button)findViewById(R.id.addcoin);
+        addcoin = (Button) findViewById(R.id.addcoin);
 
         restart_prop = (Button) findViewById(R.id.restart_prop);
 
@@ -171,30 +168,50 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
         step_left_num = (TextView) findViewById(R.id.step_left_num);
 
-        Timeleft=(TextView)findViewById(R.id.time_left);
+        Timeleft = (TextView) findViewById(R.id.time_left);
 
-        addtime=(Button)findViewById(R.id.addtime);
+        addtime = (Button) findViewById(R.id.addtime);
 
-        coin_num=0;
-        Timeleft.setText(timeleft+"");
+        coin_num = 0;
+        Timeleft.setText(String.valueOf(timeleft));
 
         // 启用计时
         MyTimer.StartTimer(_mhandler);
 
         bitmap = BitmapFactory.decodeResource(getResources(), pictures[level]);
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        bestrecord.setTypeface(typeFace);
+        lastrecord.setTypeface(typeFace);
+        addstep_prop.setTypeface(typeFace);
+        hint_prop.setTypeface(typeFace);
+        restart_prop.setTypeface(typeFace);
+        Coin_num.setTypeface(typeFace);
+        step_left_num.setTypeface(typeFace);
+        Timeleft.setTypeface(typeFace);
+        addtime.setTypeface(typeFace);
 
-
+        TextView textview = (TextView) findViewById(R.id.textView2);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.bestrecordhint);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.lastestrecordhint);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.textView3);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.lefttimehint);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.second);
+        textview.setTypeface(typeFace);
 
         addstep_prop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(checkcoinnumber(3)) {
+                if (checkcoinnumber(3)) {
                     step_left = step_left + 5;
-                    step_left_num.setText(step_left + "");
-                }else
-                {
-                    Toast.makeText(AdventureMode.this,"金币不足",Toast.LENGTH_SHORT).show();
+                    step_left_num.setText(String.valueOf(step_left));
+                } else {
+                    Toast.makeText(AdventureMode.this, "金币不足", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -202,26 +219,25 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         addtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkcoinnumber(3)) {
-                    timeleft=timeleft+10;
-                    Timeleft.setText(timeleft + "");
-                }else
-                {
-                    Toast.makeText(AdventureMode.this,"金币不足",Toast.LENGTH_SHORT).show();
+                if (checkcoinnumber(3)) {
+                    timeleft = timeleft + 10;
+                    Timeleft.setText(String.valueOf(timeleft));
+                } else {
+                    Toast.makeText(AdventureMode.this, "金币不足", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         addcoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder shop=new AlertDialog.Builder(AdventureMode.this);
+                AlertDialog.Builder shop = new AlertDialog.Builder(AdventureMode.this);
                 shop.setTitle("金币商店");
                 shop.setMessage("增加10金币，需花费10元人民币");
                 shop.setPositiveButton("确定购买", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        coin_num=coin_num+10;
-                        Coin_num.setText(coin_num+"");
+                        coin_num = coin_num + 10;
+                        Coin_num.setText(String.valueOf(coin_num));
                     }
                 });
                 shop.show();
@@ -232,12 +248,11 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             @Override
             public void onClick(View v) {
 
-                if(checkcoinnumber(20)) {
+                if (checkcoinnumber(20)) {
                     Thread thread = new Thread(AdventureMode.this);
                     thread.start();
-                }else
-                {
-                    Toast.makeText(AdventureMode.this,"金币不足",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AdventureMode.this, "金币不足", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -251,9 +266,9 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 _imageView.setImageBitmap(bitmap);
                 chooselevel(rows, rows);
                 step_left = step_origin;
-                step_left_num.setText(step_left + "");
-                timeleft=time_origin;
-                Timeleft.setText(timeleft+"");
+                step_left_num.setText(String.valueOf(step_left));
+                timeleft = time_origin;
+                Timeleft.setText(String.valueOf(timeleft));
 
                 // 停止计时器
                 MyTimer.CancelTimer();
@@ -291,8 +306,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 TableRow.LayoutParams.WRAP_CONTENT);
         tlp.setMargins(3, 3, 0, 0);
         tlp.weight = 1;
-        int blockwidth = (int) (bitmap.getWidth() / cols);
-        int blockhight = (int) (bitmap.getHeight() / rows);
+        int blockwidth = bitmap.getWidth() / cols;
+        int blockhight = bitmap.getHeight() / rows;
         for (int i = 0; i < rows; i++) {
             final TableRow tableRow = new TableRow(this);
             final int imageid[][] = new int[rows][cols];
@@ -316,7 +331,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         } else if (id + 10 == position) {
                             int id2 = id + 10;
@@ -326,7 +341,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         } else if (id - 1 == position) {
                             int id2 = id - 1;
@@ -336,7 +351,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         } else if (id + 1 == position) {
                             int id2 = id + 1;
@@ -346,7 +361,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                             idclass1.id2 = id;
                             TraceStack.push(idclass1);
                             step_left--;
-                            step_left_num.setText(step_left + "");
+                            step_left_num.setText(String.valueOf(step_left));
                             checkfinish();
                         }
                     }
@@ -355,7 +370,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 if (i == rows - 1 && j == cols - 1) {
                     curimg.setImageBitmap(null);
                 } else {
-                    curimg.setImageBitmap(bitmap.createBitmap(bitmap, blockwidth * j, blockhight * i, blockwidth, blockhight));
+                    curimg.setImageBitmap(Bitmap.createBitmap(bitmap, blockwidth * j, blockhight * i, blockwidth, blockhight));
                 }
                 tableRow.addView(curimg);
 
@@ -415,14 +430,12 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         //建立矩阵
         Matrix matrix = new Matrix();
         matrix.postScale(scalewidth, scalehight);
-        Bitmap newbitmap = bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-        return newbitmap;
+        return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
 
     }
 
     private Bitmap cutbitmap(Bitmap bitmap, int x, int y, int width, int height) {
-        Bitmap newbitmap = bitmap.createBitmap(bitmap, x, y, width, height);
-        return newbitmap;
+        return Bitmap.createBitmap(bitmap, x, y, width, height);
     }
 
     public void checkfinish() {
@@ -434,7 +447,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 }
             }
         }
-        if (step_left == 0||timeleft<=0) {
+        if (step_left == 0 || timeleft <= 0) {
             AlertDialog.Builder dialog_over = new AlertDialog.Builder(AdventureMode.this);
             dialog_over.setTitle("游戏提示");
             dialog_over.setMessage("游戏结束");
@@ -448,15 +461,15 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     _imageView.setImageBitmap(bitmap);
                     chooselevel(rows, rows);
                     step_left = step_origin;
-                    timeleft=time_origin;
+                    timeleft = time_origin;
 
                     //取消计时
                     MyTimer.CancelTimer();
                     // 启用计时
                     MyTimer.StartTimer(_mhandler);
 
-                    step_left_num.setText(step_left + "");
-                    Timeleft.setText(timeleft+"");
+                    step_left_num.setText(String.valueOf(step_left));
+                    Timeleft.setText(String.valueOf(timeleft));
                 }
             });
             dialog_over.setNegativeButton("退出", new DialogInterface.OnClickListener() {
@@ -475,7 +488,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         }
 
         if (isfinished) {
-           UpdateDataBase();
+            UpdateDataBase();
 
             //取消计时
             MyTimer.CancelTimer();
@@ -524,15 +537,13 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 if (level == 1 || level == 3) {
                     rows++;
                     step_origin = step_origin + 20;
-                    time_origin=time_origin+60;
-                    award_coin=award_coin+5;
-                }
-                else {
-                    award_coin=award_coin+2;
+                    time_origin = time_origin + 60;
+                    award_coin = award_coin + 5;
+                } else {
+                    award_coin = award_coin + 2;
                 }
                 step_left = step_origin;
-                timeleft=time_origin;
-
+                timeleft = time_origin;
 
 
                 level++;
@@ -541,8 +552,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 bitmap = zoombitmap(bitmap, screenwidth, screenwidth);
                 _imageView.setImageBitmap(bitmap);
                 chooselevel(rows, rows);
-                step_left_num.setText(step_left + "");
-                Timeleft.setText(timeleft+"");
+                step_left_num.setText(String.valueOf(step_left));
+                Timeleft.setText(String.valueOf(timeleft));
 
                 // 停止计时器
                 MyTimer.CancelTimer();
@@ -560,12 +571,13 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 MyTimer.CancelTimer();
             }
         });
-        dialog_next.setMessage("本关通过,奖励道具币"+award_coin+"枚");
+        dialog_next.setMessage("本关通过,奖励道具币" + award_coin + "枚");
         dialog_next.show();
-        coin_num=coin_num+award_coin;
-        Coin_num.setText(coin_num+"");
+        coin_num = coin_num + award_coin;
+        Coin_num.setText(String.valueOf(coin_num));
     }
-    public void createdialog_finish(){
+
+    public void createdialog_finish() {
         AlertDialog.Builder dialog_next = new AlertDialog.Builder(AdventureMode.this);
         dialog_next.setTitle("游戏提示");
         dialog_next.setMessage("恭喜你，现已通关");
@@ -585,26 +597,27 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     }
 
     private void UpdateInfo() {
-        bestrecord.setText(GameData.get_curuser().get_best_record() + "");
-        lastrecord.setText(GameData.get_curuser().get_last_record() + "");
-        coin_num=(GameData.get_curuser().get_money());
-        Coin_num.setText(coin_num+"");
+        bestrecord.setText(String.valueOf(GameData.get_curuser().get_best_record()));
+        lastrecord.setText(String.valueOf(GameData.get_curuser().get_last_record()));
+        coin_num = (GameData.get_curuser().get_money());
+        Coin_num.setText(String.valueOf(coin_num));
     }
 
-    private void UpdateDataBase(){
+    private void UpdateDataBase() {
         SQLiteDatabase db = GameData.get_db();
         ContentValues values = new ContentValues();
         GameData.get_curuser().setAdRecord(level + 1);
         values.put("last_record", GameData.get_curuser().get_last_record());
         values.put("best_record", GameData.get_curuser().get_best_record());
-        values.put("money",coin_num);
+        values.put("money", coin_num);
         db.update("PlayerInfo", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
         values.clear();
     }
-    public Boolean checkcoinnumber(int substract_coin){
-        if(coin_num-substract_coin>=0){
-            coin_num=coin_num-substract_coin;
-            Coin_num.setText(coin_num+"");
+
+    public Boolean checkcoinnumber(int substract_coin) {
+        if (coin_num - substract_coin >= 0) {
+            coin_num = coin_num - substract_coin;
+            Coin_num.setText(String.valueOf(coin_num));
             return true;
         }
         return false;

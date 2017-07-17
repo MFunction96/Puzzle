@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GameLogin extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
@@ -39,8 +41,16 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
         btn_sign_up = (Button) findViewById(R.id.btn_sign_up);
         btn_sign_up.setOnClickListener(this);
         remember = (CheckBox) findViewById(R.id.cb_remember);
-
-
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        username.setTypeface(typeFace);
+        password.setTypeface(typeFace);
+        btn_sign_in.setTypeface(typeFace);
+        btn_sign_up.setTypeface(typeFace);
+        remember.setTypeface(typeFace);
+        TextView textview = (TextView) findViewById(R.id.userhint);
+        textview.setTypeface(typeFace);
+        textview = (TextView) findViewById(R.id.pwdhint);
+        textview.setTypeface(typeFace);
         _pref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isRemember = _pref.getBoolean("remember_password", false);
         if (isRemember) {
