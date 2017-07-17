@@ -19,7 +19,7 @@ import android.widget.TableRow;
  * Created by Chris Young on 2017/7/6.
  */
 
-public class GameUtil {
+public class ImageUtil {
     /**
      * GameView中的游戏区域（表格布局）
      */
@@ -42,7 +42,7 @@ public class GameUtil {
 
     private int Step_Player = 0;//玩家移动的步数
 
-    GameUtil(TableLayout tl, Context c, GameController gameController,GameActivity gameActivity) {
+    ImageUtil(TableLayout tl, Context c, GameController gameController, GameActivity gameActivity) {
         tableLayout = tl;
         context = c;
         _gc = gameController;
