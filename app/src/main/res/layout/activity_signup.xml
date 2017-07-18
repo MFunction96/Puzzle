@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background5"
+    android:background="@drawable/backlogin"
     android:orientation="vertical"
     android:paddingBottom="150dip"
     android:paddingLeft="20dip"
@@ -16,10 +16,10 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="5"
-        android:background="@mipmap/icon"
         android:layout_marginLeft="80dip"
         android:layout_marginRight="80dip"
+        android:layout_weight="5"
+        android:background="@mipmap/icon1"
         android:contentDescription="@string/description" />
 
     <TableLayout
@@ -123,8 +123,8 @@
         android:layout_marginLeft="100dip"
         android:layout_marginRight="100dip"
         android:layout_weight="1"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/register" />
+        android:background="@mipmap/signin"
+        android:gravity="center_horizontal|center_vertical" />
 
 
 </LinearLayout>

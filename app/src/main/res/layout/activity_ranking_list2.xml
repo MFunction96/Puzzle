@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background6"
+    android:background="@drawable/backgroundrank"
     android:orientation="vertical"
     android:paddingBottom="20dip"
     android:paddingLeft="20dip"
@@ -139,6 +139,6 @@
         android:layout_height="0dip"
         android:layout_marginTop="10dip"
         android:layout_weight="1"
-        android:text="@string/backmain" />
+        android:background="@mipmap/back" />
 
 </LinearLayout>

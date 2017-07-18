@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background6"
+    android:background="@drawable/gamebackgroungd1"
     android:orientation="vertical"
     android:paddingBottom="20dip"
     android:paddingLeft="20dip"
@@ -98,12 +98,13 @@
         android:layout_height="0dp"
         android:layout_weight="5"/>
 </LinearLayout>
+
     <Button
         android:id="@+id/startgame"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/startgame" />
+        android:background="@mipmap/startgame" />
 </LinearLayout>
 

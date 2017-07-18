@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background5"
+    android:background="@drawable/menu"
     android:orientation="vertical"
     android:paddingBottom="60dip"
     android:paddingLeft="20dip"
@@ -22,12 +22,18 @@
         tools:ignore="RtlHardcoded">
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
             android:id="@+id/btn_reg"
             style="@style/ButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:text="@string/login"
             tools:ignore="NestedWeights,RtlHardcoded" />
 
@@ -37,7 +43,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/about" />
+            android:background="@mipmap/adbtn" />
     </LinearLayout>
 
     <TextView
@@ -46,7 +52,6 @@
         android:layout_height="0dip"
         android:layout_weight="6"
         android:gravity="center"
-        android:text="@string/app_name"
         android:textSize="50sp" />
 
 
@@ -65,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:text="@string/adventure"
+            android:background="@mipmap/adbtn"
             tools:ignore="NestedWeights" />
 
         <Button
@@ -74,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:text="@string/challenge" />
+            android:background="@mipmap/challengebtn" />
 
         <Button
             android:id="@+id/free"
@@ -82,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:text="@string/freedom" />
+            android:background="@mipmap/freebtn" />
 
         <Button
             android:id="@+id/ranklist"
@@ -90,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:text="@string/ranklist" />
+            android:background="@mipmap/ranklistbtn" />
 
     </LinearLayout>
 

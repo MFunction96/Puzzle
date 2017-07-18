@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background5"
+    android:background="@drawable/gamebackgroungd"
     android:keepScreenOn="true"
     android:orientation="vertical"
     android:paddingBottom="40dip"
@@ -237,8 +237,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button1"
-            android:text="@string/addstep"
+            android:background="@mipmap/add_step"
             android:textSize="14sp"
             tools:ignore="NestedWeights" />
 
@@ -248,8 +247,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button2"
-            android:text="@string/addtime"
+            android:background="@mipmap/addtimebtn"
             android:textSize="14sp"
             tools:ignore="NestedWeights" />
 
@@ -259,9 +257,8 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button3"
+            android:background="@mipmap/aihelp"
             android:gravity="center"
-            android:text="@string/hint"
             android:textSize="14sp" />
 
         <Button
@@ -270,8 +267,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/button5"
-            android:text="@string/restart"
+            android:background="@mipmap/restartbtn"
             android:textSize="14sp" />
 
     </LinearLayout>

@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background5"
+    android:background="@drawable/gamebackgroungd"
     android:keepScreenOn="true"
     android:orientation="vertical"
     android:paddingBottom="20dip"
@@ -184,7 +184,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/pause"
+            android:background="@mipmap/pause"
             tools:ignore="NestedWeights" />
 
         <Button
@@ -193,8 +193,8 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/hint" />
+            android:background="@mipmap/aihelp"
+            android:gravity="center" />
 
         <Button
             android:id="@+id/restart"
@@ -202,7 +202,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/restart" />
+            android:background="@mipmap/restartbtn" />
 
         <Button
             android:id="@+id/backmenu"
@@ -210,7 +210,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/backmenu" />
+            android:background="@mipmap/back" />
     </LinearLayout>
 
 
