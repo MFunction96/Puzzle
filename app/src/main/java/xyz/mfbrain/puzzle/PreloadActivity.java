@@ -202,7 +202,6 @@ public class PreloadActivity extends AppCompatActivity {
             _ranklist.setVisibility(View.VISIBLE);
             _free.setVisibility(View.VISIBLE);
             _login.setText("欢迎" + GameData.get_curuser().get_username() + "!");
-            _login.setEnabled(false);
             _login.setBackgroundColor(0xebebe3);
         } else {
             _login.setText("登录");

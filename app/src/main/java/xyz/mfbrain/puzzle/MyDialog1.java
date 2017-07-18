@@ -3,6 +3,7 @@ package xyz.mfbrain.puzzle;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -82,6 +83,10 @@ public class MyDialog1 extends Dialog {
 
         TextView textView = (TextView) dialogView.findViewById(R.id.tv_intro);
         textView.setText(message);
-
+        Typeface typeFace = Typeface.createFromAsset(context.getAssets(), "fonts/fzstk.ttf");
+        bt_sure.setTypeface(typeFace);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.diatitle);
+        textView.setTypeface(typeFace);
     }
 }

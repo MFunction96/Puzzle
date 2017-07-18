@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -76,5 +77,11 @@ public class MyDialog2 extends Dialog {
                 context.startActivity(intent);
             }
         });
+        Typeface typeFace = Typeface.createFromAsset(context.getAssets(), "fonts/fzstk.ttf");
+        bt_sure.setTypeface(typeFace);
+        btn_list.setTypeface(typeFace);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.dialogtitle);
+        textView.setTypeface(typeFace);
     }
 }

@@ -1,6 +1,7 @@
 package xyz.mfbrain.puzzle;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +36,7 @@ public class RankListAdapter extends ArrayAdapter<Users> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Users _player = getItem(position);
         View _view;
+        Typeface typeFace = Typeface.createFromAsset(_context.getAssets(), "fonts/fzstk.ttf");
         if (_player.get_id() < 4) {
             _view = LayoutInflater.from(_context).inflate(R.layout.list_layout2, parent, false);
             ImageView _image = (ImageView) _view.findViewById(R.id.list_image);
@@ -42,7 +44,9 @@ public class RankListAdapter extends ArrayAdapter<Users> {
             TextView _name2 = (TextView) _view.findViewById(R.id.list_name2);
             TextView _record2 = (TextView) _view.findViewById(R.id.list_record2);
             _name2.setText(_player.get_username());
-            _record2.setText(_player.get_last_record() + "");
+            _record2.setText(String.valueOf(_player.get_last_record()));
+            _name2.setTypeface(typeFace);
+            _record2.setTypeface(typeFace);
         } else {
             _view = LayoutInflater.from(_context).inflate(R.layout.list_layout, parent, false);
             TextView _name = (TextView) _view.findViewById(R.id.list_name);
@@ -53,9 +57,12 @@ public class RankListAdapter extends ArrayAdapter<Users> {
                 _name.setTextColor(_context.getResources().getColor(R.color.qianhong));
                 _record.setTextColor(_context.getResources().getColor(R.color.qianhong));
             }
-            _num.setText(_player.get_id() + "");
+            _name.setTypeface(typeFace);
+            _record.setTypeface(typeFace);
+            _num.setTypeface(typeFace);
+            _num.setText(String.valueOf(_player.get_id()));
             _name.setText(_player.get_username());
-            _record.setText(_player.get_last_record() + "");
+            _record.setText(String.valueOf(_player.get_last_record()));
         }
         return _view;
     }

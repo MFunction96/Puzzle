@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/AppTheme"
     android:layout_width="match_parent"
@@ -13,101 +12,100 @@
     android:paddingTop="20dip"
     android:stretchColumns="*"
     tools:context="xyz.mfbrain.puzzle.RankingList">
-
-
-    <TableLayout
+    <TextView
+        android:id="@+id/rank1title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start">
-
-        <TableRow>
-
+        android:layout_height="0dip"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/rank"
+        android:textSize="28sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/challenge_image"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/description"
+            android:gravity="center"
+            tools:ignore="NestedWeights" />
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
             <TextView
+                android:id="@+id/rank1diff"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dip"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="排行榜"
-                android:textColor="#ffff"
-                android:textSize="28sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="挑战图片"
+                android:gravity="center"
+                android:text="@string/difficult"
                 android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/challenge_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/checkbox_off_background" />
-
-            <TextView
-                android:layout_weight="1"
-                android:text="挑战难度："
-                android:textSize="20sp" />
-
             <TextView
                 android:id="@+id/challenge_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
                 android:layout_weight="1"
-                android:text="3*3"
+                android:gravity="center"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="11">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/rank1rank"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/ranking"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/rank1ranking"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="@string/users"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/rank1rec"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/records"
                 android:textSize="20sp" />
         </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="名次"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="玩家姓名"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="记录"
-                android:textSize="20sp" />
-        </TableRow>
-
-        <TableRow>
-
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="13">
             <ListView
                 android:id="@+id/rankllist"
                 style="@style/Widget.AppCompat.ListView"
                 android:layout_width="match_parent"
                 android:layout_weight="1" />
         </TableRow>
-
-
     </TableLayout>
-
     <Button
         android:id="@+id/btn_return"
         style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginTop="10dip"
         android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:text="返回主菜单"
-        android:textSize="20sp" />
-
-
-</RelativeLayout>
+        android:text="@string/backmain" />
+</LinearLayout>

@@ -51,4 +51,5 @@
     <string name="ranking">排名</string>
     <string name="users">玩家</string>
     <string name="records">记录</string>
+    <string name="difficult">挑战难度</string>
 </resources>
