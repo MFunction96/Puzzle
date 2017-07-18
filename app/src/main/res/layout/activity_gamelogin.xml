@@ -6,17 +6,26 @@
     android:layout_height="match_parent"
     android:background="@drawable/background5"
     android:orientation="vertical"
-    android:paddingBottom="380dip"
+    android:paddingBottom="150dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
-    android:paddingTop="20dip"
+    android:paddingTop="80dip"
     android:stretchColumns="*"
     tools:context="xyz.mfbrain.puzzle.GameLogin">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="5"
+        android:background="@mipmap/icon"
+        android:layout_marginLeft="80dip"
+        android:layout_marginRight="80dip"
+        android:contentDescription="@string/description" />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:paddingTop="10dip">
 
         <TableRow
