@@ -1,16 +1,20 @@
 package xyz.mfbrain.puzzle;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private Button _startgame;
     private boolean _isid;
     private String _bmp;
+    private ImageView imageView;
     /**
      * 检测是否已经选择难度
      */
@@ -54,12 +59,30 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         Init();
-        _gridview.setAdapter(_ia);
+        setGridview();
         _gridview.setOnItemClickListener(new ItemClickListener());
         _levelgroup.setOnCheckedChangeListener(this);
         _startgame.setOnClickListener(new StartGame());
         _startgame.setEnabled(false);
         Music.play(this, R.raw.background, true);
+    }
+
+    private void setGridview() {
+        int size=_ia.getCount();
+        int length=100;
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        float density = dm.density;
+        int gridviewWidth = (int) (size * (length + 4) * density);
+        int itemWidth = (int) (length * density);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                gridviewWidth, LinearLayout.LayoutParams.MATCH_PARENT);
+        _gridview.setLayoutParams(params); // 设置GirdView布局参数,横向布局的关键
+        _gridview.setColumnWidth(itemWidth); // 设置列表项宽
+        _gridview.setHorizontalSpacing(5); // 设置列表项水平间距
+        _gridview.setStretchMode(GridView.NO_STRETCH);
+        _gridview.setNumColumns(size); // 设置列数量=列表集合数
+        _gridview.setAdapter(_ia);
     }
 
     @Override
@@ -145,6 +168,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             _isid = true;
             _bmp = String.valueOf(_ia.getItemId(position));
+            imageView=(ImageView)findViewById(R.id.image_bottom);
+            imageView.setImageBitmap((Bitmap)_ia.getItem(position));
             GameData.set_imageid(position + "");
             if (level_chosen) {
                 _startgame.setEnabled(true);
