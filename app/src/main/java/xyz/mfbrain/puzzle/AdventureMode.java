@@ -90,6 +90,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     // 更新计时器
                     Timeleft.setText(String.valueOf(timeleft));
                     timeleft--;
+                    checkfinish();
                     break;
                 default:
                     break;
@@ -523,6 +524,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             dialog_over.setTitle("游戏提示");
             dialog_over.setMessage("游戏结束");
             dialog_over.setCancelable(false);
+            //取消计时
+            MyTimer.CancelTimer();
             dialog_over.setPositiveButton("重新开始", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -534,8 +537,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     step_left = step_origin;
                     timeleft = time_origin;
 
-                    //取消计时
-                    MyTimer.CancelTimer();
+
                     // 启用计时
                     MyTimer.StartTimer(_mhandler);
 
