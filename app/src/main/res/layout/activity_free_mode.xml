@@ -1,66 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background6"
     android:orientation="vertical"
-    android:paddingBottom="20dip"
-    android:paddingLeft="20dip"
-    android:paddingRight="20dip"
-    android:paddingTop="20dip"
+    android:paddingBottom="180dip"
+    android:paddingLeft="100dip"
+    android:paddingRight="100dip"
+    android:paddingTop="80dip"
     android:stretchColumns="*"
     tools:context="xyz.mfbrain.puzzle.FreeMode">
 
 
     <ImageView
         android:id="@+id/free_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="167dp"
-        android:background="@mipmap/addcoin" />
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="5"
+        android:background="@mipmap/addcoin"
+        android:contentDescription="@string/description" />
 
     <RadioGroup
         android:id="@+id/free_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/free_image"
-        android:layout_marginEnd="113dp"
-        android:layout_marginRight="113dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginTop="40dip"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/free_level1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/level1" />
 
         <RadioButton
             android:id="@+id/free_level2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/level2" />
 
         <RadioButton
             android:id="@+id/free_level3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/level3" />
     </RadioGroup>
 
     <Button
         android:id="@+id/free_btn"
         style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/free_group"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginTop="20dip"
+        android:layout_weight="1"
         android:text="@string/startfree" />
-</RelativeLayout>
+</LinearLayout>
