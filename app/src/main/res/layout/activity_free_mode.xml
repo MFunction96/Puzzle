@@ -7,9 +7,9 @@
     android:background="@drawable/background6"
     android:orientation="vertical"
     android:paddingBottom="180dip"
-    android:paddingLeft="100dip"
-    android:paddingRight="100dip"
-    android:paddingTop="80dip"
+    android:paddingLeft="90dip"
+    android:paddingRight="90dip"
+    android:paddingTop="100dip"
     android:stretchColumns="*"
     tools:context="xyz.mfbrain.puzzle.FreeMode">
 

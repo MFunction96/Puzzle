@@ -3,6 +3,7 @@ package xyz.mfbrain.puzzle;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -62,6 +64,21 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
         _gd = (GridView) findViewById(R.id.list2_grid);
         _gd.setAdapter(_imageAdapter);
         _gd.setOnItemClickListener(this);
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
+        _btn_return.setTypeface(typeFace);
+        _level1.setTypeface(typeFace);
+        _level2.setTypeface(typeFace);
+        _level3.setTypeface(typeFace);
+        TextView textView = (TextView) findViewById(R.id.rank2title);
+        textView.setTypeface(typeFace);
+        textView = (TextView)findViewById(R.id.rank2playerlist);
+        textView.setTypeface(typeFace);
+        textView = (TextView)findViewById(R.id.rank2ranklist);
+        textView.setTypeface(typeFace);
+        textView = (TextView)findViewById(R.id.rank2reclist);
+        textView.setTypeface(typeFace);
+        textView = (TextView) findViewById(R.id.rank2tip);
+        textView.setTypeface(typeFace);
     }
 
     @Override
