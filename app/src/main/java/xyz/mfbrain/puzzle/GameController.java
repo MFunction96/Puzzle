@@ -36,6 +36,7 @@ class GameController {
 
     private int _gameType;
     private boolean _hasplayed;
+    private MyApplication _map;
 
     public int GetPosition() {
         return _position;
@@ -43,14 +44,17 @@ class GameController {
 
     GameController(AppCompatActivity appCompatActivity) {
         _pa = appCompatActivity;
-        _gameType = GameData.get_gametype();
+        _map=(MyApplication)_pa.getApplication();
+        _gameType = _map.get_gametype();
         _hasplayed = false;
     }
 
     GameController(GameActivity gameActivity) {
         _ga = gameActivity;
-        _gameType = GameData.get_gametype();
+        _map=(MyApplication)_ga.getApplication();
+        _gameType = _map.get_gametype();
         _hasplayed = false;
+
     }
 
     public void set_gu(ImageUtil imageUtil) {
@@ -81,8 +85,8 @@ class GameController {
 
     public void initarraystep() {
         int rows, columns;
-        rows = GameData.get_gamedifficulty();
-        columns = GameData.get_gamedifficulty();
+        rows = _map.get_gamedifficulty();
+        columns = _map.get_gamedifficulty();
         arraystep = new int[rows][columns];
         for (int m = 0; m < rows; m++) {
             for (int n = 0; n < columns; n++) {
@@ -116,25 +120,25 @@ class GameController {
 
     public void checkfinish() {
         boolean isfinished = true;
-        for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
-            for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
+        for (int i = 0; i < _map.get_gamedifficulty(); i++) {
+            for (int j = 0; j < _map.get_gamedifficulty(); j++) {
                 if (arraystep[i][j] != i * 10 + j) {
                     isfinished = false;
                 }
             }
         }
         if (isfinished) {
-            SQLiteDatabase _db = GameData.get_db();
+            SQLiteDatabase _db = _map.get_db();
             ContentValues values = new ContentValues();
-            GameData.get_curuser().setRecord(_ga.GetTimerIndex() - 1);
+            _map.get_curuser().setRecord(_ga.GetTimerIndex() - 1);
             _ga.ShowDialog(_gu.GetStep_Player());
             if (_gameType == 1) {
                 //查询数据库
-//                Cursor cursor = _db.query("RankingList", new String[]{"playername", "imageid"}, "imageid=? and playername=?", new String[]{GameData.get_imageid(), GameData.get_curuser().get_username()}, null, null, null);
+//                Cursor cursor = _db.query("RankingList", new String[]{"playername", "imageid"}, "imageid=? and playername=?", new String[]{_map.get_imageid(), _map.get_curuser().get_username()}, null, null, null);
 //                if (cursor.moveToFirst()) {
 //                    do {
 //                        String n = cursor.getString(cursor.getColumnIndex("playername"));
-//                        if (n.equals(GameData.get_curuser().get_username())) {
+//                        if (n.equals(_map.get_curuser().get_username())) {
 //                            _hasplayed = true;
 //                            break;
 //                        }
@@ -142,40 +146,40 @@ class GameController {
 //                }
 //                cursor.close();
 //                if (_hasplayed) {
-//                    switch (GameData.get_gamedifficulty()) {
+//                    switch (_map.get_gamedifficulty()) {
 //                        case 2:
-//                            values.put("record1", GameData.get_curuser().get_last_record());
+//                            values.put("record1", _map.get_curuser().get_last_record());
 //                            break;
 //                        case 4:
-//                            values.put("record2", GameData.get_curuser().get_last_record());
+//                            values.put("record2", _map.get_curuser().get_last_record());
 //                            break;
 //                        case 5:
-//                            values.put("record3", GameData.get_curuser().get_last_record());
+//                            values.put("record3", _map.get_curuser().get_last_record());
 //                            break;
 //                    }
-//                   // _db.update("RankingList", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
+//                   // _db.update("RankingList", values, "playername=?", new String[]{_map.get_curuser().get_username()});
 //
 //                } else
                 {
-                    values.put("imageid", GameData.get_imageid());
-                    values.put("playername", GameData.get_curuser().get_username());
-                    switch (GameData.get_gamedifficulty()) {
+                    values.put("imageid", _map.get_imageid());
+                    values.put("playername", _map.get_curuser().get_username());
+                    switch (_map.get_gamedifficulty()) {
                         case 2:
-                            values.put("record1", GameData.get_curuser().get_last_record());
+                            values.put("record1", _map.get_curuser().get_last_record());
                             break;
                         case 4:
-                            values.put("record2", GameData.get_curuser().get_last_record());
+                            values.put("record2", _map.get_curuser().get_last_record());
                             break;
                         case 5:
-                            values.put("record3", GameData.get_curuser().get_last_record());
+                            values.put("record3", _map.get_curuser().get_last_record());
                             break;
                     }
                     _db.insert("RankingList", null, values);
                 }
             } else if (_gameType == 2) {
-                values.put("last_record", GameData.get_curuser().get_last_record());
-                values.put("best_record", GameData.get_curuser().get_best_record());
-                _db.update("PlayerInfo", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
+                values.put("last_record", _map.get_curuser().get_last_record());
+                values.put("best_record", _map.get_curuser().get_best_record());
+                _db.update("PlayerInfo", values, "playername=?", new String[]{_map.get_curuser().get_username()});
 
             }
             values.clear();

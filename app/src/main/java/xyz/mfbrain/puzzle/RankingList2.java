@@ -3,7 +3,6 @@ package xyz.mfbrain.puzzle;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Typeface;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,14 +13,13 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RankingList2 extends AppCompatActivity implements AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
+   private MyApplication _map;
     private ImageAdapter _imageAdapter;
 
     private ListView _listView;
@@ -47,12 +45,13 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_list2);
-        init();
+        Init();
     }
 
-    private void init() {
+    private void Init() {
+        _map=(MyApplication) this.getApplication();
         _playersList = new ArrayList<>();
-        _imageAdapter = new ImageAdapter(this);
+        _imageAdapter = _map.get_imageAdapter();
         _rg = (RadioGroup) findViewById(R.id.difgroup);
         _rg.setOnCheckedChangeListener(this);
         _btn_return = (Button) findViewById(R.id.list2_btn);
@@ -64,26 +63,11 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
         _gd = (GridView) findViewById(R.id.list2_grid);
         _gd.setAdapter(_imageAdapter);
         _gd.setOnItemClickListener(this);
-        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
-        _btn_return.setTypeface(typeFace);
-        _level1.setTypeface(typeFace);
-        _level2.setTypeface(typeFace);
-        _level3.setTypeface(typeFace);
-        TextView textView = (TextView) findViewById(R.id.rank2title);
-        textView.setTypeface(typeFace);
-        textView = (TextView)findViewById(R.id.rank2playerlist);
-        textView.setTypeface(typeFace);
-        textView = (TextView)findViewById(R.id.rank2ranklist);
-        textView.setTypeface(typeFace);
-        textView = (TextView)findViewById(R.id.rank2reclist);
-        textView.setTypeface(typeFace);
-        textView = (TextView) findViewById(R.id.rank2tip);
-        textView.setTypeface(typeFace);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        GameData.set_imageid(position + "");
+        _map.set_imageid(position + "");
         _imagehaschosen = true;
         if (_isdifficultyhaschosen) {
             ShowRankingList();
@@ -93,11 +77,11 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         if (checkedId == _level1.getId()) {
-            GameData.set_gamedifficulty(2);
+            _map.set_gamedifficulty(2);
         } else if (checkedId == _level2.getId()) {
-            GameData.set_gamedifficulty(4);
+            _map.set_gamedifficulty(4);
         } else if (checkedId == _level3.getId()) {
-            GameData.set_gamedifficulty(5);
+            _map.set_gamedifficulty(5);
         }
         _isdifficultyhaschosen = true;
         ShowRankingList();
@@ -105,10 +89,10 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
 
     private void InitPlayerList() {
         _playersList.clear();
-        SQLiteDatabase _db = GameData.get_db();
+        SQLiteDatabase _db = _map.get_db();
         int i = 1;
         String s = "record1";
-        switch (GameData.get_gamedifficulty()) {
+        switch (_map.get_gamedifficulty()) {
             case 2:
                 s = "record1";
                 break;
@@ -118,7 +102,7 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
             case 5:
                 s = "record3";
         }
-        Cursor cursor = _db.query("RankingList", new String[]{"playername", s}, "imageid=? ", new String[]{GameData.get_imageid()}, null, null, s);
+        Cursor cursor = _db.query("RankingList", new String[]{"playername", s}, "imageid=? ", new String[]{_map.get_imageid()}, null, null, s);
         if (cursor.moveToFirst()) {
             do {
                 Users u = new Users();

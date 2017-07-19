@@ -62,6 +62,8 @@ public class GameActivity extends AppCompatActivity {
     private TextView _record;
 
     private TextView _player;
+    
+    private MyApplication _map;
 
     /**
      * UI更新Handler
@@ -114,6 +116,7 @@ public class GameActivity extends AppCompatActivity {
      * 初始化属性
      */
     private void Init() {
+        _map=(MyApplication)this.getApplication(); 
         //获取屏幕宽高
         DisplayMetrics dm = this.getResources().getDisplayMetrics();
         _screenwidth = dm.widthPixels;
@@ -176,14 +179,14 @@ public class GameActivity extends AppCompatActivity {
         _gc.set_gu(_gu);
         _gc.initarraystep();
         _running = true;
-        _player.setText(GameData.get_curuser().get_username());
-        if (GameData.get_gametype() != 3) {
+        _player.setText(_map.get_curuser().get_username());
+        if (_map.get_gametype() != 3) {
             ShowBestRecord();
         }
-        int i = GameData.get_gamedifficulty();
-        _bmp = ImageUtil.zoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
-        _gu.fillGameZone(_bmp, GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
-        _gc.randomtable(GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
+        int i = _map.get_gamedifficulty();
+        _bmp = ImageUtil.ZoomBitmap(_bmp, _screenwidth - 50, _screenwidth - 50);
+        _gu.FillGameZone(_bmp, _map.get_gamedifficulty(), _map.get_gamedifficulty());
+        _gc.randomtable(_map.get_gamedifficulty(), _map.get_gamedifficulty());
         _imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
         _imageview.setAdjustViewBounds(true);
         _imageview.setMaxWidth(256);
@@ -269,8 +272,8 @@ public class GameActivity extends AppCompatActivity {
 
 
             _gc.TraceStack.clear();
-            _gu.fillGameZone(_bmp, GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
-            _gc.randomtable(GameData.get_gamedifficulty(), GameData.get_gamedifficulty());
+            _gu.FillGameZone(_bmp, _map.get_gamedifficulty(), _map.get_gamedifficulty());
+            _gc.randomtable(_map.get_gamedifficulty(), _map.get_gamedifficulty());
         }
     }
 
@@ -285,7 +288,7 @@ public class GameActivity extends AppCompatActivity {
             Intent intent = new Intent();
             MyTimer.CancelTimer();
             _timerindex = 0;
-            if (GameData.get_gametype() != 3) {
+            if (_map.get_gametype() != 3) {
                 intent.setClass(GameActivity.this, MainActivity.class);
 
             } else {
@@ -315,8 +318,8 @@ public class GameActivity extends AppCompatActivity {
                 MyTimer.StartTimer(_mhandler);
             }
             _running = !_running;
-            for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
-                for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
+            for (int i = 0; i < _map.get_gamedifficulty(); i++) {
+                for (int j = 0; j < _map.get_gamedifficulty(); j++) {
                     int id = i * 10 + j;
                     GetImageView(id).setClickable(_running);
                 }
@@ -386,7 +389,7 @@ public class GameActivity extends AppCompatActivity {
     //帮助结束后，显示Dialog
     public void ShowDialog(int step_number) {
         //其中的帮助走的步数为stepnumber_help
-        if (GameData.get_gametype() == 3) {
+        if (_map.get_gametype() == 3) {
             MyDialog1 dialog1 = new MyDialog1(GameActivity.this);
             dialog1.initText("恭喜您，拼图已完成，一共用时" + (_timerindex - 1) + " s");
             dialog1.show();
@@ -400,7 +403,7 @@ public class GameActivity extends AppCompatActivity {
     public void ShowBestRecord() {
         String name = "";
         String record = "";
-        switch (GameData.get_gamedifficulty()) {
+        switch (_map.get_gamedifficulty()) {
             case 2:
                 name = "keeper1";
                 record = "record1";
@@ -414,7 +417,7 @@ public class GameActivity extends AppCompatActivity {
                 record = "record3";
                 break;
         }
-        Cursor cursor = GameData.get_db().query("BestRecord", new String[]{name, record}, "imageid=?", new String[]{GameData.get_imageid()}, null, null, null);
+        Cursor cursor = _map.get_db().query("BestRecord", new String[]{name, record}, "imageid=?", new String[]{_map.get_imageid()}, null, null, null);
         if (cursor.moveToFirst()) {
             _recorder.setText(cursor.getString(cursor.getColumnIndex(name)));
             _record.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex(record))));

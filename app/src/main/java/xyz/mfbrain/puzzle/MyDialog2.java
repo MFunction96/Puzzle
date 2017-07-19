@@ -75,6 +75,7 @@ public class MyDialog2 extends Dialog {
             public void onClick(View v) {
                 Intent intent = new Intent(context, RankingList.class);
                 context.startActivity(intent);
+                MyDialog2.this.dismiss();
             }
         });
         Typeface typeFace = Typeface.createFromAsset(context.getAssets(), "fonts/fzstk.ttf");

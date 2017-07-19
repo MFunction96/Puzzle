@@ -17,36 +17,43 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class GameLogin extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
-    private EditText username;
-    private EditText password;
-    private Button btn_sign_in;
-    private Button btn_sign_up;
-    private CheckBox remember;
+    private EditText _username;
+    private EditText _password;
+    private Button _btn_sign_in;
+    private Button _btn_sign_up;
+    private CheckBox _remember;
     private SQLiteDatabase _db;
-    private boolean isValidated = false;
+    private boolean _isValidated = false;
     private Users _user = new Users();
     private SharedPreferences _pref;
     private SharedPreferences.Editor _editor;
+    private MyApplication _map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gamelogin);
-        username = (EditText) findViewById(R.id.text_username);
-        username.setOnFocusChangeListener(this);
-        password = (EditText) findViewById(R.id.text_password);
-        password.setOnFocusChangeListener(this);
-        btn_sign_in = (Button) findViewById(R.id.btn_sign_in);
-        btn_sign_in.setOnClickListener(this);
-        btn_sign_up = (Button) findViewById(R.id.btn_sign_up);
-        btn_sign_up.setOnClickListener(this);
-        remember = (CheckBox) findViewById(R.id.cb_remember);
+       Init();
+
+    }
+
+    public void Init(){
+        _map=(MyApplication)this.getApplication();
+        _username = (EditText) findViewById(R.id.text_username);
+        _username.setOnFocusChangeListener(this);
+        _password = (EditText) findViewById(R.id.text_password);
+        _password.setOnFocusChangeListener(this);
+        _btn_sign_in = (Button) findViewById(R.id.btn_sign_in);
+        _btn_sign_in.setOnClickListener(this);
+        _btn_sign_up = (Button) findViewById(R.id.btn_sign_up);
+        _btn_sign_up.setOnClickListener(this);
+        _remember = (CheckBox) findViewById(R.id.cb_remember);
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
-        username.setTypeface(typeFace);
-        password.setTypeface(typeFace);
-        btn_sign_in.setTypeface(typeFace);
-        btn_sign_up.setTypeface(typeFace);
-        remember.setTypeface(typeFace);
+        _username.setTypeface(typeFace);
+        _password.setTypeface(typeFace);
+        _btn_sign_in.setTypeface(typeFace);
+        _btn_sign_up.setTypeface(typeFace);
+        _remember.setTypeface(typeFace);
         TextView textview = (TextView) findViewById(R.id.userhint);
         textview.setTypeface(typeFace);
         textview = (TextView) findViewById(R.id.pwdhint);
@@ -56,30 +63,29 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
         if (isRemember) {
             String account = _pref.getString("username", "");
             String password1 = _pref.getString("password", "");
-            username.setText(account);
-            password.setText(password1);
-            remember.setChecked(true);
+            _username.setText(account);
+            _password.setText(password1);
+            _remember.setChecked(true);
         }
-
 
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        username.setText(GameData.get_curuser().get_username());
-        password.setText(GameData.get_curuser().get_password());
+        _username.setText(_map.get_curuser().get_username());
+        _password.setText(_map.get_curuser().get_password());
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_sign_in:
-                if (username.getText().toString().equals("")) {
+                if (_username.getText().toString().equals("")) {
                     Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT);
                 } else {
                     ValidateUser();
-                    if (isValidated) {
+                    if (_isValidated) {
                         Cursor cursor = _db.query("PlayerInfo", null, "playername = ?",
                                 new String[]{_user.get_username()}, null, null, null);
                         if (cursor.moveToFirst()) {
@@ -91,19 +97,19 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
                         }
                         cursor.close();
                         _user.set_isvalidate(true);
-                        GameData.set_curuser(_user);
+                        _map.set_curuser(_user);
                         _editor = _pref.edit();
-                        if (remember.isChecked()) {
+                        if (_remember.isChecked()) {
                             _editor.putBoolean("remember_password", true);
-                            _editor.putString("username", username.getText().toString());
-                            _editor.putString("password", password.getText().toString());
+                            _editor.putString("username", _username.getText().toString());
+                            _editor.putString("password", _password.getText().toString());
                         } else {
                             _editor.clear();
-                            username.setText("");
-                            password.setText("");
+                            _username.setText("");
+                            _password.setText("");
                         }
                         _editor.apply();
-                        GameData.set_islogin(true);
+                        _map.set_islogin(true);
                         Intent intent1 = new Intent(this, PreloadActivity.class);
                         startActivity(intent1);
                     } else {
@@ -123,12 +129,12 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
     public void onFocusChange(View view, boolean hasFocus) {
         if (view.getId() == R.id.text_username) {
             if (!view.hasFocus()) {
-                if (TextUtils.isEmpty(username.getText().toString()))
+                if (TextUtils.isEmpty(_username.getText().toString()))
                     Toast.makeText(this, "请输入用户名", Toast.LENGTH_SHORT).show();
             }
         } else if (view.getId() == R.id.text_password) {
-            if (!password.hasFocus()) {
-                if (TextUtils.isEmpty(password.getText().toString())) {
+            if (!_password.hasFocus()) {
+                if (TextUtils.isEmpty(_password.getText().toString())) {
                     Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -137,17 +143,17 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
     }
 
     public void ValidateUser() {
-        _db = GameData.get_db();
+        _db = _map.get_db();
         Cursor cursor = _db.query("User", new String[]{"username", "password"}, "username = ?",
-                new String[]{username.getText().toString()}, null, null, null);
+                new String[]{_username.getText().toString()}, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                _user.set_username(username.getText().toString());
+                _user.set_username(_username.getText().toString());
                 _user.set_password(cursor.getString(cursor.getColumnIndex("password")));
             } while (cursor.moveToNext());
         }
         cursor.close();
-        isValidated = _user.get_password().equals(password.getText().toString());
+        _isValidated = _user.get_password().equals(_password.getText().toString());
     }
 
 }

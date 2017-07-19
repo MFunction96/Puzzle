@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
      *
      */
     private static int columns = 0;
+    
+    private MyApplication _map;
 
     /**
      * @param savedInstanceState
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
      *
      */
     private void Init() {
+        _map=(MyApplication)this.getApplication(); 
         _levelgroup = (RadioGroup) findViewById(R.id.radioGroup);
         _level1 = (RadioButton) findViewById(R.id.easy);
         _level2 = (RadioButton) findViewById(R.id.middle);
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         _level3.setTypeface(typeFace);
         _startgame.setTypeface(typeFace);
         level_chosen = false;
-        _ia = new ImageAdapter(this);
+        _ia = _map.get_imageAdapter();
         _bmp = "";
     }
 
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if (!_bmp.equals("")) {
             _startgame.setEnabled(true);
         }
-        GameData.set_gamedifficulty(rows);
+        _map.set_gamedifficulty(rows);
     }
 
 
@@ -170,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             _bmp = String.valueOf(_ia.getItemId(position));
             imageView=(ImageView)findViewById(R.id.image_bottom);
             imageView.setImageBitmap((Bitmap)_ia.getItem(position));
-            GameData.set_imageid(position + "");
+            _map.set_imageid(position + "");
             if (level_chosen) {
                 _startgame.setEnabled(true);
             }

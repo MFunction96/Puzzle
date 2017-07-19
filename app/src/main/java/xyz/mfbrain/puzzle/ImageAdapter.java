@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.io.Serializable;
+
 /**
  * Created by MFunction on 2017/7/3.
  *
@@ -15,15 +17,14 @@ import android.widget.ImageView;
  */
 
 
-final class ImageAdapter extends BaseAdapter {
+final class ImageAdapter extends BaseAdapter{
 
     private Activity _ma;
     private int[] _bmpid;
-    private Bitmap[] _bmp;
+    private Bitmap[] _bmp=null;
 
     ImageAdapter(Activity mainActivity) {
         final int COUNT = 9;
-        BitmapWorkerTask[] bwt = new BitmapWorkerTask[COUNT];
         _ma = mainActivity;
         _bmpid = new int[COUNT];
         _bmp = new Bitmap[_bmpid.length];
@@ -39,7 +40,7 @@ final class ImageAdapter extends BaseAdapter {
         for (int i = 0; i < COUNT; i++) {
 /*            bwt[i] = new BitmapWorkerTask(_bmp[i], _ma.getResources(), _ma.GetGridview(), this);
             bwt[i].execute(String.valueOf(_bmpid[i]));*/
-            _bmp[i] = ImageUtil.FixBmp(BitmapFactory.decodeResource(_ma.getResources(), _bmpid[i]));
+            _bmp[i] = ImageUtil.FixBmp(ImageUtil.readBitMap(_ma,_bmpid[i]));
         }
 
     }

@@ -77,6 +77,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
 
     private TextView Coin_num;
 
+    private MyApplication _map;
+
 
     /**
      * UI更新Handler
@@ -138,7 +140,8 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
         WindowManager wm = this.getWindowManager();
         screenwidth = wm.getDefaultDisplay().getWidth();
         setContentView(R.layout.activity_adventuremode);
-        last_record = GameData.get_curuser().get_last_record();
+        _map=(MyApplication)this.getApplication();
+        last_record = _map.get_curuser().get_last_record();
         if (last_record > 1) {
             final AlertDialog.Builder question = new AlertDialog.Builder(AdventureMode.this);
             question.setTitle("游戏提示");
@@ -347,7 +350,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             }
         });
 
-        //curplayer.setText(GameData.get_curuser().get_username());
+        //curplayer.setText(_map.get_curuser().get_username());
         UpdateInfo();
     }
 
@@ -664,20 +667,20 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
     }
 
     private void UpdateInfo() {
-        bestrecord.setText(String.valueOf(GameData.get_curuser().get_best_record()));
-        lastrecord.setText(String.valueOf(GameData.get_curuser().get_last_record()));
-        coin_num = (GameData.get_curuser().get_money());
+        bestrecord.setText(String.valueOf(_map.get_curuser().get_best_record()));
+        lastrecord.setText(String.valueOf(_map.get_curuser().get_last_record()));
+        coin_num = (_map.get_curuser().get_money());
         Coin_num.setText(String.valueOf(coin_num));
     }
 
     private void UpdateDataBase() {
-        SQLiteDatabase db = GameData.get_db();
+        SQLiteDatabase db = _map.get_db();
         ContentValues values = new ContentValues();
-        GameData.get_curuser().setAdRecord(level + 1);
-        values.put("last_record", GameData.get_curuser().get_last_record());
-        values.put("best_record", GameData.get_curuser().get_best_record());
+        _map.get_curuser().setAdRecord(level + 1);
+        values.put("last_record", _map.get_curuser().get_last_record());
+        values.put("best_record", _map.get_curuser().get_best_record());
         values.put("money", coin_num);
-        db.update("PlayerInfo", values, "playername=?", new String[]{GameData.get_curuser().get_username()});
+        db.update("PlayerInfo", values, "playername=?", new String[]{_map.get_curuser().get_username()});
         values.clear();
     }
 
