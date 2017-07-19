@@ -28,6 +28,7 @@
 本项目由第五组“第五组猿族崛起”项目组开发，项目组成员如下：
 - 组长：臧旭（[*MFunction96*](https://github.com/MFunction96)）
 - 组员：包希港（[*1065283526*](https://github.com/1065283526)）、刘晓宇（[*lxy9725*](https://github.com/lxy9725)）、吕文娇（[*llllwwwjj*](https://github.com/llllwwwjj)）、田媛（[*Medusaxin*](https://github.com/Medusaxin)）、杨桦桉（[*ChrisYoung96*](https://github.com/ChrisYoung96)）
+
 其中：
 - 臧旭负责项目管理规划以及项目界面设计
 - 包希港负责核心业务逻辑设计与实现
