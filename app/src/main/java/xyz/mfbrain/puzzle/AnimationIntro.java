@@ -36,6 +36,16 @@ public class AnimationIntro extends Activity {
             }
         });
 
+        Button button=(Button)findViewById(R.id.bt_skip);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(AnimationIntro.this,PreloadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
     }
