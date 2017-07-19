@@ -339,10 +339,9 @@ public class GameActivity extends AppCompatActivity {
                 case 1:
                     GameController.Idclass idrecover = _gc.TraceStack.pop();
                     _gc.ChangeBitmap(idrecover.id1, idrecover.id2);
-                    _gc.checkfinish();
                     break;
                 case 2:
-                    ShowDialog(_hp.stepnumber_help);
+                    _gc.checkfinish();
                     break;
             }
         }
