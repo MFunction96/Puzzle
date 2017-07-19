@@ -99,7 +99,7 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         if (checkedId == _freeLevel1.getId()) {
-            _map.set_gamedifficulty(2);
+            _map.set_gamedifficulty(3);
         } else if (checkedId == _freeLevel2.getId()) {
             _map.set_gamedifficulty(4);
         } else if (checkedId == _freeLevel3.getId()) {

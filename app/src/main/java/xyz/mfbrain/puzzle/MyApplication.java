@@ -9,13 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class MyApplication extends Application {
     private  SQLiteDatabase _db;
-    private  Users _curuser = new Users();
-    private  String _imageid = "0";
-    private  int _gametype = 1;
-    private  int _gamedifficulty = 2;
-    private  String _recordkeeper = "-----";
-    private  String _bestrecord = "-----";
-    private boolean _islogin = false;
+    private  Users _curuser ;
+    private  String _imageid;
+    private  int _gametype ;
+    private  int _gamedifficulty ;
+    private  String _recordkeeper ;
+    private  String _bestrecord ;
+    private boolean _islogin ;
     private ImageAdapter _imageAdapter;
 
     @Override
@@ -25,7 +25,7 @@ public class MyApplication extends Application {
         _curuser = new Users();
         _imageid = "0";
         _gametype = 1;
-        _gamedifficulty = 2;
+        _gamedifficulty = 3;
         _recordkeeper = "-----";
         _bestrecord = "-----";
         _islogin = false;

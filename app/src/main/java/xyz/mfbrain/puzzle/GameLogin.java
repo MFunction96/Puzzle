@@ -54,10 +54,6 @@ public class GameLogin extends AppCompatActivity implements View.OnClickListener
         _btn_sign_in.setTypeface(typeFace);
         _btn_sign_up.setTypeface(typeFace);
         _remember.setTypeface(typeFace);
-        TextView textview = (TextView) findViewById(R.id.userhint);
-        textview.setTypeface(typeFace);
-        textview = (TextView) findViewById(R.id.pwdhint);
-        textview.setTypeface(typeFace);
         _pref = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isRemember = _pref.getBoolean("remember_password", false);
         if (isRemember) {

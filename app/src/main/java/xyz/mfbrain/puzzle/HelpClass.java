@@ -32,7 +32,7 @@ public class HelpClass extends Thread {
             msg.what = 1;
             _aca.handler.sendMessage(msg);
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

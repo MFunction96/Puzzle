@@ -77,7 +77,7 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         if (checkedId == _level1.getId()) {
-            _map.set_gamedifficulty(2);
+            _map.set_gamedifficulty(3);
         } else if (checkedId == _level2.getId()) {
             _map.set_gamedifficulty(4);
         } else if (checkedId == _level3.getId()) {
@@ -93,7 +93,7 @@ public class RankingList2 extends AppCompatActivity implements AdapterView.OnIte
         int i = 1;
         String s = "record1";
         switch (_map.get_gamedifficulty()) {
-            case 2:
+            case 3:
                 s = "record1";
                 break;
             case 4:

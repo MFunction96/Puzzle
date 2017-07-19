@@ -57,7 +57,7 @@ public class RankingList extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.challenge_image);
         imageView.setImageBitmap(bitmap);
         TextView textView = (TextView) findViewById(R.id.challenge_text);
-        textView.setText(_map.get_gametype() + "*" + _map.get_gametype());
+        textView.setText(_map.get_gamedifficulty() + "*" + _map.get_gamedifficulty());
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
         textView.setTypeface(typeFace);
         textView = (TextView)findViewById(R.id.rank1diff);
@@ -77,7 +77,7 @@ public class RankingList extends AppCompatActivity {
         int i = 1;
         String s = "record1";
         switch (_map.get_gamedifficulty()) {
-            case 2:
+            case 3:
                 s = "record1";
                 break;
             case 4:
@@ -106,7 +106,7 @@ public class RankingList extends AppCompatActivity {
         _map.set_recordkeeper(_playersList.get(0).get_username());
         ContentValues values = new ContentValues();
         switch (_map.get_gamedifficulty()) {
-            case 2:
+            case 3:
                 values.put("keeper1", _map.get_recordkeeper());
                 values.put("record1", _map.get_bestrecord());
                 break;

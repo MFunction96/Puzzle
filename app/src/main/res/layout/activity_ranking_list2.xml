@@ -134,9 +134,10 @@
 
     <Button
         android:id="@+id/list2_btn"
-        style="@style/ButtonStyle"
-        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
         android:layout_height="0dip"
+        android:layout_gravity="end|right"
         android:layout_marginTop="10dip"
         android:layout_weight="1"
         android:background="@mipmap/back" />

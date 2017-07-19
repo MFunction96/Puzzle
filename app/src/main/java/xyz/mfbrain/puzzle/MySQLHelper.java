@@ -62,6 +62,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("drop table User");
         sqLiteDatabase.execSQL("drop table PlayerInfo");
         sqLiteDatabase.execSQL("drop table RankingList");
+        sqLiteDatabase.execSQL("drop table BestRecord");
         onCreate(sqLiteDatabase);
         Toast.makeText(context, "Update Success", Toast.LENGTH_SHORT).show();
 

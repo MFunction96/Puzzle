@@ -307,13 +307,13 @@ public class GameActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             if (_running) {
-                _pausegame.setText("开始游戏");
+                _pausegame.setBackgroundResource(R.mipmap.start);
                 //暂停计时
                 MyTimer.CancelTimer();
                 _timerindex = 0;
 
             } else {
-                _pausegame.setText("暂停游戏");
+                _pausegame.setBackgroundResource(R.mipmap.pause);
                 //继续计时
                 MyTimer.StartTimer(_mhandler);
             }
@@ -347,37 +347,7 @@ public class GameActivity extends AppCompatActivity {
         }
     };
 
-    /**
-     * 停止计时
-     *//*
-    public void CancelTimer() {
-        _mtimer.cancel();
-        _mtimertask.cancel();
-        _timerindex = 0;
-    }
 
-    */
-
-    /**
-     * 开始计时
-     *//*
-    public void StartTimer() {
-
-        // 启用计时器
-        _mtimer = new Timer(true);
-        // 计时器线程
-        _mtimertask = new TimerTask() {
-
-            @Override
-            public void run() {
-                Message msg = new Message();
-                msg.what = 1;
-                _mhandler.sendMessage(msg);
-            }
-        };
-        // 每1000ms执行 延迟0s
-        _mtimer.schedule(_mtimertask, 0, 1000);
-    }*/
     public void SetTimerIndex(int t) {
         _timerindex = t;
     }
@@ -404,7 +374,7 @@ public class GameActivity extends AppCompatActivity {
         String name = "";
         String record = "";
         switch (_map.get_gamedifficulty()) {
-            case 2:
+            case 3:
                 name = "keeper1";
                 record = "record1";
                 break;

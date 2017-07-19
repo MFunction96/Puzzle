@@ -164,7 +164,7 @@ class GameController {
                     values.put("imageid", _map.get_imageid());
                     values.put("playername", _map.get_curuser().get_username());
                     switch (_map.get_gamedifficulty()) {
-                        case 2:
+                        case 3:
                             values.put("record1", _map.get_curuser().get_last_record());
                             break;
                         case 4:

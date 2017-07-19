@@ -47,9 +47,9 @@ public class PreloadActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_preload);
         //更新和初次建立数据库时调用
-        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 1);
+        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 7);
         Init();
-        InitDataBase();
+        //InitDataBase();
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
         _about.setOnClickListener(new About());
         _ranklist.setOnClickListener(new RankList());

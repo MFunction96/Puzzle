@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         if (checkedId == _level1.getId()) {
-            rows = columns = 2;
+            rows = columns = 3;
         } else if (checkedId == _level2.getId()) {
             rows = columns = 4;
         } else if (checkedId == _level3.getId()) {
