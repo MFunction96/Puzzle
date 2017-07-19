@@ -54,7 +54,6 @@ class GameController {
         _map=(MyApplication)_ga.getApplication();
         _gameType = _map.get_gametype();
         _hasplayed = false;
-
     }
 
     public void set_gu(ImageUtil imageUtil) {

@@ -310,7 +310,7 @@ public class GameActivity extends AppCompatActivity {
                 _pausegame.setBackgroundResource(R.mipmap.start);
                 //暂停计时
                 MyTimer.CancelTimer();
-                _timerindex = 0;
+                //_timerindex = 0;
 
             } else {
                 _pausegame.setBackgroundResource(R.mipmap.pause);
