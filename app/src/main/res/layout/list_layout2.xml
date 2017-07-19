@@ -13,7 +13,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/description"
         android:gravity="center"
-        android:maxHeight="60dip"
+        android:maxHeight="35dip"
         android:scaleType="centerInside" />
 
     <TextView

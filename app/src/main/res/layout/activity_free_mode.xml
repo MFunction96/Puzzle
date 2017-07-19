@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundrank"
     android:orientation="vertical"
-    android:paddingBottom="180dip"
-    android:paddingLeft="90dip"
-    android:paddingRight="90dip"
-    android:paddingTop="100dip"
+    android:paddingBottom="120dip"
+    android:paddingLeft="70dip"
+    android:paddingRight="70dip"
+    android:paddingTop="80dip"
     android:stretchColumns="*"
     tools:context="xyz.mfbrain.puzzle.FreeMode">
 

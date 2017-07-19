@@ -16,7 +16,7 @@
     <string name="s">s</string>
     <string name="timepast">逝去时间：</string>
     <string name="record">最快记录：</string>
-    <string name="winner">记录创建者：</string>
+    <string name="winner">记录创建：</string>
     <string name="current">当前玩家：</string>
     <string name="username">用户名：</string>
     <string name="usernamehint">请输入用户名</string>
