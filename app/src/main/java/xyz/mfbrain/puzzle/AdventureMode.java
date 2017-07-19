@@ -30,7 +30,7 @@ import java.util.Random;
 public class AdventureMode extends AppCompatActivity implements Runnable {
     private int level = 0;//关卡数
     private int Maxlevel = 5;
-    private int rows = 2;
+    private int rows = 3;
     private int step_origin = 30;//初试步数
     private int step_left = 30;//剩余步数
 
@@ -119,9 +119,6 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 e.printStackTrace();
             }
         }
-        Message msg = new Message();
-        msg.what = 2;
-        handler.sendMessage(msg);
 
     }
 
@@ -146,6 +143,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
             final AlertDialog.Builder question = new AlertDialog.Builder(AdventureMode.this);
             question.setTitle("游戏提示");
             question.setMessage("是否回到上次进度？");
+            question.setCancelable(false);
             question.setPositiveButton("读档", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -398,6 +396,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                         if (id - 10 == position) {
                             int id2 = id - 10;
                             changebitmap(id, id2);
+                            Music.play(AdventureMode.this,R.raw.yidong2,false);
                             Idclass idclass1 = new Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -408,6 +407,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                         } else if (id + 10 == position) {
                             int id2 = id + 10;
                             changebitmap(id, id2);
+                            Music.play(AdventureMode.this,R.raw.yidong2,false);
                             Idclass idclass1 = new Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -418,6 +418,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                         } else if (id - 1 == position) {
                             int id2 = id - 1;
                             changebitmap(id, id2);
+                            Music.play(AdventureMode.this,R.raw.yidong2,false);
                             Idclass idclass1 = new Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -428,6 +429,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                         } else if (id + 1 == position) {
                             int id2 = id + 1;
                             changebitmap(id, id2);
+                            Music.play(AdventureMode.this,R.raw.yidong2,false);
                             Idclass idclass1 = new Idclass();
                             idclass1.id1 = id2;
                             idclass1.id2 = id;
@@ -519,7 +521,7 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                 }
             }
         }
-        if (step_left == 0 || timeleft <= 0) {
+        if (step_left == 0 || timeleft <0) {
             AlertDialog.Builder dialog_over = new AlertDialog.Builder(AdventureMode.this);
             dialog_over.setTitle("游戏提示");
             dialog_over.setMessage("游戏结束");
@@ -586,14 +588,6 @@ public class AdventureMode extends AppCompatActivity implements Runnable {
                     Idclass idrecover = TraceStack.pop();
                     changebitmap(idrecover.id1, idrecover.id2);
                     break;
-                case 2:
-                    if (level == Maxlevel) {
-                        createdialog_finish();
-                    } else {
-                        createDialog();
-                    }
-                    break;
-
             }
         }
     };

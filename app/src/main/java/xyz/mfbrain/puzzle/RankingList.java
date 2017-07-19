@@ -53,7 +53,7 @@ public class RankingList extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.challenge_image);
         imageView.setImageBitmap(bitmap);
         TextView textView = (TextView) findViewById(R.id.challenge_text);
-        textView.setText(GameData.get_gametype() + "*" + GameData.get_gametype());
+        textView.setText(GameData.get_gamedifficulty() + "*" + GameData.get_gamedifficulty());
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
         textView.setTypeface(typeFace);
         textView = (TextView)findViewById(R.id.rank1diff);
