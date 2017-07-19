@@ -75,8 +75,8 @@ public class RankingList extends AppCompatActivity {
     private void InitPlayerList() {
         SQLiteDatabase _db = _map.get_db();
         int i = 1;
-        String s = "record1";
-        switch (_map.get_gamedifficulty()) {
+        String s = "record1";  //查询条件变量
+        switch (_map.get_gamedifficulty()) {//利用全局变量，读取游戏难度，设置查询条件，以动态查询数据
             case 3:
                 s = "record1";
                 break;

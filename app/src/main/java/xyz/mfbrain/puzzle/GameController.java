@@ -131,7 +131,6 @@ class GameController {
             SQLiteDatabase _db = _map.get_db();
             ContentValues values = new ContentValues();
             _map.get_curuser().setRecord(_ga.GetTimerIndex() - 1);
-            _ga.ShowDialog(_gu.GetStep_Player());
             if (_gameType == 1) {
                 //查询数据库
 //                Cursor cursor = _db.query("RankingList", new String[]{"playername", "imageid"}, "imageid=? and playername=?", new String[]{_map.get_imageid(), _map.get_curuser().get_username()}, null, null, null);
@@ -160,7 +159,7 @@ class GameController {
 //                   // _db.update("RankingList", values, "playername=?", new String[]{_map.get_curuser().get_username()});
 //
 //                } else
-                {
+
                     values.put("imageid", _map.get_imageid());
                     values.put("playername", _map.get_curuser().get_username());
                     switch (_map.get_gamedifficulty()) {
@@ -175,7 +174,7 @@ class GameController {
                             break;
                     }
                     _db.insert("RankingList", null, values);
-                }
+
             } else if (_gameType == 2) {
                 values.put("last_record", _map.get_curuser().get_last_record());
                 values.put("best_record", _map.get_curuser().get_best_record());
@@ -187,6 +186,7 @@ class GameController {
             // GameActivity._mtimertask.cancel();
 
             MyTimer.CancelTimer();
+            _ga.ShowDialog(_gu.GetStep_Player());
             _ga.SetTimerIndex(0);
         }
 
