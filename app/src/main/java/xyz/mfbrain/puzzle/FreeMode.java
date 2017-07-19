@@ -29,6 +29,7 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
     private boolean _isImageChosen;
     private String _bmp;
     private boolean _isid;
+    private MyApplication _map;
 
 
     @Override
@@ -39,6 +40,7 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
     }
 
     private void Init() {
+        _map=(MyApplication)this.getApplication(); 
         _btn = (Button) findViewById(R.id.free_btn);
         _btn.setOnClickListener(this);
         _rg = (RadioGroup) findViewById(R.id.free_group);
@@ -82,7 +84,7 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
             ContentResolver cr = getContentResolver();
             try {
                 _btm = ImageUtil.FixBmp(BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(_bmp))));
-                _btm = ImageUtil.zoomBitmap(_btm, 500, 500);
+                _btm = ImageUtil.ZoomBitmap(_btm, 500, 500);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -97,11 +99,11 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         if (checkedId == _freeLevel1.getId()) {
-            GameData.set_gamedifficulty(2);
+            _map.set_gamedifficulty(2);
         } else if (checkedId == _freeLevel2.getId()) {
-            GameData.set_gamedifficulty(4);
+            _map.set_gamedifficulty(4);
         } else if (checkedId == _freeLevel3.getId()) {
-            GameData.set_gamedifficulty(5);
+            _map.set_gamedifficulty(5);
         }
         _islevelChosen = true;
         if (!_bmp.equals("")) {

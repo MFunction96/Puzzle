@@ -20,10 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RankingList extends AppCompatActivity {
-    private List<Users> _playersList = new ArrayList<>();
-    ImageAdapter imageAdapter;
+    private List<Users> _playersList ;
+    ImageAdapter _imageAdapter;
+    MyApplication _map;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking_list);
@@ -45,15 +47,17 @@ public class RankingList extends AppCompatActivity {
     }
 
     private void Init() {
-        imageAdapter = new ImageAdapter(this);
-        int i = Integer.parseInt(GameData.get_imageid());
-        Bitmap bitmap = (Bitmap) imageAdapter.getItem(i);
-        bitmap = ImageUtil.zoomBitmap(bitmap, 300, 300);
-        bitmap = ImageUtil.toRoundCornerImage(bitmap, 50);
+        _map=(MyApplication)this.getApplication(); 
+        _playersList = new ArrayList<>();
+        _imageAdapter = _map.get_imageAdapter();
+        int i = Integer.parseInt(_map.get_imageid());
+        Bitmap bitmap = (Bitmap) _imageAdapter.getItem(i);
+        bitmap = ImageUtil.ZoomBitmap(bitmap, 300, 300);
+        bitmap = ImageUtil.ToRoundCornerImage(bitmap, 50);
         ImageView imageView = (ImageView) findViewById(R.id.challenge_image);
         imageView.setImageBitmap(bitmap);
         TextView textView = (TextView) findViewById(R.id.challenge_text);
-        textView.setText(GameData.get_gamedifficulty() + "*" + GameData.get_gamedifficulty());
+        textView.setText(_map.get_gametype() + "*" + _map.get_gametype());
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
         textView.setTypeface(typeFace);
         textView = (TextView)findViewById(R.id.rank1diff);
@@ -69,10 +73,10 @@ public class RankingList extends AppCompatActivity {
     }
 
     private void InitPlayerList() {
-        SQLiteDatabase _db = GameData.get_db();
+        SQLiteDatabase _db = _map.get_db();
         int i = 1;
         String s = "record1";
-        switch (GameData.get_gamedifficulty()) {
+        switch (_map.get_gamedifficulty()) {
             case 2:
                 s = "record1";
                 break;
@@ -82,7 +86,7 @@ public class RankingList extends AppCompatActivity {
             case 5:
                 s = "record3";
         }
-        Cursor cursor = _db.query("RankingList", new String[]{"playername", s}, "imageid=? ", new String[]{GameData.get_imageid()}, null, null, s);
+        Cursor cursor = _db.query("RankingList", new String[]{"playername", s}, "imageid=? ", new String[]{_map.get_imageid()}, null, null, s);
         if (cursor.moveToFirst()) {
             do {
                 Users u = new Users();
@@ -98,23 +102,23 @@ public class RankingList extends AppCompatActivity {
     }
 
     private void UpDateDataBase() {
-        GameData.set_bestrecord(_playersList.get(0).get_last_record() + "");
-        GameData.set_recordkeeper(_playersList.get(0).get_username());
+        _map.set_bestrecord(_playersList.get(0).get_last_record() + "");
+        _map.set_recordkeeper(_playersList.get(0).get_username());
         ContentValues values = new ContentValues();
-        switch (GameData.get_gamedifficulty()) {
+        switch (_map.get_gamedifficulty()) {
             case 2:
-                values.put("keeper1", GameData.get_recordkeeper());
-                values.put("record1", GameData.get_bestrecord());
+                values.put("keeper1", _map.get_recordkeeper());
+                values.put("record1", _map.get_bestrecord());
                 break;
             case 4:
-                values.put("keeper2", GameData.get_recordkeeper());
-                values.put("record2", GameData.get_bestrecord());
+                values.put("keeper2", _map.get_recordkeeper());
+                values.put("record2", _map.get_bestrecord());
                 break;
             case 5:
-                values.put("keeper3", GameData.get_recordkeeper());
-                values.put("record3", GameData.get_bestrecord());
+                values.put("keeper3", _map.get_recordkeeper());
+                values.put("record3", _map.get_bestrecord());
         }
-        GameData.get_db().update("BestRecord", values, "imageid=?", new String[]{GameData.get_imageid()});
+        _map.get_db().update("BestRecord", values, "imageid=?", new String[]{_map.get_imageid()});
         values.clear();
     }
 }

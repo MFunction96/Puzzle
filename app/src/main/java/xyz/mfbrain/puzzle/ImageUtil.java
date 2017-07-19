@@ -2,6 +2,7 @@ package xyz.mfbrain.puzzle;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -15,10 +16,11 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import java.io.InputStream;
+
 /**
  * Created by Chris Young on 2017/7/6.
  */
-
 public class ImageUtil {
     /**
      * GameView中的游戏区域（表格布局）
@@ -36,13 +38,13 @@ public class ImageUtil {
      * 上下文对象
      */
     private Context context;
-    GameActivity _ga;//GameActivity的对象
+    private GameActivity _ga;//GameActivity的对象
 
-    GameController _gc;//GameController的对象
+    private GameController _gc;//GameController的对象
 
     private int Step_Player = 0;//玩家移动的步数
 
-    ImageUtil(TableLayout tl, Context c, GameController gameController, GameActivity gameActivity) {
+    public ImageUtil(TableLayout tl, Context c, GameController gameController, GameActivity gameActivity) {
         tableLayout = tl;
         context = c;
         _gc = gameController;
@@ -58,7 +60,7 @@ public class ImageUtil {
      * @param h      目标高
      * @return
      */
-    static Bitmap zoomBitmap(Bitmap bitmap, int w, int h) {
+   public static Bitmap ZoomBitmap(Bitmap bitmap, int w, int h) {
         //得到原始位图宽 高
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -83,7 +85,7 @@ public class ImageUtil {
      * @return
      */
 
-    static Bitmap cutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
+    static Bitmap CutBitmap(Bitmap bitmap, int x, int y, int w, int h) {
         return Bitmap.createBitmap(bitmap, x, y, w, h);
     }
 
@@ -95,7 +97,7 @@ public class ImageUtil {
      * @param colunms 列数
      */
 
-    void fillGameZone(Bitmap bitmap, int rows, int colunms) {
+    void FillGameZone(Bitmap bitmap, int rows, int colunms) {
         int blockWidth = bitmap.getWidth() / colunms;
         int blockHeight = bitmap.getHeight() / rows;
         tableLayout.removeAllViewsInLayout();
@@ -188,7 +190,7 @@ public class ImageUtil {
      * @param pixels 圆角的度数，数值越大，圆角越大
      * @return 处理后的圆角位图
      */
-    public static Bitmap toRoundCornerImage(Bitmap bitmap, int pixels) {
+    public static Bitmap ToRoundCornerImage(Bitmap bitmap, int pixels) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
         final int color = 0xff424242;
@@ -226,6 +228,16 @@ public class ImageUtil {
             height = sh;
         }
         return Bitmap.createBitmap(bmp, x, y, width, height);
+    }
+
+    public static Bitmap readBitMap(Context context, int resId) {
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inPreferredConfig = Bitmap.Config.RGB_565;
+        opt.inPurgeable = true;
+        opt.inInputShareable = true;
+        //获取资源图片
+        InputStream is = context.getResources().openRawResource(resId);
+        return BitmapFactory.decodeStream(is, null, opt);
     }
 
 

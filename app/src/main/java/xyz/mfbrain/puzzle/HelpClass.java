@@ -14,10 +14,12 @@ public class HelpClass extends Thread {
     GameActivity _aca;
     GameController _gc;
     int stepnumber_help = 0;//点击帮助后需要走的步数
+    MyApplication _map;
 
     HelpClass(GameActivity appCompatActivity, GameController gameController) {
         _aca = appCompatActivity;
         _gc = gameController;
+        _map=(MyApplication) _aca.getApplication();
     }
 
     public synchronized void run() {
@@ -47,8 +49,8 @@ public class HelpClass extends Thread {
     }
 
     private void set_imageview(Boolean isRunning) {
-        for (int i = 0; i < GameData.get_gamedifficulty(); i++) {
-            for (int j = 0; j < GameData.get_gamedifficulty(); j++) {
+        for (int i = 0; i < _map.get_gamedifficulty(); i++) {
+            for (int j = 0; j < _map.get_gamedifficulty(); j++) {
                 int id = i * 10 + j;
                 _aca.GetImageView(id).setClickable(isRunning);
             }

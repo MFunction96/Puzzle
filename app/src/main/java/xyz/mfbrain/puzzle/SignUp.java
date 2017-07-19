@@ -16,32 +16,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUp extends AppCompatActivity implements OnClickListener, View.OnFocusChangeListener {
-    private EditText text_name;
-    private EditText text_password;
-    private EditText text_confirm_password;
-    private Button btn_reg;
-    private String username;
-    private String password;
-    private String confirm_password;
-    private SQLiteDatabase db;
+    private EditText _text_name;
+    private EditText _text_password;
+    private EditText _text_confirm_password;
+    private Button _btn_reg;
+    private String _username;
+    private String _password;
+    private String _confirm_password;
+    private SQLiteDatabase _db;
+    private MyApplication _map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        text_name = (EditText) findViewById(R.id.text_reg_name);
-        text_name.setOnFocusChangeListener(this);
-        text_password = (EditText) findViewById(R.id.text_reg_password);
-        text_password.setOnFocusChangeListener(this);
-        text_confirm_password = (EditText) findViewById(R.id.text_reg_password_confirm);
-        text_confirm_password.setOnFocusChangeListener(this);
-        btn_reg = (Button) findViewById(R.id.btn_register);
-        btn_reg.setOnClickListener(this);
-        db = GameData.get_db();
+        Init();
+
+    }
+
+    public void Init(){
+        _map=(MyApplication)this.getApplication();
+        _text_name = (EditText) findViewById(R.id.text_reg_name);
+        _text_name.setOnFocusChangeListener(this);
+        _text_password = (EditText) findViewById(R.id.text_reg_password);
+        _text_password.setOnFocusChangeListener(this);
+        _text_confirm_password = (EditText) findViewById(R.id.text_reg_password_confirm);
+        _text_confirm_password.setOnFocusChangeListener(this);
+        _btn_reg = (Button) findViewById(R.id.btn_register);
+        _btn_reg.setOnClickListener(this);
+        _db = _map.get_db();
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
-        text_confirm_password.setTypeface(typeFace);
-        text_password.setTypeface(typeFace);
-        text_name.setTypeface(typeFace);
+        _text_confirm_password.setTypeface(typeFace);
+        _text_password.setTypeface(typeFace);
+        _text_name.setTypeface(typeFace);
         TextView textview = (TextView) findViewById(R.id.username);
         textview.setTypeface(typeFace);
         textview = (TextView) findViewById(R.id.password);
@@ -53,16 +60,16 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
     @Override
     public void onClick(View view) {
         boolean regsucces = true;
-        username = text_name.getText().toString();
-        password = text_password.getText().toString();
-        confirm_password = text_confirm_password.getText().toString();
+        _username = _text_name.getText().toString();
+        _password = _text_password.getText().toString();
+        _confirm_password = _text_confirm_password.getText().toString();
 
         //查询数据库
-        Cursor cursor = db.query("User", new String[]{"username"}, null, null, null, null, null);
+        Cursor cursor = _db.query("User", new String[]{"username"}, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 String n = cursor.getString(cursor.getColumnIndex("username"));
-                if (n.equals(username)) {
+                if (n.equals(_username)) {
                     Toast.makeText(this, "用户名已存在", Toast.LENGTH_SHORT).show();
                     regsucces = false;
                     break;
@@ -71,10 +78,10 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
         }
         cursor.close();
         if (regsucces) {
-            if (password.equals(confirm_password)) {
-                registerUser();
-                GameData.get_curuser().set_username(username);
-                GameData.get_curuser().set_password(password);
+            if (_password.equals(_confirm_password)) {
+                RegisterUser();
+                _map.get_curuser().set_username(_username);
+                _map.get_curuser().set_password(_password);
                 Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignUp.this, GameLogin.class);
                 intent.putExtra("justsign", 1);
@@ -84,27 +91,27 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
                 Toast.makeText(this, "密码不一致", Toast.LENGTH_SHORT).show();
             }
         } else {
-            text_name.setText("");
-            text_password.setText("");
-            text_confirm_password.setText("");
+            _text_name.setText("");
+            _text_password.setText("");
+            _text_confirm_password.setText("");
         }
 
     }
 
 
-    private void registerUser() {
+    private void RegisterUser() {
         //添加数据
         ContentValues values = new ContentValues();
-        values.put("username", username);
-        values.put("password", password);
-        db.insert("User", null, values);
+        values.put("username", _username);
+        values.put("password", _password);
+        _db.insert("User", null, values);
         values.clear();
 
-        values.put("playername", username);
+        values.put("playername", _username);
         values.put("money", 20);
         values.put("best_record", 0);
         values.put("last_record", 0);
-        db.insert("PlayerInfo", null, values);
+        _db.insert("PlayerInfo", null, values);
         values.clear();
     }
 
@@ -112,41 +119,41 @@ public class SignUp extends AppCompatActivity implements OnClickListener, View.O
     public void onFocusChange(View view, boolean hasFocus) {
         switch (view.getId()) {
             case R.id.text_reg_name:
-                if (!text_name.hasFocus())
-                    if (TextUtils.isEmpty(text_name.getText().toString())) {
+                if (!_text_name.hasFocus())
+                    if (TextUtils.isEmpty(_text_name.getText().toString())) {
                         Toast.makeText(SignUp.this, "请输入用户名", Toast.LENGTH_SHORT).show();
-                    } else if (text_name.getText().toString().contains(" ")) {
+                    } else if (_text_name.getText().toString().contains(" ")) {
                         Toast.makeText(SignUp.this, "用户名中不能包含空格", Toast.LENGTH_SHORT).show();
-                        text_name.setText("");
+                        _text_name.setText("");
                     }
                 break;
             case R.id.text_reg_password:
-                if (!text_password.hasFocus())
-                    if (TextUtils.isEmpty(text_password.getText().toString())) {
+                if (!_text_password.hasFocus())
+                    if (TextUtils.isEmpty(_text_password.getText().toString())) {
                         Toast.makeText(SignUp.this, "密码不可以为空", Toast.LENGTH_SHORT).show();
-                    } else if (text_password.getText().toString().contains(" ")) {
+                    } else if (_text_password.getText().toString().contains(" ")) {
                         Toast.makeText(SignUp.this, "密码不可以包含空格", Toast.LENGTH_SHORT).show();
-                        text_password.setText("");
+                        _text_password.setText("");
                     } else {
-                        String p = text_password.getText().toString();
+                        String p = _text_password.getText().toString();
                         if (p.length() < 6 || p.length() > 8) {
                             Toast.makeText(SignUp.this, "密码应该为6—8位", Toast.LENGTH_SHORT).show();
-                            text_password.setText("");
+                            _text_password.setText("");
                         }
                     }
                 break;
             case R.id.text_reg_password_confirm:
-                if (!text_confirm_password.hasFocus())
-                    if (TextUtils.isEmpty(text_password.getText().toString())) {
+                if (!_text_confirm_password.hasFocus())
+                    if (TextUtils.isEmpty(_text_password.getText().toString())) {
                         Toast.makeText(SignUp.this, "请确认密码", Toast.LENGTH_SHORT).show();
                     } else {
-                        String p = text_confirm_password.getText().toString();
+                        String p = _text_confirm_password.getText().toString();
                         if (p.length() < 6 || p.length() > 8) {
                             Toast.makeText(SignUp.this, "密码不一致", Toast.LENGTH_SHORT).show();
 
                         }
                     }
-                text_confirm_password.setText("");
+                _text_confirm_password.setText("");
                 break;
         }
 

@@ -41,7 +41,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
             + "record3 integer) ";
 
 
-    Context context;
+    private Context context;
 
     public MySQLHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

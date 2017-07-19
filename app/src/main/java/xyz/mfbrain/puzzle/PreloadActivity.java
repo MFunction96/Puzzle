@@ -35,6 +35,10 @@ public class PreloadActivity extends AppCompatActivity {
 
     private TextView _titlecn;
 
+    private MyApplication _myApplication;
+
+    private ImageAdapter _ia;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +47,9 @@ public class PreloadActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_preload);
         //更新和初次建立数据库时调用
-        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 5);
-        GameData.set_db(_mySQLHelper.getWritableDatabase());
-        //InitDataBase();
+        _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 1);
         Init();
+        InitDataBase();
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
         _about.setOnClickListener(new About());
         _ranklist.setOnClickListener(new RankList());
@@ -79,6 +82,10 @@ public class PreloadActivity extends AppCompatActivity {
         _login = (Button) findViewById(R.id.btn_reg);
         _free = (Button) findViewById(R.id.free);
         _titlecn = (TextView) findViewById(R.id.titlecn);
+        _ia=new ImageAdapter(this);
+        _myApplication=(MyApplication)this.getApplication();
+        _myApplication.set_imageAdapter(_ia);
+        _myApplication.set_db(_mySQLHelper.getWritableDatabase());
     }
 
     private class StartGame implements View.OnClickListener {
@@ -108,7 +115,7 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try {
-                GameData.set_gametype(1);
+                _myApplication.set_gametype(1);
                 Intent intent = new Intent(PreloadActivity.this, MainActivity.class);
                 startActivity(intent);
 
@@ -123,7 +130,7 @@ public class PreloadActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try {
-                GameData.set_gametype(3);
+                _myApplication.set_gametype(3);
                 Intent intent = new Intent(PreloadActivity.this, FreeMode.class);
                 startActivity(intent);
 
@@ -149,15 +156,15 @@ public class PreloadActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            if (GameData.get_islogin()) {
-                GameData.set_curuser(new Users());
-                GameData.set_islogin(false);
+            if (_myApplication.get_islogin()) {
+                _myApplication.set_curuser(new Users());
+                _myApplication.set_islogin(false);
                 GameStatus();
             } else {
                 Intent intent = new Intent(PreloadActivity.this, GameLogin.class);
                 intent.putExtra("home", 1);
                 startActivity(intent);
-                GameData.set_islogin(true);
+                _myApplication.set_islogin(true);
             }
         }
     }
@@ -179,7 +186,7 @@ public class PreloadActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put("username", "aa");
         values.put("password", "11");
-        GameData.get_db().insert("User", null, values);
+        _myApplication.get_db().insert("User", null, values);
         values.clear();
 
         for (int i = 0; i < 9; i++) {
@@ -190,18 +197,18 @@ public class PreloadActivity extends AppCompatActivity {
             values.put("record1", 100000);
             values.put("record2", 100000);
             values.put("record3", 100000);
-            GameData.get_db().insert("BestRecord", null, values);
+            _myApplication.get_db().insert("BestRecord", null, values);
             values.clear();
         }
     }
 
     private void GameStatus() {
-        if (GameData.get_islogin()) {
+        if (_myApplication.get_islogin()) {
             _startgame.setVisibility(View.VISIBLE);
             _challenge.setVisibility(View.VISIBLE);
             _ranklist.setVisibility(View.VISIBLE);
             _free.setVisibility(View.VISIBLE);
-            _login.setText("欢迎" + GameData.get_curuser().get_username() + "!");
+            _login.setText("欢迎" + _myApplication.get_curuser().get_username() + "!");
             _login.setBackgroundColor(0xebebe3);
         } else {
             _login.setText("登录");

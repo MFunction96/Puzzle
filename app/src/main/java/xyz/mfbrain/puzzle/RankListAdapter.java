@@ -22,13 +22,14 @@ public class RankListAdapter extends ArrayAdapter<Users> {
     private int _resourceId;
     private Context _context;
     private int[] _imageid;
+    private MyApplication _map;
 
     public RankListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Users> objects) {
         super(context, resource, objects);
         _context = context;
         _resourceId = resource;
         _imageid = new int[]{R.drawable.rank1, R.drawable.rank2, R.drawable.rank3};
-
+        _map=(MyApplication)_context.getApplicationContext();
     }
 
     @NonNull
@@ -52,7 +53,7 @@ public class RankListAdapter extends ArrayAdapter<Users> {
             TextView _name = (TextView) _view.findViewById(R.id.list_name);
             TextView _record = (TextView) _view.findViewById(R.id.list_record);
             TextView _num = (TextView) _view.findViewById(R.id.list_number);
-            if (_player.get_username().equals(GameData.get_curuser().get_username())) {
+            if (_player.get_username().equals(_map.get_curuser().get_username())) {
                 _num.setTextColor(_context.getResources().getColor(R.color.qianhong));
                 _name.setTextColor(_context.getResources().getColor(R.color.qianhong));
                 _record.setTextColor(_context.getResources().getColor(R.color.qianhong));
