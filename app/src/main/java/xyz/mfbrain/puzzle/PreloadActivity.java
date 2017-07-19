@@ -39,6 +39,8 @@ public class PreloadActivity extends AppCompatActivity {
 
     private ImageAdapter _ia;
 
+    private boolean _isFirstBuild=true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,10 @@ public class PreloadActivity extends AppCompatActivity {
         //更新和初次建立数据库时调用
         _mySQLHelper = new MySQLHelper(this, "Puzzle._db", null, 7);
         Init();
-        //InitDataBase();
+        if(_isFirstBuild){
+            InitDataBase();
+        }
+
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/fzstk.ttf");
         _about.setOnClickListener(new About());
         _ranklist.setOnClickListener(new RankList());
@@ -200,6 +205,7 @@ public class PreloadActivity extends AppCompatActivity {
             _myApplication.get_db().insert("BestRecord", null, values);
             values.clear();
         }
+        _isFirstBuild=false;
     }
 
     private void GameStatus() {

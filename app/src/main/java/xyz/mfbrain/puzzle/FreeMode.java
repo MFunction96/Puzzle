@@ -91,7 +91,6 @@ public class FreeMode extends AppCompatActivity implements View.OnClickListener,
             _image.setImageBitmap(_btm);
             if (_islevelChosen) {
                 _btn.setEnabled(true);
-                _btn.setText("开始游戏");
             }
         }
     }
