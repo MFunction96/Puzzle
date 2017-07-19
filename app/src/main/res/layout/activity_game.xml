@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gamebackgroungd"
+    android:background="@drawable/gamebackgroungd1"
     android:keepScreenOn="true"
     android:orientation="vertical"
     android:paddingBottom="20dip"
@@ -48,7 +48,7 @@
                     android:layout_weight="3"
                     android:gravity="right"
                     android:text="@string/winner"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -57,7 +57,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="left"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
             </TableRow>
 
@@ -73,7 +73,7 @@
                     android:layout_weight="3"
                     android:gravity="right"
                     android:text="@string/record"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -82,7 +82,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="left"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
             </TableRow>
 
@@ -98,7 +98,7 @@
                     android:layout_weight="3"
                     android:gravity="right"
                     android:text="@string/current"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -107,7 +107,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="left"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
             </TableRow>
 
@@ -123,7 +123,7 @@
                     android:layout_weight="3"
                     android:gravity="right"
                     android:text="@string/timepast"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     tools:ignore="RtlHardcoded" />
 
                 <RelativeLayout
@@ -138,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/o"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/secondhint"
@@ -147,7 +147,7 @@
                         android:layout_toEndOf="@+id/tv_dispaly_time"
                         android:layout_toRightOf="@id/tv_dispaly_time"
                         android:text="@string/s"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
                 </RelativeLayout>
             </TableRow>
         </TableLayout>
