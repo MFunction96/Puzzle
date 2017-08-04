@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -26,6 +26,8 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.Random;
+
+import xyz.mfbrain.puzzle.R;
 
 public class AdventureMode extends AppCompatActivity implements Runnable {
     private int level = 0;//关卡数

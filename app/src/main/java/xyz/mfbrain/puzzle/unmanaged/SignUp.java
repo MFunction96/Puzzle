@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import xyz.mfbrain.puzzle.R;
 
 public class SignUp extends AppCompatActivity implements OnClickListener, View.OnFocusChangeListener {
     private EditText _text_name;

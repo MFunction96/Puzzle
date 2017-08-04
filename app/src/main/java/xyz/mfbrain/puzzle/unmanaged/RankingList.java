@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -14,10 +14,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import xyz.mfbrain.puzzle.R;
+import xyz.mfbrain.puzzle.models.ImageAdapter;
 
 public class RankingList extends AppCompatActivity {
     private List<Users> _playersList ;

@@ -6,7 +6,7 @@
 
 
 
-        <xyz.mfbrain.puzzle.MyVideoView
+        <xyz.mfbrain.puzzle.unmanaged.MyVideoView
             android:id="@+id/myVideo"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

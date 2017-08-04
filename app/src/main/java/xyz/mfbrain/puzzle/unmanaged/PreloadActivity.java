@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import xyz.mfbrain.puzzle.R;
+import xyz.mfbrain.puzzle.models.ImageAdapter;
+import xyz.mfbrain.puzzle.views.dialog.MyDialog1;
 
 /**
  * Created by MFunction on 2017/7/7.

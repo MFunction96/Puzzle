@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,6 +16,9 @@ import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import xyz.mfbrain.puzzle.R;
+import xyz.mfbrain.puzzle.models.ImageAdapter;
 
 public class RankingList2 extends AppCompatActivity implements AdapterView.OnItemClickListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import xyz.mfbrain.puzzle.R;
+import xyz.mfbrain.puzzle.models.ImageAdapter;
 
 
 /**

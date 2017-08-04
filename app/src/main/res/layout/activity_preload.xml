@@ -11,7 +11,7 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    tools:context="xyz.mfbrain.puzzle.PreloadActivity">
+    tools:context="xyz.mfbrain.puzzle.unmanaged.PreloadActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

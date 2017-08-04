@@ -1,8 +1,7 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.views.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +15,8 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
+
+import xyz.mfbrain.puzzle.R;
 
 /**
  * Created by Lisa on 2017/7/12.

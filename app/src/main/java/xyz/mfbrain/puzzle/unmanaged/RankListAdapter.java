@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import xyz.mfbrain.puzzle.R;
 
 /**
  * Created by Chris Young on 2017/7/13.

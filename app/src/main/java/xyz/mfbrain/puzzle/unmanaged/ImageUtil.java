@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,6 +17,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import java.io.InputStream;
+
+import xyz.mfbrain.puzzle.R;
 
 /**
  * Created by Chris Young on 2017/7/6.

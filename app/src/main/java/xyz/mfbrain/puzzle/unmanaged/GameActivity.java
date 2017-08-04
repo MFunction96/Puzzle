@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -20,6 +20,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+
+import xyz.mfbrain.puzzle.R;
+import xyz.mfbrain.puzzle.views.dialog.MyDialog1;
+import xyz.mfbrain.puzzle.views.dialog.MyDialog2;
 
 /**
  * Created by MFunction on 2017/7/5.
@@ -240,7 +244,7 @@ public class GameActivity extends AppCompatActivity {
         return _bmp;
     }
 
-    final ImageView GetImageView(int id) {
+    public final ImageView GetImageView(int id) {
         return (ImageView) findViewById(id);
     }
 

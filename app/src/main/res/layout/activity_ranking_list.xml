@@ -11,7 +11,7 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    tools:context="xyz.mfbrain.puzzle.RankingList">
+    tools:context="xyz.mfbrain.puzzle.unmanaged.RankingList">
     <TextView
         android:id="@+id/rank1title"
         android:layout_width="match_parent"

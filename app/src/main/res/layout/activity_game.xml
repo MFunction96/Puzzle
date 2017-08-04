@@ -12,7 +12,7 @@
     android:paddingRight="20dip"
     android:paddingTop="20dip"
     android:stretchColumns="*"
-    tools:context="xyz.mfbrain.puzzle.GameActivity">
+    tools:context="xyz.mfbrain.puzzle.unmanaged.GameActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

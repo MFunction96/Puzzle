@@ -1,7 +1,9 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
+
+import xyz.mfbrain.puzzle.models.ImageAdapter;
 
 /**
  * Created by Chris Young on 2017/7/19.

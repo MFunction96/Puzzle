@@ -1,14 +1,14 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.models;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import java.io.Serializable;
+import xyz.mfbrain.puzzle.R;
+import xyz.mfbrain.puzzle.unmanaged.ImageUtil;
 
 /**
  * Created by MFunction on 2017/7/3.
@@ -17,7 +17,7 @@ import java.io.Serializable;
  */
 
 
-final class ImageAdapter extends BaseAdapter{
+public final class ImageAdapter extends BaseAdapter{
 
     private Activity _ma;
     private int[] _bmpid;

@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +17,7 @@ import java.util.Random;
  */
 
 
-class GameController {
+public class GameController {
     GameActivity _ga;
     ImageUtil _gu;
     private AppCompatActivity _pa;

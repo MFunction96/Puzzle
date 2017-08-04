@@ -11,7 +11,7 @@
     android:paddingRight="20dip"
     android:paddingTop="80dip"
     android:stretchColumns="*"
-    tools:context="xyz.mfbrain.puzzle.SignUp">
+    tools:context="xyz.mfbrain.puzzle.unmanaged.SignUp">
 
     <ImageView
         android:layout_width="match_parent"

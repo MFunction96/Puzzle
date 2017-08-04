@@ -1,10 +1,12 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.GridView;
+
+import xyz.mfbrain.puzzle.models.ImageAdapter;
 
 /**
  * Created by MFunction on 2017/7/12.

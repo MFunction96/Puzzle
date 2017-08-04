@@ -1,4 +1,4 @@
-package xyz.mfbrain.puzzle;
+package xyz.mfbrain.puzzle.unmanaged;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.FileNotFoundException;
+
+import xyz.mfbrain.puzzle.R;
 
 public class FreeMode extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private Bitmap _btm;
